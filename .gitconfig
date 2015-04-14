@@ -1,0 +1,17 @@
+[user]
+	name = Loic CHOLLIER
+	email = loic@chollier.com
+[credential]
+	helper = osxkeychain
+[color]
+	ui = true
+[mergetool]
+	keepBackup = true
+[url "https://"]
+	insteadOf = git://
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[core]
+	editor = vim
+	excludesfile = /Users/loic/.gitignore
