@@ -83,6 +83,8 @@ bindkey '[C' forward-word
 bindkey '[D' backward-word
 
 alias v="mvim -v"
+hp() { heroku "$*" -a wiseview; }
+hs() { heroku "$*" -a wiseview-staging; }
 
 eval "$(grunt --completion=zsh)"
 # source ~/.bin/tmuxinator.zsh
