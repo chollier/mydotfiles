@@ -15,3 +15,6 @@
 [core]
 	editor = vim
 	excludesfile = /Users/loic/.gitignore
+	editor = mvim -v
+[push]
+	default = simple

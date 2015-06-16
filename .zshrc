@@ -55,18 +55,18 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:/usr/local/share/npm/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:/Users/loic/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/sbin"
+export PATH="$PATH:/usr/local/share/npm/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:/Users/loic/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/sbin:/Users/loic/codeship-tool/downloads/darwin_amd64"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim -v'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -74,7 +74,6 @@ export PATH="$PATH:/usr/local/share/npm/bin:/Applications/Postgres.app/Contents/
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-export EDITOR='mvim -v'
 export DISABLE_AUTO_TITLE=true
 
 bindkey "^[[5~" history-beginning-search-backward
