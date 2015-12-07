@@ -1,0 +1,76 @@
+function which_boot2docker() {
+  if which boot2docker-cli > /dev/null; then
+    echo "boot2docker-cli"
+    return 0
+  fi
+  if which boot2docker > /dev/null; then
+    echo "boot2docker"
+    return 0
+  fi
+  echo ""
+  return 0
+}
+
+function init_docker() {
+  if [ "$(uname -s)" != "Darwin" ]; then
+    echo "warning: init_docker is only for mac" >&2
+    return 0
+  fi
+  local boot2docker="$(which_boot2docker)"
+  if [ -z "${boot2docker}" ]; then
+    echo "error: boot2docker not installed" >&2
+    return 1
+  fi
+  if [ "$(${boot2docker} status)" != "running" ]; then
+    echo "boot2docker not running, calling boot2docker up"
+    ${boot2docker} up
+  fi
+  $(${boot2docker} shellinit)
+}
+
+function check_init_docker() {
+  if [ "$(uname -s) == "Darwin"" ] && [ -z "${DOCKER_HOST}" ]; then
+    init_docker
+  fi
+  return 0
+}
+
+function run_after_check_init_docker() {
+  check_init_docker
+  $(which "${1}") ${@:2}
+}
+
+alias docker="run_after_check_init_docker docker"
+alias codeship="run_after_check_init_docker codeship"
+alias jet="run_after_check_init_docker jet"
+
+# arg1: "force" [optional]
+function docker_cleanup {
+  containers=
+  if [ "${1}" == "force" ]; then
+    containers=$(docker ps -a -q | xargs)
+  else
+    containers=$(docker ps -a -q -f status=exited | xargs)
+  fi
+  if [[ ${containers} ]]; then
+    if [ "${1}" == "force" ]; then
+      docker rm -f ${containers}
+    else
+      docker rm ${containers}
+    fi
+  else
+    echo "No containers to remove" >&2
+  fi
+
+  images=$(docker images -a -q -f dangling=true | xargs)
+  if [[ ${images} ]]; then
+    docker rmi ${images}
+  else
+    echo "No images to remove" >&2
+  fi
+
+  echo docker images
+  docker images
+  echo docker ps -a
+  docker ps -a
+}

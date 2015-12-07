@@ -13,7 +13,6 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [core]
-	editor = vim
 	excludesfile = /Users/loic/.gitignore
 	editor = mvim -v
 [push]

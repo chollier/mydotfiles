@@ -1,6 +1,13 @@
-syntax enable
-call pathogen#infect()
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+if filereadable(expand("~/.vimrc.bundles"))
+    source ~/.vimrc.bundles
+endif
 
 inoremap jj <ESC>l
 inoremap jk <ESC>l
@@ -20,7 +27,6 @@ let base16colorspace=256
 " " colorscheme badwolf        " Awesome colorscheme
 " colorscheme molokai
 " colorscheme Tomorrow-Night-Eighties
-" colorscheme solarized
 set background=dark
 " set background=light
 " solarized options
@@ -35,7 +41,7 @@ set scrolloff=3
 set cursorline
 set cursorcolumn
 set showmatch
-filetype plugin indent on
+" filetype plugin indent on
 " set textwidth=79         " Max text-width
 " Wildmenu
 set wildmenu
