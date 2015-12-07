@@ -1,4 +1,5 @@
 # Path to your oh-my-zsh installation.
+
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -31,7 +32,7 @@ ZSH_THEME=agnoster
 # DISABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -49,34 +50,14 @@ ZSH_THEME=agnoster
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails rake ruby brew atom bundler coffee colored-man colorize gem github heroku node npm osx postgres)
+plugins=(vi-mode github docker tmux git rails rake ruby brew atom bundler coffee colored-man colorize gem  heroku node npm osx nvm)
 
 source $ZSH/oh-my-zsh.sh
 
-vim_ins_mode="%{$fg[cyan]%}[INS]%{$reset_color%}"
-vim_cmd_mode="%{$fg[green]%}[CMD]%{$reset_color%}"
-vim_mode=$vim_ins_mode
+# vim_ins_mode="%{$fg[cyan]%}[INS]%{$reset_color%}"
+# vim_cmd_mode="%{$fg[green]%}[CMD]%{$reset_color%}"
+# vim_mode=$vim_ins_mode
 
-# function zle-keymap-select {
-#   vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
-#     zle reset-prompt
-#   }
-#   zle -N zle-keymap-select
-#
-#   function zle-line-finish {
-#     vim_mode=$vim_ins_mode
-#   }
-#   zle -N zle-line-finish
-#
-#   # Fix a bug when you C-c in CMD mode and you'd be prompted with CMD mode indicator, while in fact you would be in INS mode
-#   # # Fixed by catching SIGINT (C-c), set vim_mode to INS and then repropagate the SIGINT, so if anything else depends on it, we will not break it
-#   # # Thanks Ron! (see comments)
-#   function TRAPINT() {
-#     vim_mode=$vim_ins_mode
-#     return $(( 128 + $1 ))
-#   }
-#
-# export RPROMPT='${vim_mode}'
 # User configuration
 
 export PATH="$PATH:/usr/local/share/npm/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:/Users/loic/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/sbin"
@@ -98,17 +79,15 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-export DISABLE_AUTO_TITLE=true
-
 export KEYTIMEOUT=1
 
 #use vim mode in terminal
-bindkey -v
+# bindkey -v
 
 bindkey "^[[5~" history-beginning-search-backward
 bindkey "^[[6~" history-beginning-search-forward
-bindkey '[C' forward-word
-bindkey '[D' backward-word
+# bindkey '[C' forward-word
+# bindkey '[D' backward-word
 
 
 
@@ -124,3 +103,9 @@ eval "$(rbenv init -)"
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
+alias fs="cd /Users/loic/forks/nervecenter && npm start"
+alias fv="cd /Users/loic/forks/nervecenter && v"
+alias ns="cd /Users/loic/nervecenter && npm start"
+alias nv="cd /Users/loic/nervecenter && v"
+# alias git to hub
+# eval "$(hub alias -s)"

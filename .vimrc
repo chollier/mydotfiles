@@ -3,6 +3,7 @@ call pathogen#infect()
 
 
 inoremap jj <ESC>l
+inoremap jk <ESC>l
 
 " Spaces and tabs {{{
 set tabstop=2      " number of visual spaces per TAB
@@ -21,6 +22,7 @@ let base16colorspace=256
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme solarized
 set background=dark
+" set background=light
 " solarized options
 let g:solarized_visibility = "high"
 " let g:solarized_termcolors = 256
@@ -31,6 +33,7 @@ set mouse=a
 set encoding=utf-8
 set scrolloff=3
 set cursorline
+set cursorcolumn
 set showmatch
 filetype plugin indent on
 " set textwidth=79         " Max text-width
@@ -87,13 +90,6 @@ set nowb
 nnoremap <CR> G
 nnoremap <BS> gg
 
-
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-
 " Vim expand region {{{
 vmap v <Plug>(expand_region_expand)
 vmap <C-V> <Plug>(expand_region_shrink)
@@ -118,7 +114,7 @@ nnoremap <silent> <Leader>an :cn<CR>
 nnoremap <silent> <Leader>ap :cp<CR>
 
 
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'ag %s -l -p .agignore --nocolor -g ""'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 
@@ -157,10 +153,12 @@ endfunction
 set timeoutlen=1000 ttimeoutlen=0
 set ttymouse=sgr
 
-let g:javascript_conceal_function   = "ƒ"
-let g:javascript_conceal_this       = "@"
+" set conceallevel=1
+" set concealcursor=nvic
+" let g:javascript_conceal_function   = "ƒ"
+" let g:javascript_conceal_this       = "@"
 let g:jsx_ext_required = 0
-autocmd FileType javascript syntax clear jsFuncBlock
+
 nnoremap nf :NERDTreeFind<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -172,6 +170,7 @@ nmap ga <Plug>(EasyAlign)
 " Make those debugger statements painfully obvious
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
 au BufEnter *.rb syn match error contained "\<debugger\>"
+au BufEnter *.js syn match error contained "\<debugger\>"
 
 set undofile                    " Save undo's after file closes
 set undodir=~/.vim/undo         " where to save undo histories
@@ -183,6 +182,7 @@ nnoremap gV `[v`]
 " " selelct what you've just pasted
 nnoremap gp `[v`]
 "
+set pastetoggle=<F2>
 " " reselect visual block after indent/outdent
 vnoremap < <gv
 vnoremap > >gv
@@ -198,6 +198,19 @@ let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 
 " let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
+let g:syntastic_warning_symbol = "▲"
+let g:syntastic_error_symbol = '✘'
 let g:syntastic_javascript_checkers = ['eslint']
+
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js"
+
+"
+:nmap <leader>s :s/\(<c-r>=expand("<cword>")<cr>\)/
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+hi def link jsObjectKey Label
