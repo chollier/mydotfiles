@@ -29,6 +29,8 @@ brew install caskroom/cask/brew-cask
 brew cask install dockertoolbox
 docker-machine create -d virtualbox dev
 docker-machine start dev
+eval "$(docker-machine env dev)"
+
 
 # Install Homebrew bundle and runs it
 brew tap Homebrew/bundle
