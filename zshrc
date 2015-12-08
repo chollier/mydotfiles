@@ -95,8 +95,9 @@ alias v="mvim -v"
 hp() { heroku "$*" -a wiseview; }
 hs() { heroku "$*" -a wiseview-staging; }
 
-eval "$(grunt --completion=zsh)"
-# source ~/.bin/tmuxinator.zsh
+if command -v grunt>/dev/null; then
+  eval "$(grunt --completion=zsh)"
+fi
 
 eval "$(rbenv init -)"
 

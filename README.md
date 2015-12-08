@@ -1,17 +1,3 @@
-First install XCode from the App Store
+To bootstrap with rcm
 
-Then open a terminal, make sure it's running zsh : `chsh -s $(which zsh)`
-
-#Installing :
-
-```
-zsh <(curl -s https://raw.githubusercontent.com/chollier/mydotfiles/master/mac.sh)
-```
-
-## Leftovers:
-
- - Transfer ~/.aws
- - Transfer relevant ~/.ssh
- - Transfer .docker/config
- - Transfer zsh history
-
+Check chollier/laptop for more
