@@ -1,3 +1,5 @@
+First install XCode from the App Store
+
 #Installing :
 
 ```

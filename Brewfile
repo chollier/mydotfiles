@@ -1,8 +1,12 @@
-cask_args appdir: '/Applications'
+brew "caskroom/cask/brew-cask"
 tap 'caskroom/cask'
+tap 'codeclimate/formulae'
 tap 'thoughtbot/formulae'
-brew "rcm"
+tap 'nviennot/tmate'
 
+cask_args appdir: '/Applications'
+
+brew "rcm"
 cask "dockertoolbox"
 cask "iterm2"
 brew "awscli"
@@ -28,7 +32,6 @@ brew 'redis', restart_service: true
 cask "heroku-toolbelt"
 cask "postgres"
 cask 'firefox', args: { appdir: '/Applications' }
-cask 'google-chrome'
 cask 'java' unless system '/usr/libexec/java_home --failfast'
 
 # Applications
@@ -47,7 +50,6 @@ cask "teamviewer"
 cask "transmission"
 cask "tower"
 cask "transmit"
-cask "twitter"
 cask "vlc"
 cask "spectacle"
 cask "dropbox"
