@@ -26,7 +26,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 # Install Homebrew bundle and runs it
 brew tap Homebrew/bundle
 echo "Running brew bundle (this will take time)"
-brew bundle
+cd ~/mydotfiles &&  brew bundle
 
 # Installing dotfiles
 echo "Installing dotfiles"
