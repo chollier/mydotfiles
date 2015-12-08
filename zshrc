@@ -99,7 +99,7 @@ if command -v grunt>/dev/null; then
   eval "$(grunt --completion=zsh)"
 fi
 
-eval "$(rbenv init -)"
+eval "$(rbenv init - rvm)"
 
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
