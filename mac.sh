@@ -4,11 +4,6 @@
 echo "Installing XCode CLI Tools"
 xcode-select --install
 
-
-# Use zsh
-echo "Switching to zsh"
-chsh -s $(which zsh)
-
 # Install oh my zsh
 echo "Installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

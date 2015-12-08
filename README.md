@@ -1,5 +1,7 @@
 First install XCode from the App Store
 
+Then open a terminal, make sure it's running zsh : `chsh -s $(which zsh)`
+
 #Installing :
 
 ```
