@@ -1,13 +1,3 @@
-#!/bin/sh
-
-# install xcode CLI
-echo "Installing XCode CLI Tools"
-xcode-select --install
-
-# Install oh my zsh
-echo "Installing oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 # Clone this repo
 echo "Downloading dotfiles"
 cd ~
@@ -17,20 +7,33 @@ git clone git://github.com/chollier/mydotfiles
 echo "Installing homebrew"
 cd ~/Downloads
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install rcm
+# Installing dotfiles
+echo "Installing dotfiles"
+env RCRC=$HOME/mydotfiles/rcrc rcup
+source ~/.zshrc
+
+# install xcode CLI
+echo "Installing XCode CLI Tools"
+xcode-select --install
+
+# Install oh my zsh
+echo "Installing oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+source ~/.zshrc
 
 #installing docker
+echo "Installing and starting docker"
 brew install caskroom/cask/brew-cask
 brew cask install dockertoolbox
 docker-machine create -d virtualbox dev
+docker-machine start dev
 
 # Install Homebrew bundle and runs it
 brew tap Homebrew/bundle
 echo "Running brew bundle (this will take time)"
 cd ~/mydotfiles &&  brew bundle
-
-# Installing dotfiles
-echo "Installing dotfiles"
-env RCRC=$HOME/mydotfiles/rcrc rcup
 
 # Some OS X config
 # safari dev

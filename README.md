@@ -5,7 +5,7 @@ Then open a terminal, make sure it's running zsh : `chsh -s $(which zsh)`
 #Installing :
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/chollier/mydotfiles/master/mac.sh)
+zsh <(curl -s https://raw.githubusercontent.com/chollier/mydotfiles/master/mac.sh)
 ```
 
 ## Leftovers:
