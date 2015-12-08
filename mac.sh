@@ -18,6 +18,11 @@ echo "Installing homebrew"
 cd ~/Downloads
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+#installing docker
+brew install caskroom/cask/brew-cask
+brew cask install dockertoolbox
+docker-machine create -d virtualbox dev
+
 # Install Homebrew bundle and runs it
 brew tap Homebrew/bundle
 echo "Running brew bundle (this will take time)"
@@ -72,14 +77,13 @@ chflags nohidden ~/Library
 
 # autohide dock
 echo "Setting up Dock"
-default write com.apple.dock autohide -bool true
-default write com.apple.dock magnification -bool true
-default write com.apple.dock minimize-to-application -bool true
-default write com.apple.dock orientation left
-default write com.apple.dock dashboard-in-overlay -bool true
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock orientation left
+defaults write com.apple.dock dashboard-in-overlay -bool true
 
 killall Dock
-
 
 # install iterm2 solarized colors :
 echo "Install iterm2 Solarized colors"
