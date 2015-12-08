@@ -1,2 +1,2 @@
-EXCLUDES="README.md Brewfile"
+EXCLUDES="README.md Brewfile mac.sh"
 DOTFILES_DIRS="$HOME/mydotfiles"

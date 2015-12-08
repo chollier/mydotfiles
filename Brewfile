@@ -1,12 +1,16 @@
 cask_args appdir: '/Applications'
 tap 'caskroom/cask'
+tap 'thoughtbot/formulae'
+brew "rcm"
 
 cask "dockertoolbox"
 cask "iterm2"
 brew "awscli"
+brew "shellcheck"
 brew "codeclimate"
 brew "ctags"
 brew "hub"
+brew "openssl"
 brew "macvim"
 brew "nmap"
 brew "nvm"

@@ -60,7 +60,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:/usr/local/share/npm/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:/Users/loic/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/sbin"
+export PATH="$PATH:/usr/local/share/npm/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -103,9 +103,9 @@ eval "$(rbenv init -)"
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-alias fs="cd /Users/loic/forks/nervecenter && npm start"
-alias fv="cd /Users/loic/forks/nervecenter && v"
-alias ns="cd /Users/loic/nervecenter && npm start"
-alias nv="cd /Users/loic/nervecenter && v"
+alias fs="cd $HOME/forks/nervecenter && npm start"
+alias fv="cd $HOME/forks/nervecenter && v"
+alias ns="cd $HOME/nervecenter && npm start"
+alias nv="cd $HOME/nervecenter && v"
 # alias git to hub
 # eval "$(hub alias -s)"
