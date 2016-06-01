@@ -4,7 +4,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeTabsToggle' }
 Plug 'scrooloose/nerdtree'
-" Plug 'jistr/vim-nerdtree-tabs'
+Plug 'jistr/vim-nerdtree-tabs'
 Plug 'kien/ctrlp.vim'
 Plug 'bling/vim-airline'
 Plug 'kien/rainbow_parentheses.vim'

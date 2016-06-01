@@ -60,7 +60,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:/usr/local/share/npm/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/sbin"
+export PATH="$PATH:/usr/local/share/npm/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -110,3 +110,25 @@ alias ns="cd $HOME/nervecenter && npm start"
 alias nv="cd $HOME/nervecenter && v"
 # alias git to hub
 # eval "$(hub alias -s)"
+dark() {
+  sed -i.bak -e s/background=light/background=dark/ ~/.vimrc
+  sed -i.back -e s/^ZSH_THEME=agnoster-light$/ZSH_THEME=agnoster/ ~/.zshrc
+  source ~/.zshrc
+}
+
+light() {
+  sed -i.bak -e s/background=dark/background=light/ ~/.vimrc
+  sed -i.back -e s/^ZSH_THEME=agnoster$/ZSH_THEME=agnoster-light/ ~/.zshrc
+  # echo -e "\033]Pg536870\033\\"
+  # echo -e "\033]PhFCF4DC\033\\"
+  # echo -e "\033]Pi475B62\033\\"
+  # echo -e "\033]PjEAE3CB\033\\"
+  # echo -e "\033]Pk475B62\033\\"
+  # echo -e "\033]Pl536870\033\\"
+  # echo -e "\033]PmEAE3CB\033\\"
+  source ~/.zshrc
+}
+
+eval "$(thefuck --alias)"
+# alias dmr="docker-machine restart dev && sleep 1 && eval \"$(docker-machine env dev)\""
+alias dcd="docker-compose -f docker/development/docker-compose.yml $1"

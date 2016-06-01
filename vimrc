@@ -28,7 +28,6 @@ let base16colorspace=256
 " colorscheme molokai
 " colorscheme Tomorrow-Night-Eighties
 set background=dark
-" set background=light
 " solarized options
 let g:solarized_visibility = "high"
 " let g:solarized_termcolors = 256
@@ -104,6 +103,7 @@ vmap <C-V> <Plug>(expand_region_shrink)
 "
 "
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tmuxline#enabled = 0
 
 
 nnoremap <Leader>l :bnext<CR>
