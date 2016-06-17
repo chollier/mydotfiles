@@ -2,11 +2,11 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeTabsToggle' }
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'kien/ctrlp.vim'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'jisaacks/GitGutter'
 Plug 'tpope/vim-surround'
@@ -19,7 +19,6 @@ Plug 'rking/ag.vim'
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 Plug 'rorymckinley/vim-rubyhash', { 'for': 'ruby' }
-" Plug 'junegunn/vim-easy-align'
 Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
 Plug 'vim-scripts/closetag.vim'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -28,9 +27,7 @@ Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
-" Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/syntastic'
-" Plug 'kennethzfeng/vim-raml'
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'ekalinin/Dockerfile.vim'

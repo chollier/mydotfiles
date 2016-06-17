@@ -157,7 +157,9 @@ function! TrimWhiteSpace()
 endfunction
 
 set timeoutlen=1000 ttimeoutlen=0
-set ttymouse=sgr
+if !has('nvim')
+  set ttymouse=sgr
+endif
 
 " set conceallevel=1
 " set concealcursor=nvic
