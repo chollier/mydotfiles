@@ -14,6 +14,6 @@
 	smudge = git-media-smudge %f
 [core]
 	excludesfile = /Users/loic/.gitignore
-	editor = mvim -v
+	editor = nvim
 [push]
 	default = simple

@@ -70,7 +70,7 @@ export PATH="$PATH:/usr/local/share/npm/bin:/Applications/Postgres.app/Contents/
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='nvim -v'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -90,8 +90,8 @@ bindkey "^[[6~" history-beginning-search-forward
 # bindkey '[D' backward-word
 
 
-
-alias v="nvim -v"
+export MYNVIMRC=~/.config/nvim/init.vim
+alias v="nvim"
 hp() { heroku "$*" -a wiseview; }
 hs() { heroku "$*" -a wiseview-staging; }
 
@@ -111,21 +111,14 @@ alias nv="cd $HOME/nervecenter && v"
 # alias git to hub
 # eval "$(hub alias -s)"
 dark() {
-  sed -i.bak -e s/background=light/background=dark/ ~/mydotfiles/vimrc
-  sed -i.back -e s/^ZSH_THEME=agnoster-light$/ZSH_THEME=agnoster/ ~/mydotfiles/zshrc
+  sed -i.bak -e s/background=light/background=dark/ ~/.vimrc
+  sed -i.back -e s/^ZSH_THEME=agnoster-light$/ZSH_THEME=agnoster/ ~/.zshrc
   source ~/.zshrc
 }
 
 light() {
-  sed -i.bak -e s/background=dark/background=light/ ~/mydotfiles/vimrc
-  sed -i.back -e s/^ZSH_THEME=agnoster$/ZSH_THEME=agnoster-light/ ~/mydotfiles/zshrc
-  # echo -e "\033]Pg536870\033\\"
-  # echo -e "\033]PhFCF4DC\033\\"
-  # echo -e "\033]Pi475B62\033\\"
-  # echo -e "\033]PjEAE3CB\033\\"
-  # echo -e "\033]Pk475B62\033\\"
-  # echo -e "\033]Pl536870\033\\"
-  # echo -e "\033]PmEAE3CB\033\\"
+  sed -i.bak -e s/background=dark/background=light/ ~/.vimrc
+  sed -i.back -e s/^ZSH_THEME=agnoster$/ZSH_THEME=agnoster-light/ ~/.zshrc
   source ~/.zshrc
 }
 
@@ -133,3 +126,8 @@ eval "$(thefuck --alias)"
 # alias dmr="docker-machine restart dev && sleep 1 && eval \"$(docker-machine env dev)\""
 alias dcd="docker-compose -f docker/development/docker-compose.yml $1"
 alias dtd="docker-compose -f docker/test/docker-compose.yml $1"
+alias dsd="docker-compose -f docker/sandbox/docker-compose.yml $1"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
