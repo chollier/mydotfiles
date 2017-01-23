@@ -9,17 +9,20 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'neomake/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'flowtype/vim-flow'
+Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
 " Plug 'kien/ctrlp.vim'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'iCyMind/NeoSolarized'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'jisaacks/GitGutter'
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tmhedberg/matchit'
 " Elixir Lang plugins
@@ -39,7 +42,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-ragtag', { 'for': ['html', 'javascript'] }
 Plug 'othree/html5.vim', { 'for': 'html' }
 
-Plug 'elzr/vim-json', { 'for':  ['html', 'javascript', 'json']}
+Plug 'elzr/vim-json', { 'for':  ['html', 'javascript', 'json', '.eslintrc']}
 
 " vim plugin for tmux.conf
 Plug 'tmux-plugins/vim-tmux'
@@ -57,13 +60,14 @@ Plug 'ervandew/supertab'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'scrooloose/syntastic'
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+" Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'ekalinin/Dockerfile.vim'
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'Shougo/unite.vim'
+Plug 'jparise/vim-graphql'
 
 
 if filereadable(expand('~/.config/nvim/.nvimrc.bundles.local'))
@@ -87,18 +91,16 @@ set smartindent
 " " UI and Layout {{{
 set t_Co=256               " Number of colors used in terminal
 let base16colorspace=256
-" " colorscheme badwolf        " Awesome colorscheme
-" colorscheme molokai
-" colorscheme Tomorrow-Night-Eighties
 set background=dark
-" solarized options
-let g:solarized_visibility = "high"
-" let g:solarized_termcolors = 256
-colorscheme solarized
+" neosolarized options
+let g:neosolarized_visibility = "high"
+colorscheme NeoSolarized
 
 set spelllang=en_US        " Set region to British English
 set mouse=a
-set encoding=utf-8
+if !has('nvim')
+  set encoding=utf-8
+endif
 set scrolloff=3
 set cursorline
 set cursorcolumn
@@ -286,8 +288,6 @@ let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 " " Use local node_modules binary
 " let g:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 
-
-
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js"
 
 "
@@ -299,7 +299,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 hi def link jsObjectKey Label
 
-function ESLintFix()
+function! ESLintFix()
   silent execute "!./node_modules/.bin/eslint --fix %"
   edit! %
   Neomake
@@ -307,9 +307,16 @@ endfunction
 
 nnoremap <leader>el :call ESLintFix()<CR>
 
+function! RubocopFix()
+  silent execute "!rubocop -a %"
+  edit! %
+  Neomake
+endfunction
+
+nnoremap <leader>rf :call RubocopFix()<CR>
+
 
 " neomake
-autocmd! BufWritePost * Neomake
 
 nmap <Leader>o :lopen<CR>      " open location window
 nmap <Leader>c :lclose<CR>     " close location window
@@ -318,7 +325,7 @@ nmap <Leader>n :lnext<CR>      " next error/warning
 nmap <Leader>p :lprev<CR>      " previous error/warning
 
 " Use node_modules' eslint
-let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
+let s:eslint_path = system('PATH=$(yarn bin):$PATH && which eslint')
 let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
@@ -341,19 +348,27 @@ function! StrTrim(txt)
   return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 endfunction
 
-let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
 
-let g:neomake_javascript_flow_maker = {
-    \ 'exe': 'sh',
-    \ 'args': ['-c', g:flow_path.' --json --strip-root | flow-vim-quickfix'],
-    \ 'errorformat': '%E%f:%l:%c\,%n: %m',
-    \ 'cwd': '%:p:h'
-    \ }
-
-if g:flow_path != 'flow not found'
+if findfile('.flowconfig', '.;') !=# ''
+  let g:flow_path = StrTrim(system('PATH=$(yarn bin):$PATH && which flow'))
+  if g:flow_path != 'flow not found'
+    let g:neomake_javascript_flow_maker = {
+          \ 'exe': 'sh',
+          \ 'args': ['-c', g:flow_path.' --json 2> /dev/null | flow-vim-quickfix'],
+          \ 'errorformat': '%E%f:%l:%c\,%n: %m',
+          \ 'cwd': '%:p:h'
+          \ }
     let g:neomake_javascript_enabled_makers = g:neomake_javascript_enabled_makers + [ 'flow']
     let g:neomake_jsx_enabled_makers = g:neomake_jsx_enabled_makers + [ 'flow']
+    let g:flow#enable = 0
+    let g:flow#flowpath = g:flow_path
+  endif
 endif
 
-let g:flow#enable = 0
-let g:flow#flowpath = g:flow_path
+if !empty(g:neomake_javascript_enabled_makers)
+  autocmd! BufWritePost * Neomake
+end
+
+autocmd! BufWritePost *.rb Neomake mri
+
+
