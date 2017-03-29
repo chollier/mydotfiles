@@ -50,7 +50,15 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vi-mode github docker tmux git rails rake ruby brew atom bundler coffee colored-man colorize gem  heroku node npm osx nvm zsh-autosuggestions fasd jira)
+plugins=(vi-mode github docker tmux git rails rake ruby atom bundler colored-man colorize gem heroku node npm nvm zsh-autosuggestions fasd jira)
+if [[ `uname` == 'Darwin' ]]
+then
+  plugins=($plugins brew osx)
+  eval "$(rbenv init - rvm)"
+
+  export NVM_DIR=~/.nvm
+  source $(brew --prefix nvm)/nvm.sh
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -67,11 +75,11 @@ export PATH="$PATH:/usr/local/share/npm/bin:/Applications/Postgres.app/Contents/
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -94,15 +102,6 @@ export MYNVIMRC=~/.config/nvim/init.vim
 alias v="nvim"
 hp() { heroku "$*" -a wiseview; }
 hs() { heroku "$*" -a wiseview-staging; }
-
-if command -v grunt>/dev/null; then
-  eval "$(grunt --completion=zsh)"
-fi
-
-eval "$(rbenv init - rvm)"
-
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
 
 alias fs="cd $HOME/forks/nervecenter && npm start"
 alias fv="cd $HOME/forks/nervecenter && v"
@@ -184,3 +183,12 @@ fstash() {
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
+eval "$(thefuck --alias)"
+# alias dmr="docker-machine restart dev && sleep 1 && eval \"$(docker-machine env dev)\""
+alias dcd="docker-compose -f docker/development/docker-compose.yml $1"
+alias dtd="docker-compose -f docker/test/docker-compose.yml $1"
+alias dsd="docker-compose -f docker/sandbox/docker-compose.yml $1"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
