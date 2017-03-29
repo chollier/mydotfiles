@@ -7,8 +7,9 @@ endif
 call plug#begin('~/.config/nvim/bundle')
 
 Plug 'neomake/neomake'
+Plug 'elmcast/elm-vim', { 'for': ['elm'] }
 Plug 'tpope/vim-fugitive'
-Plug 'flowtype/vim-flow'
+Plug 'flowtype/vim-flow', { 'for': ['javascript'] }
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 " enable repeating supported plugin maps with '.'
@@ -54,20 +55,29 @@ Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
 Plug 'vim-scripts/closetag.vim'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
-Plug 'scrooloose/syntastic'
 " Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'sbdchd/neoformat'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'wokalski/autocomplete-flow', { 'for': ['javascript'] }
+" You will also need the following for function argument completion:
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 " Plug 'ekalinin/Dockerfile.vim'
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'Shougo/unite.vim'
 Plug 'jparise/vim-graphql'
+" tagbar
+Plug 'majutsushi/tagbar'
+" better marks
+Plug 'kshenoy/vim-signature'
 
 
 if filereadable(expand('~/.config/nvim/.nvimrc.bundles.local'))
@@ -78,6 +88,7 @@ call plug#end()
 
 inoremap jj <ESC>l
 inoremap jk <ESC>l
+nnoremap <Leader>b :TagbarToggle<CR>
 
 " Spaces and tabs {{{
 set tabstop=2      " number of visual spaces per TAB
@@ -91,7 +102,7 @@ set smartindent
 " " UI and Layout {{{
 set t_Co=256               " Number of colors used in terminal
 let base16colorspace=256
-set background=dark
+set background=light
 " neosolarized options
 let g:neosolarized_visibility = "high"
 colorscheme NeoSolarized
@@ -268,13 +279,13 @@ vnoremap < <gv
 vnoremap > >gv
 
 
-let g:SuperTabDefaultCompletionType    = '<C-n>'
-let g:SuperTabCrMapping                = 0
-let g:UltiSnipsExpandTrigger           = '<tab>'
-let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
-let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType    = '<C-n>'
+" let g:SuperTabCrMapping                = 0
+" let g:UltiSnipsExpandTrigger           = '<tab>'
+" let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+" let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+" let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 
 " let g:syntastic_always_populate_loc_list = 1
 " " let g:syntastic_auto_loc_list = 1
@@ -304,8 +315,17 @@ function! ESLintFix()
   edit! %
   Neomake
 endfunction
-
 nnoremap <leader>el :call ESLintFix()<CR>
+
+function! Prettier()
+  silent execute "!prettier --stdin --trailing-comma --parser=flow %"
+  edit! %
+  Neomake
+endfunction
+nnoremap <leader>pt :call Prettier()<CR>
+autocmd FileType javascript set formatprg=prettier\ --stdin\ --parser\ flow\ --trailing-comma\ all
+autocmd FileType javascript.jsx set formatprg=prettier\ --stdin\ --parser\ flow\ --trailing-comma\ all
+
 
 function! RubocopFix()
   silent execute "!rubocop -a %"
@@ -325,10 +345,13 @@ nmap <Leader>n :lnext<CR>      " next error/warning
 nmap <Leader>p :lprev<CR>      " previous error/warning
 
 " Use node_modules' eslint
-let s:eslint_path = system('PATH=$(yarn bin):$PATH && which eslint')
-let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers = []
+if findfile('.eslintrc.json', '.;') !=# ''
+  let s:eslint_path = system('PATH=$(yarn bin):$PATH && which eslint')
+  let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_jsx_enabled_makers = ['eslint']
+endif
 " In case we need to debug Neomake, uncomment this
 " let g:neomake_verbose=3
 " let g:neomake_logfile='/tmp/error.log'
@@ -342,6 +365,8 @@ let g:neomake_error_sign = {
   \ 'text': '✘',
   \ 'texthl': 'ErrorMsg',
   \ }
+
+
 
 " Custom flowtype Neomake maker
 function! StrTrim(txt)
@@ -365,10 +390,23 @@ if findfile('.flowconfig', '.;') !=# ''
   endif
 endif
 
+" deoplete conf
+let g:deoplete#enable_at_startup = 1
+let g:neosnippet#enable_completed_snippet = 1
+" let g:deoplete#omni#functions = {}
+" let g:deoplete#sources = {}
+" let g:deoplete#sources._ = ['file', 'neosnippet']
+" let g:deoplete#sources._ = ['file']
+" let g:deoplete#omni#input_patterns = {}
+" let g:deoplete#omni#functions.elm = ['elm#Complete']
+" let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
+" let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
+
+" elm-vim
+let g:elm_format_autosave = 1
+
 if !empty(g:neomake_javascript_enabled_makers)
   autocmd! BufWritePost * Neomake
 end
 
 autocmd! BufWritePost *.rb Neomake mri
-
-
