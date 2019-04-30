@@ -1,5 +1,11 @@
+# zmodload zsh/zprof
 # Path to your oh-my-zsh installation.
 
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir docker_machine vcs)
+POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs ram vi_mode)
+POWERLEVEL9K_VCS_GIT_HOOKS=(vcs-detect-changes git-untracked git-aheadbehind git-remotebranch git-tagname)
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -7,7 +13,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME=agnoster-light
+ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME=agnoster
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -62,7 +69,9 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="~/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/sbin"
 
-export PATH="$PATH:`yarn global bin`"
+# export PATH="$PATH:`yarn global bin`"
+export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+export PATH="$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -103,8 +112,8 @@ fi
 
 eval "$(rbenv init - rvm)"
 
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+# export NVM_DIR=~/.nvm
+# source $(brew --prefix nvm)/nvm.sh
 
 alias fs="cd $HOME/forks/nervecenter && npm start"
 alias fv="cd $HOME/forks/nervecenter && v"
@@ -124,16 +133,22 @@ dark() {
 light() {
   sed -i.bak -e s/background=dark/background=light/ ~/.config/nvim/init.vim
   sed -i.back -e s/^ZSH_THEME=agnoster$/ZSH_THEME=agnoster-light/ ~/.zshrc
-  export ZSH_THEME=agnoster-light
+  # export ZSH_THEME=agnoster-light
+  export POWERLEVEL9K_COLOR_SCHEME='light'
+
   echo "\033Ptmux;\033\033]1337;SetProfile=Default light\a\033\\"
   tmux source-file ~/.tmuxstatuslight.conf
 }
 
 eval "$(thefuck --alias)"
 # alias dmr="docker-machine restart dev && sleep 1 && eval \"$(docker-machine env dev)\""
-alias dcd="docker-compose -f docker/development/docker-compose.yml $1"
-alias dtd="docker-compose -f docker/test/docker-compose.yml $1"
-alias dsd="docker-compose -f docker/sandbox/docker-compose.yml $1"
+alias dcd="docker-compose -f docker-compose.yml -f docker-compose.dev.yml"
+alias dcdb="docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web /bin/bash"
+alias dct="docker-compose -f docker-compose.yml -f docker-compose.dev.yml"
+alias dcdt="docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm -e "RAILS_ENV=test" pocketchange bash"
+alias dsd="docker-compose -f docker-compose.yml -f docker-compose.sandbox.yml"
+alias dcc="docker-compose"
+alias db="pgcli -h localhost -U postgres"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag -g ""'
@@ -159,7 +174,7 @@ fco() {
   git checkout $(echo "$target" | awk '{print $2}')
 }
 
-alias gt="gittower ."
+alias gt="tig"
 # alias npm="echo \"⚠️  use yarn\""
 
 # fstash - easier way to deal with stashes
@@ -196,3 +211,4 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export TERM=xterm-256color
 export TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins
+# zprof

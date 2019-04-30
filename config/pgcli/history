@@ -1,0 +1,5520 @@
+
+# 2016-01-26 18:58:03.135149
++create database pocket_change_development;
+
+# 2016-01-26 19:01:22.333554
++\q
+
+# 2016-01-29 13:30:37.129044
++\d products
+
+# 2016-01-29 14:54:56.216132
++\q
+
+# 2016-02-03 18:10:15.606651
++create database pocket_change_test;
+
+# 2016-02-03 18:10:17.103258
++\q
+
+# 2016-03-02 14:00:51.599163
++\d
+
+# 2016-03-03 12:51:11.745816
++DROP INDEX index_distributors_on_sap_code;
+
+# 2016-03-03 12:51:14.498251
++exit
+
+# 2016-03-04 11:58:06.129089
++REFRESH MATERIALIZED VIEW user_scores;
+
+# 2016-03-04 16:54:58.351244
++exit
+
+# 2016-03-07 15:03:50.510278
++DROP index index_distributors_on_sap_code;
+
+# 2016-03-07 15:03:51.770169
++\q
+
+# 2016-03-11 15:33:10.783242
++refresh materialized view user_scores CONCURRENTLY;
+
+# 2016-03-11 15:33:30.734111
++refresh materialized view concurently user_scores;
+
+# 2016-03-11 15:33:44.075243
++refresh materialized view concurrently user_scores;
+
+# 2016-03-11 15:33:50.134641
++refresh materialized view cuser_scores;
+
+# 2016-03-11 15:33:52.794533
++refresh materialized view user_scores;
+
+# 2016-03-11 15:34:19.137100
++\q
+
+# 2016-03-11 15:34:28.145960
++refresh materialized view user_scores;
+
+# 2016-03-11 15:39:55.214101
++\q
+
+# 2016-03-14 15:11:55.571348
++\d stores
+
+# 2016-03-14 15:16:36.954215
++market_stores
+
+# 2016-03-14 15:16:40.867935
++\d markets_stores
+
+# 2016-03-14 15:44:18.737187
++\d stores
+
+# 2016-03-14 16:26:31.196575
++\d shits
+
+# 2016-03-14 16:26:34.467952
++\q
+
+# 2016-03-14 16:26:43.386845
++\d shifts
+
+# 2016-03-14 16:26:51.262719
++\d answered_surveys
+
+# 2016-03-14 16:30:04.391843
++select DISTINCT(device_type) from answered_surveys where created_at > date(NOW() - interval '1 week')
+
+# 2016-03-14 16:30:06.929954
++;
+
+# 2016-03-14 16:30:14.016338
++select DISTINCT(device_type) from answered_surveys where created_at > date(NOW() - interval '1 week');
+
+# 2016-03-14 16:30:31.184752
++select device_type from answered_surveys where created_at > date(NOW() - interval '1 week');
+
+# 2016-03-14 16:30:43.536881
++\q
+
+# 2016-03-14 16:31:01.422331
++select device_type from answered_surveys where created_at > date(NOW() - interval '1 week');
+
+# 2016-03-14 16:31:20.287086
++select distinct(device_type) from answered_surveys where created_at > date(NOW() - interval '1 week');
+
+# 2016-03-14 16:31:39.214416
++select distinct(device_type), count(*) from answered_surveys where created_at > date(NOW() - interval '1 week');
+
+# 2016-03-14 16:31:52.941043
++select distinct(device_type), count(*) from answered_surveys where created_at > date(NOW() - interval '1 week') group_by device_type;
+
+# 2016-03-14 16:31:57.109980
++select distinct(device_type), count(*) from answered_surveys where created_at > date(NOW() - interval '1 week') group by device_type;
+
+# 2016-03-14 16:32:13.518136
++select distinct(device_type), count(*) from answered_surveys where created_at > date(NOW() - interval '1 week') group by device_type order by count desc;
+
+# 2016-03-14 16:33:39.434358
++select distinct(device_type), count(*) from answered_surveys where created_at > date(NOW() - interval '1 month') group by device_type order by count desc;
+
+# 2016-03-14 16:35:08.734366
++\q
+
+# 2016-03-14 16:51:18.606169
++select count(distinct(people.id)) from people
+
+# 2016-03-14 16:51:18.610480
++select count(distinct(people.id)) from people inner join shifts on people.id = shifts.person_id
+
+# 2016-03-14 16:51:18.615778
++select count(distinct(people.id)) from people inner join shifts on people.id = shifts.person_idinner join answered_surveys on shifts.id = answered_surveys.shift_id
+
+# 2016-03-14 16:51:46.846047
++select count(distinct(people.id)) from people inner join shifts on people.id = shifts.person_id inner join answered_surveys on shifts.id = answered_surveys.shift_id where answered_surveys.created_at > date(NOW() - interval '1 month') and answered_surveys.device_type ilike '%iPhone4,1%';
+
+# 2016-03-14 16:52:40.766923
++select count(*) from answered_surveys where answered_surveys.created_at > date(NOW() - interval '1 month') and answered_surveys.device_type ilike '%iPhone4,1%';
+
+# 2016-03-14 16:55:07.272897
++select count(*) from answered_surveys where answered_surveys.created_at > date(NOW() - interval '1 month') and answered_surveys.device_type ilike '%android%';
+
+# 2016-03-14 16:55:35.048510
++select count(distinct(people.id)) from people inner join shifts on people.id = shifts.person_id inner join answered_surveys on shifts.id = answered_surveys.shift_id where answered_surveys.created_at > date(NOW() - interval '1 month') and answered_surveys.device_type ilike '%android%';
+
+# 2016-03-14 16:57:01.598901
++select distinct(people.id), people.email, people.handle from people inner join shifts on people.id = shifts.person_id inner join answered_surveys on shifts.id = answered_surveys.shift_id where answered_surveys.created_at > date(NOW() - interval '1 month') and answered_surveys.device_type ilike '%iPhone4,1%';
+
+# 2016-03-14 17:01:40.859334
++\q
+
+# 2016-03-15 17:58:22.544323
++lpad(4545, 7, '0')
+
+# 2016-03-15 17:58:28.759814
++select lpad(4545, 7, '0');
+
+# 2016-03-15 17:58:40.263942
++select lpad(454445, 7, '0');
+
+# 2016-03-15 17:59:00.454449
++select lpad("454445", 7, '0');
+
+# 2016-03-15 17:59:06.518179
++select lpad('454445', 7, '0');
+
+# 2016-03-15 17:59:09.759168
++select lpad('45445', 7, '0');
+
+# 2016-03-15 18:03:39.750513
++\q
+
+# 2016-03-16 10:36:08.933091
++select count(*) from stores where tdlinx_number is not null and source = 'tdlinx';
+
+# 2016-03-16 10:36:16.482000
++select count(*) from stores where tdlinx_number is not null and source is not 'tdlinx';
+
+# 2016-03-16 10:36:21.579430
++select count(*) from stores where tdlinx_number is not null and source != 'tdlinx';
+
+# 2016-03-17 12:19:54.619691
++\d data_points_per_job_and_date
+
+# 2016-03-17 12:21:35.502215
++\q
+
+# 2016-04-19 08:36:58.554034
++select region from stores limit 1
+
+# 2016-04-19 08:37:13.854122
++select distinct(region) from stores;
+
+# 2016-04-19 08:40:07.426529
++\q
+
+# 2016-04-19 14:06:24.239114
++question_type
+
+# 2016-04-19 14:06:27.096073
++\d questions
+
+# 2016-04-19 14:06:44.154002
++\d question_types
+
+# 2016-04-19 14:07:08.336166
++select * from question_types;
+
+# 2016-04-19 17:36:00.188262
++\q
+
+# 2016-04-25 17:50:23.386901
++se
+
+# 2016-04-25 17:50:43.682863
++select distinct(retailer_id) from store_shelf_conditions;
+
+# 2016-04-25 17:54:30.934087
++\d display_configurations
+
+# 2016-04-25 18:07:59.217314
++select DISTINCT(display_id) from display_configurations;
+
+# 2016-04-25 18:08:05.809632
++select DISTINCT(display_id) from store_display_configurations;
+
+# 2016-04-25 18:08:18.679311
++select DISTINCT(display_id) from store_display_conditions;
+
+# 2016-04-25 18:11:08.644589
++select count(DISTINCT(display_id)) from store_display_conditions;
+
+# 2016-04-25 18:12:04.784346
++select * from display_configurations;
+
+# 2016-04-25 18:13:50.916044
++\d display_configurations;
+
+# 2016-04-25 18:18:14.998908
++\q
+
+# 2016-04-25 19:28:14.376279
++\d
+
+# 2016-04-25 19:28:18.907955
++\l
+
+# 2016-04-26 10:17:03.484895
++\d
+
+# 2016-04-26 10:17:06.572338
++\q
+
+# 2016-04-26 12:17:31.756144
++select * from store_shelf_conditions limit 1;
+
+# 2016-04-26 12:18:05.451932
++SELECT store_shelf_conditions.retailer_id AS filter_by, store_shelf_conditions.brand_id AS partition_on, SUM(CASE store_shelf_conditions.value WHEN 'True' THEN 1 ELSE 0 END) AS true_count, SUM(CASE store_shelf_conditions.value WHEN 'False' THEN 1 ELSE 0 END) AS false_count FROM "store_shelf_conditions" WHERE (store_shelf_conditions.time BETWEEN 1451606400 AND 1461628800) AND (store_shelf_conditions.retailer_id IS NOT NULL) AND (store_shelf_conditions.retailer_id IS NOT NULL) GROUP BY store_shelf_conditions.retailer_id, store_shelf_conditions.brand_id
+
+# 2016-04-26 12:18:33.193719
++q
+
+# 2016-04-26 12:18:34.080574
++\q
+
+# 2016-04-27 13:52:02.965365
++select count(*) from display_configurations;
+
+# 2016-04-27 13:52:31.955115
++\q
+
+# 2016-04-27 22:16:41.759808
++drop DATABASE pocket_change_development;
+
+# 2016-04-27 22:17:11.627857
++\q
+
+# 2016-04-27 22:17:25.684192
++drop DATABASE pocket_change_development;
+
+# 2016-04-27 22:17:32.338326
++create DATABASE pocket_change_development;
+
+# 2016-04-27 22:17:33.803745
++\q
+
+# 2016-04-28 10:47:08.175790
++\d
+
+# 2016-04-28 10:47:12.575405
++\l
+
+# 2016-04-29 11:26:09.912439
++drop DATABASE pocket_change_development;
+
+# 2016-04-29 11:27:08.950353
++CREATE DATABASE pocket_change_development;
+
+# 2016-04-29 11:27:11.207219
++\q
+
+# 2016-04-29 11:27:14.215764
++CREATE DATABASE pocket_change_development;
+
+# 2016-04-29 11:27:17.814193
++drop DATABASE pocket_change_development;
+
+# 2016-04-29 11:27:19.967355
++CREATE DATABASE pocket_change_development;
+
+# 2016-04-29 11:27:27.285990
++exit;
+
+# 2016-04-29 11:27:28.206420
++\q
+
+# 2016-04-29 13:25:19.613259
++select count(*) from display_configurations;
+
+# 2016-04-29 13:25:29.536191
++\q
+
+# 2016-04-29 13:25:39.119232
++select count(*) from display_configurations;
+
+# 2016-04-29 13:25:44.999846
++\q
+
+# 2016-05-02 13:16:43.065043
++\l
+
+# 2016-05-02 13:16:46.216634
++\q
+
+# 2016-05-02 13:18:08.316086
++create database pocket_change_development;
+
+# 2016-05-02 13:18:10.029582
++\q
+
+# 2016-05-02 13:31:12.855353
++drop database pocket_change_development;
+
+# 2016-05-02 13:31:24.969664
++create database pocket_change_development;
+
+# 2016-05-02 13:32:26.445261
++\q
+
+# 2016-05-02 13:35:25.389295
++create DATABASE pocket_change_development;
+
+# 2016-05-02 13:35:32.110077
++drop DATABASE pocket_change_development;
+
+# 2016-05-02 13:35:44.183314
++\q
+
+# 2016-05-03 11:29:22.931342
++\d
+
+# 2016-05-03 11:30:38.313181
++select * from subscription_layers;
+
+# 2016-05-03 11:31:23.017478
++\d store_layer_sheets
+
+# 2016-05-03 11:31:41.039936
++select * from store_layer_sheets limit 1;
+
+# 2016-05-03 11:32:02.111091
++select distinct(layer_id) from store_layer_sheets limit 1;
+
+# 2016-05-03 11:32:07.229903
++select distinct(layer_id) from store_layer_sheets;
+
+# 2016-05-03 19:09:38.441051
++\q
+
+# 2016-05-03 19:09:40.562640
++\q
+
+# 2016-05-04 10:09:45.379916
++\d subscription_layers
+
+# 2016-05-04 10:09:53.770408
++select * from subscription_layers;
+
+# 2016-05-04 10:12:07.254155
++\q
+
+# 2016-05-04 15:18:06.785018
++select * from subscription_layers
+
+# 2016-05-04 15:18:08.086852
++\q
+
+# 2016-05-04 15:18:15.709547
++\c pocket_change_development;
+
+# 2016-05-04 15:18:21.150229
++select * from subscription_layers;
+
+# 2016-05-04 15:18:26.063874
++select * from subscription_layers;
+
+# 2016-05-04 16:41:15.185377
++d
+
+# 2016-05-04 16:41:26.199953
++\d rbp_permissions
+
+# 2016-05-04 16:41:33.879285
++select * from rbp_people_roles;
+
+# 2016-05-04 16:41:44.422339
++select * from rbp_roles;
+
+# 2016-05-04 16:42:03.830413
++select * from rbp_permissions_roles;
+
+# 2016-05-04 16:42:10.030118
++select * from rbp_roles;
+
+# 2016-05-04 16:42:17.189988
++select * from rbp_permissions;
+
+# 2016-05-04 16:43:59.683167
++\q
+
+# 2016-05-04 16:44:01.657379
++\q
+
+# 2016-05-05 11:22:51.843932
++create DATABASE pocket_change_development;
+
+# 2016-05-05 11:22:53.700412
++\q
+
+# 2016-05-05 11:25:00.000852
++drop database pocket_change_development;
+
+# 2016-05-05 11:25:06.207477
++create DATABASE pocket_change_development;
+
+# 2016-05-05 11:25:07.305308
++\q
+
+# 2016-05-05 12:59:40.687940
++select * from customer_quesionts
+
+# 2016-05-05 12:59:52.406667
++select * from customer_questions;
+
+# 2016-05-05 13:00:02.821422
++\q
+
+# 2016-05-05 13:00:14.133707
++select * from customer_questions;
+
+# 2016-05-05 13:00:44.306376
++\q
+
+# 2016-05-05 13:01:55.086342
++select * from rbp_people_roles;
+
+# 2016-05-05 13:02:01.022441
++select * from subscription_layers;
+
+# 2016-05-05 13:02:54.036535
++\q
+
+# 2016-05-05 14:53:22.241334
++drop database pocket_change_development;
+
+# 2016-05-05 14:53:29.192854
++create DATABASE pocket_change_development;
+
+# 2016-05-05 15:09:54.284931
++\q
+
+# 2016-05-09 15:19:48.009228
++\d
+
+# 2016-05-09 15:19:54.235567
++\c pocket_change_development
+
+# 2016-05-09 15:20:00.531724
++\d oauth_applications
+
+# 2016-05-09 15:23:55.836798
++\q
+
+# 2016-05-09 15:25:23.900195
++\c pocket_change_development
+
+# 2016-05-09 15:25:31.605811
++select * from oauth_applications;
+
+# 2016-05-09 16:10:45.357428
++\q
+
+# 2016-05-09 17:05:45.461692
++\c pocket_change_development;
+
+# 2016-05-09 17:05:58.634743
++select * from oauth_applications;
+
+# 2016-05-09 17:06:14.270697
++select * from oauth_applications limit 1 order by id desc;
+
+# 2016-05-09 17:06:22.079849
++select * from oauth_applications order by id desc limit 1;
+
+# 2016-05-09 17:32:34.591553
++\q
+
+# 2016-05-10 14:53:11.146488
++SELECT
+
+# 2016-05-10 14:53:13.113349
++select * from oauth_applications order by id desc limit 1;
+
+# 2016-05-10 14:53:18.288439
++\c pocket_change_development;
+
+# 2016-05-10 14:53:19.425635
++select * from oauth_applications order by id desc limit 1;
+
+# 2016-05-10 14:54:45.076846
++\q
+
+# 2016-05-12 18:18:02.091525
++update job_stats_by_date set bonus_pay_cents = 0;
+
+# 2016-05-12 18:18:13.331394
++\q
+
+# 2016-05-12 18:22:03.187211
++\d payment_line_items
+
+# 2016-05-12 18:22:17.479421
++\d payment_line_item_type
+
+# 2016-05-12 18:22:28.590963
++\#
+
+# 2016-05-12 18:22:39.414650
++\dT
+
+# 2016-05-12 18:22:53.734151
++\dT payment_line_item_type;
+
+# 2016-05-12 18:22:58.607388
++\dT payment_line_item_legacy_type
+
+# 2016-05-12 18:23:05.669972
++select * from payment_line_items;
+
+# 2016-05-12 18:23:12.357861
++select * from payment_line_item_type;
+
+# 2016-05-12 18:23:25.213371
++\?
+
+# 2016-05-12 18:25:13.040461
++\q
+
+# 2016-05-16 10:32:57.767378
++\d displays
+
+# 2016-05-16 10:33:19.517006
++\d displays_promotions
+
+# 2016-05-16 10:33:26.673828
++\d promotions
+
+# 2016-05-16 10:56:39.501222
++\q
+
+# 2016-05-16 11:28:32.628881
++\d
+
+# 2016-05-16 11:28:36.752944
++\c pocket_change_development;
+
+# 2016-05-16 11:28:42.704606
++\q
+
+# 2016-05-16 11:28:49.833252
++drop DATABASE pocket_change_development;
+
+# 2016-05-16 11:28:55.593061
++create DATABASE pocket_change_development;
+
+# 2016-05-16 11:28:57.279057
++\q
+
+# 2016-05-16 14:51:12.157703
++drop DATABASE pocket_change_development;
+
+# 2016-05-16 14:52:50.510053
++\c
+
+# 2016-05-16 14:52:51.923988
++\d
+
+# 2016-05-16 14:52:53.581338
++\q
+
+# 2016-05-16 14:52:59.540034
++drop DATABASE pocket_change_development;
+
+# 2016-05-16 14:53:03.451701
++create DATABASE pocket_change_development;
+
+# 2016-05-16 14:53:05.242760
++\q
+
+# 2016-05-16 15:43:55.244142
++drop DATABASE pocket_change_development;
+
+# 2016-05-16 15:43:58.155663
++create DATABASE pocket_change_development;
+
+# 2016-05-16 15:44:00.123297
++\q
+
+# 2016-05-16 15:44:48.919265
++drop DATABASE pocket_change_development;
+
+# 2016-05-16 15:44:50.953773
++create DATABASE pocket_change_development;
+
+# 2016-05-16 15:44:52.457346
++\q
+
+# 2016-05-16 15:46:56.723728
++drop DATABASE pocket_change_development;
+
+# 2016-05-16 15:46:59.155614
++create DATABASE pocket_change_development;
+
+# 2016-05-16 15:47:04.819463
++\q
+
+# 2016-05-16 15:47:32.865360
++drop DATABASE pocket_change_development;
+
+# 2016-05-16 15:47:34.879981
++create DATABASE pocket_change_development;
+
+# 2016-05-16 15:47:36.737752
++\q
+
+# 2016-05-16 15:50:54.185081
++create DATABASE pocket_change_development;
+
+# 2016-05-16 15:50:55.809453
++\
+
+# 2016-05-16 15:50:57.161037
++\q
+
+# 2016-05-23 13:18:43.154502
++\c pocket_change_development
+
+# 2016-05-23 13:18:49.376399
++\d product_images
+
+# 2016-05-23 13:19:27.342123
++select distinct(source) from product_images;
+
+# 2016-05-23 13:19:49.477582
++select * from product_images limit 1;
+
+# 2016-05-23 13:40:36.512647
++\d shift_event_actions;
+
+# 2016-05-23 13:40:43.375154
++select * from shift_event_actions;
+
+# 2016-05-23 13:40:54.472070
++select * from events limit 1;
+
+# 2016-05-23 13:50:51.215129
++\d product_images
+
+# 2016-05-23 13:59:13.454440
++select count(*) from product_images;
+
+# 2016-05-23 14:22:12.656356
++select * from product_images limit 1;
+
+# 2016-05-23 14:22:27.295874
++select * from product_images ORDER BY id desc limit 1;
+
+# 2016-05-23 15:58:37.080032
++\q
+
+# 2016-05-26 11:11:11.031204
++\c pocket_change_development
+
+# 2016-05-26 11:11:15.462271
++\d product_images
+
+# 2016-05-26 11:13:10.090416
++select image_file_name from product_images limit 5;
+
+# 2016-05-26 11:13:15.274275
++select image_file_name from product_images limit 5 order desc;
+
+# 2016-05-26 11:13:20.065761
++select image_file_name from product_images limit 5 order by id desc;
+
+# 2016-05-26 11:13:28.992226
++select image_file_name from product_images order by id desc limit 5;
+
+# 2016-05-26 11:13:35.144449
++select image_file_name from product_images ;
+
+# 2016-05-26 11:26:27.634027
++\q
+
+# 2016-05-26 13:20:35.796252
++\c pocket_change_development
+
+# 2016-05-26 13:20:53.275447
++select distinct(image_file_type) from product_images;
+
+# 2016-05-26 13:20:58.851491
++\d product_images
+
+# 2016-05-26 13:21:13.483247
++select distinct(image_content_type) from product_images;
+
+# 2016-05-26 13:57:19.175163
++\d products_questions
+
+# 2016-05-26 14:00:13.256660
++select distinct(question_id) from products_questions
+
+# 2016-05-26 14:00:21.800553
++select count(distinct(question_id)) from products_questions
+
+# 2016-05-26 14:39:24.215061
++select count(id) from questions left OUTER join products_questions on questions.id = products_questions.question_id
+
+# 2016-05-26 14:39:38.671778
++select count(questions.id) from questions left OUTER join products_questions on questions.id = products_questions.question_id
+
+# 2016-05-26 14:40:35.165692
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id where products_questions.product_id 
+
+# 2016-05-26 14:40:40.670201
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id 
+
+# 2016-05-26 14:42:09.898605
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id where products_questions.product_id is not null
+
+# 2016-05-26 14:42:13.162393
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id 
+
+# 2016-05-26 14:42:49.954328
++select count(questions.id) from questions inner join products_questions where questions.created_at > DATE("2016-02-17")
+
+# 2016-05-26 14:43:15.993891
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id where questions.created_at > DATE("2016-02-17")
+
+# 2016-05-26 14:43:23.433475
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id where questions.created_at > DATE('2016-02-17')
+
+# 2016-05-26 15:09:04.309641
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id where products_questions.product_id is not null
+
+# 2016-05-26 15:09:09.643472
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id where questions.created_at > DATE('2016-02-17')
+
+# 2016-05-26 15:11:07.342151
++select prompt_md from questions limit 5;
+
+# 2016-05-26 15:11:20.177210
++select prompt_md from questions order by id desc limit 5;
+
+# 2016-05-26 15:12:26.159293
++select prompt_md from questions order by id desc limit 15;
+
+# 2016-05-26 15:12:48.132173
++select prompt_md from questions order by id desc limit 150;
+
+# 2016-05-26 15:12:55.555673
++select id, prompt_md from questions order by id desc limit 150;
+
+# 2016-05-26 15:17:33.300364
++select prompt_md from questions where id = 673422;
+
+# 2016-05-26 15:17:46.002856
++select prompt_md from questions where id = 673409;
+
+# 2016-05-26 15:26:07.004154
++select regexp_replace(prompt_md, 'quri-products\/production\/images\/7771\/thumb_150\/([0-9a-z]*)\.([a-z]{3,4})', 'rainforest-image-service-development/products/\\1-300x\\2' ) from questions where id = 673409;
+
+# 2016-05-26 15:26:19.627981
++select regexp_replace(prompt_md, 'quri-products\/production\/images\/7771\/thumb_150\/([0-9a-z]*)\.([a-z]{3,4})', 'rainforest-image-service-development/products/\1-300x\2' ) from questions where id = 673409;
+
+# 2016-05-26 15:26:26.007635
++select regexp_replace(prompt_md, 'quri-products\/production\/images\/7771\/thumb_150\/([0-9a-z]*)\.([a-z]{3,4})', 'rainforest-image-service-development/products/\1-300x.\2' ) from questions where id = 673409;
+
+# 2016-05-26 15:27:26.756158
++select regexp_replace(prompt_md, 'http://s3.amazonaws.com/quri-products\/production\/images\/7771\/thumb_150\/([0-9a-z]*)\.([a-z]{3,4})', 'rainforest-image-service-development/products/\1-300x.\2' ) from questions where id = 673409;
+
+# 2016-05-26 15:28:54.610405
++select regexp_replace(prompt_md, 'http://s3.amazonaws.com/quri-products\/production\/images\/7771\/thumb_150\/([0-9a-z]*)\.([a-z]{3,4})', 'http://d3nl4o03l0ztiz.cloudfront.net/products/\1-300x.\2' ) from questions where id = 673409;
+
+# 2016-05-26 15:32:32.681236
++select regexp_replace(prompt_md, 'http://s3.amazonaws.com/quri-products\/production\/images\/7771\/thumb_(150|300)\/([0-9a-z]*)\.([a-z]{3,4})', 'http://d3nl4o03l0ztiz.cloudfront.net/products/\2-\1x.\3' ) from questions where id = 673409;
+
+# 2016-05-26 15:33:21.067675
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id where questions.created_at > DATE('2016-02-17')
+
+# 2016-05-26 15:33:40.586437
++select regexp_replace(prompt_md, 'http://s3.amazonaws.com/quri-products\/production\/images\/7771\/thumb_(150|300)\/([0-9a-z]*)\.([a-z]{3,4})', 'http://d3nl4o03l0ztiz.cloudfront.net/products/\2-\1x.\3' ) from questions;
+
+# 2016-05-26 15:37:07.488187
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id where questions.created_at > DATE('2016-02-17')
+
+# 2016-05-26 15:37:13.292664
++select regexp_replace(prompt_md, 'http://s3.amazonaws.com/quri-products\/production\/images\/7771\/thumb_(150|300)\/([0-9a-z]*)\.([a-z]{3,4})', 'http://d3nl4o03l0ztiz.cloudfront.net/products/\2-\1x.\3' ) from questions
+
+# 2016-05-26 15:37:19.008633
++select count(questions.id) from questions inner join products_questions on questions.id = products_questions.question_id where questions.created_at > DATE('2016-02-17')
+
+# 2016-05-26 15:38:35.724024
++update questions set prompt_md = regexp_replace(prompt_md, 'http://s3.amazonaws.com/quri-products\/production\/images\/7771\/thumb_(150|300)\/([0-9a-z]*)\.([a-z]{3,4})', 'http://d3nl4o03l0ztiz.cloudfront.net/products/\2-\1x.\3' ) 
+
+# 2016-05-26 15:39:29.879914
++inner join products_questions on questions.id = products_questions.question_id where questions.created_at > DATE('2016-02-17')
+
+# 2016-05-26 15:39:33.435797
++update questions set prompt_md = regexp_replace(prompt_md, 'http://s3.amazonaws.com/quri-products\/production\/images\/7771\/thumb_(150|300)\/([0-9a-z]*)\.([a-z]{3,4})', 'http://d3nl4o03l0ztiz.cloudfront.net/products/\2-\1x.\3' ) 
+
+# 2016-05-26 15:39:56.003303
++select regexp_replace(prompt_md, 'http://s3.amazonaws.com/quri-products\/production\/images\/7771\/thumb_(150|300)\/([0-9a-z]*)\.([a-z]{3,4})', 'http://d3nl4o03l0ztiz.cloudfront.net/products/\2-\1x.\3' ) from questions where id = 673409;
+
+# 2016-05-26 15:40:12.552384
++select prompt_md from questions where id = 673409;
+
+# 2016-05-27 17:25:07.844433
++\d oauth_access_grants;
+
+# 2016-05-27 17:25:14.916007
++select * from oauth_access_grants;
+
+# 2016-05-27 17:25:33.938238
++select * from oauth_applications;
+
+# 2016-05-27 17:25:53.435254
++\q
+
+# 2016-06-02 15:49:30.423078
++create database pocket_change_development;
+
+# 2016-06-02 15:49:36.613201
++\q
+
+# 2016-06-02 16:00:44.950527
++create database pocket_change_development;
+
+# 2016-06-02 16:00:46.724059
++\q
+
+# 2016-06-03 10:45:06.000799
++select distinct(retailer_id) from stores where tdlinx_number is not null;
+
+# 2016-06-03 10:45:17.368413
++select count(distinct(retailer_id)) from stores where tdlinx_number is not null;
+
+# 2016-06-03 11:50:54.953746
++\q
+
+# 2016-06-03 12:01:58.520704
++drop database pocket_change_development;
+
+# 2016-06-03 12:02:16.536248
++create database pocket_change_development;
+
+# 2016-06-03 12:02:24.400113
++\q
+
+# 2016-06-03 13:15:57.767467
++drop database pocket_change_development;
+
+# 2016-06-03 13:16:00.438875
++create database pocket_change_development;
+
+# 2016-06-03 13:16:11.945154
++\q
+
+# 2016-06-03 13:16:17.675165
++\q
+
+# 2016-06-06 11:14:31.031265
++\d
+
+# 2016-06-06 11:14:34.478749
++\l
+
+# 2016-06-06 11:14:36.630561
++\q
+
+# 2016-06-06 11:15:58.348117
++\l
+
+# 2016-06-06 11:15:59.795864
++\q
+
+# 2016-06-06 11:45:18.714333
++select * from oauth_applications;
+
+# 2016-06-06 11:46:14.267071
++\c pocket_change_development
+
+# 2016-06-06 11:52:07.540978
++select * from oauth_applications;
+
+# 2016-06-06 13:03:42.445701
++\q
+
+# 2016-06-06 13:09:39.194956
++\q
+
+# 2016-06-10 09:56:45.053791
++\d jobs
+
+# 2016-06-10 09:56:52.838809
++\d surveys
+
+# 2016-06-10 09:57:20.156177
++select distinct(type) from jobs;
+
+# 2016-06-10 09:57:41.034101
++select distinct(survey_type) from jobs;
+
+# 2016-06-10 10:07:10.814467
++\q
+
+# 2016-06-10 14:31:39.077652
++drop DATABASE pocket_change_development;
+
+# 2016-06-10 14:42:28.701704
++create DATABASE pocket_change_development;
+
+# 2016-06-10 14:42:45.739806
++drop DATABASE pocket_change_development;
+
+# 2016-06-10 14:42:48.909262
++\q
+
+# 2016-06-10 14:42:52.477684
++drop DATABASE pocket_change_development;
+
+# 2016-06-10 14:42:54.933016
++create DATABASE pocket_change_development;
+
+# 2016-06-10 14:42:55.973007
++\q
+
+# 2016-06-13 13:02:47.715582
++create database pocket_change_development;
+
+# 2016-06-13 13:13:09.086601
++\c pocket_change_development
+
+# 2016-06-13 13:13:14.970049
++\d sf_opportunities
+
+# 2016-06-13 13:14:09.916210
++\q
+
+# 2016-06-13 13:37:17.007233
++create database pocket_change_development;
+
+# 2016-06-13 13:37:29.978413
++\q
+
+# 2016-06-17 11:42:31.795561
++create DATABASE pocket_change_development;
+
+# 2016-06-17 11:42:33.283438
++\q
+
+# 2016-06-17 11:42:57.491440
++\c pocket_change_development
+
+# 2016-06-17 11:43:00.179281
++\q
+
+# 2016-06-17 12:30:30.720401
++\l
+
+# 2016-06-17 12:30:45.936298
++\q
+
+# 2016-06-17 12:30:48.639973
++\l
+
+# 2016-06-17 12:30:50.631750
++\q
+
+# 2016-06-17 12:31:13.964945
++CREATE DATABASE pocket_change_development;
+
+# 2016-06-17 12:31:16.036843
++\q
+
+# 2016-06-20 15:29:43.741834
++\l
+
+# 2016-06-20 15:29:57.204518
++create database pocket_change_development;
+
+# 2016-06-20 15:29:59.942718
++\q
+
+# 2016-06-20 16:43:53.936344
++\c pocket_change_development;
+
+# 2016-06-20 16:44:00.623400
++select * from oauth_applications;
+
+# 2016-06-21 16:01:40.200240
++\q
+
+# 2016-06-24 15:43:57.207542
++select * from oauth_applications;
+
+# 2016-06-24 17:29:52.893284
++\q
+
+# 2016-06-28 14:00:46.674584
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted
+
+# 2016-06-28 14:00:46.680676
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, grantedFROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s
+
+# 2016-06-28 14:00:46.685430
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, grantedFROM pg_locks l, pg_stat_all_tables t, pg_stat_activity sWHERE l.relation = t.relid AND s.pid = l.pid
+
+# 2016-06-28 14:00:46.689482
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, grantedFROM pg_locks l, pg_stat_all_tables t, pg_stat_activity sWHERE l.relation = t.relid AND s.pid = l.pidORDER BY relation ASC;
+
+# 2016-06-28 14:00:51.795968
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted
+
+# 2016-06-28 14:00:51.800516
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, grantedFROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s
+
+# 2016-06-28 14:00:51.804538
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, grantedFROM pg_locks l, pg_stat_all_tables t, pg_stat_activity sWHERE l.relation = t.relid AND s.pid = l.pid
+
+# 2016-06-28 14:00:51.807857
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, grantedFROM pg_locks l, pg_stat_all_tables t, pg_stat_activity sWHERE l.relation = t.relid AND s.pid = l.pidORDER BY relation ASC;
+
+# 2016-06-28 14:01:09.501905
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted
+
+# 2016-06-28 14:01:09.507329
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, grantedFROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s
+
+# 2016-06-28 14:01:09.511814
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, grantedFROM pg_locks l, pg_stat_all_tables t, pg_stat_activity sWHERE l.relation = t.relid AND s.pid = l.pid
+
+# 2016-06-28 14:01:09.515604
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, grantedFROM pg_locks l, pg_stat_all_tables t, pg_stat_activity sWHERE l.relation = t.relid AND s.pid = l.pidORDER BY relation ASC;
+
+# 2016-06-28 14:01:13.933224
++\q
+
+# 2016-06-28 14:01:48.564558
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid ORDER BY relation ASC;
+
+# 2016-06-28 14:02:30.475936
++select pg_cancel_backend(13207);
+
+# 2016-06-28 14:02:39.115148
++select pg_cancel_backend(13325);
+
+# 2016-06-28 14:02:41.737600
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid ORDER BY relation ASC;
+
+# 2016-06-28 14:03:03.123230
++select pg_cancel_backend(11763);
+
+# 2016-06-28 14:03:11.451153
++select pg_cancel_backend(13250);
+
+# 2016-06-28 14:03:21.184822
++select pg_cancel_backend(10724);
+
+# 2016-06-28 14:03:29.235101
++select pg_cancel_backend(13249);
+
+# 2016-06-28 14:03:34.673330
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid ORDER BY relation ASC;
+
+# 2016-06-28 14:03:44.746768
++select pg_cancel_backend(13210);
+
+# 2016-06-28 14:03:52.938528
++select pg_cancel_backend(7704);
+
+# 2016-06-28 14:03:56.386253
++select pg_cancel_backend(13002);
+
+# 2016-06-28 14:04:01.026122
++select pg_cancel_backend(13325);
+
+# 2016-06-28 14:04:04.426276
++select pg_cancel_backend(13276);
+
+# 2016-06-28 14:04:09.393995
++select pg_cancel_backend(13439);
+
+# 2016-06-28 14:04:11.744802
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid ORDER BY relation ASC;
+
+# 2016-06-28 14:04:59.196312
++SELECT pid FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid AND relname = 'jobs' ORDER BY relation ASC;
+
+# 2016-06-28 14:05:06.460401
++SELECT l.pid FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid AND relname = 'jobs' ORDER BY relation ASC;
+
+# 2016-06-28 14:05:23.922449
++select pg_cancel_backend(SELECT l.pid FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid AND relname = 'jobs' ORDER BY relation ASC);
+
+# 2016-06-28 14:05:52.770648
++select pg_cancel_backend(pid) FROM (SELECT l.pid AS pid FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid AND relname = 'jobs' ORDER BY relation ASC) AS pid_list;
+
+# 2016-06-28 14:06:04.010673
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid ORDER BY relation ASC;
+
+# 2016-06-28 14:07:41.823841
++select pg_cancel_backend(pid) FROM (SELECT l.pid AS pid FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid AND relname = 'jobs' and granted = 'True' ORDER BY relation ASC) AS pid_list;
+
+# 2016-06-28 14:07:43.689880
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid ORDER BY relation ASC;
+
+# 2016-06-28 14:07:48.985692
++select pg_cancel_backend(pid) FROM (SELECT l.pid AS pid FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid AND relname = 'jobs' and granted = 'True' ORDER BY relation ASC) AS pid_list;
+
+# 2016-06-28 14:07:50.617863
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid ORDER BY relation ASC;
+
+# 2016-06-28 14:08:54.767113
++\q
+
+# 2016-06-28 14:09:01.494956
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid ORDER BY relation ASC;
+
+# 2016-06-28 14:09:52.343852
++select pg_cancel_backend(7704);
+
+# 2016-06-28 14:09:53.734560
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid ORDER BY relation ASC;
+
+# 2016-06-28 14:10:25.152139
++\q
+
+# 2016-06-28 14:13:53.674970
++SELECT t.relname, l.locktype , page, virtualtransaction, l.pid, application_name, mode, granted FROM pg_locks l, pg_stat_all_tables t, pg_stat_activity s WHERE l.relation = t.relid AND s.pid = l.pid ORDER BY relation ASC;
+
+# 2016-06-28 14:14:40.830746
++\q
+
+# 2016-06-29 08:23:37.074126
++\c pocket_change_development
+
+# 2016-06-29 08:23:42.674314
++select * from people;
+
+# 2016-06-29 12:57:46.611551
++\q
+
+# 2016-07-07 14:42:36.048689
++DEALLOCATE a1048;
+
+# 2016-07-07 14:43:20.127554
++\q
+
+# 2016-07-21 13:27:38.021887
++\d questions
+
+# 2016-07-21 13:28:33.019853
++\d question_meanings_questions
+
+# 2016-07-21 13:29:12.762019
++select question_id, count(question_meaning_id) as c from question_meanings_questions group by question_id, c;
+
+# 2016-07-21 13:29:26.089921
++select question_id, count(question_meaning_id) as c from question_meanings_questions;
+
+# 2016-07-21 13:29:45.161700
++select question_id, count(question_meaning_id) as c from question_meanings_questions group by question_id;
+
+# 2016-07-21 13:30:06.417673
++select question_id, count(question_meaning_id) as c from question_meanings_questions group by question_id order by c desc;
+
+# 2016-07-21 16:21:07.021189
++select * from pg_auth_members;
+
+# 2016-07-21 16:21:13.364036
++select * from pg_user_mapping;
+
+# 2016-07-21 16:21:38.724209
++select * from pg_stat_user_tables;
+
+# 2016-07-21 16:21:50.326126
++\q
+
+# 2016-07-25 10:18:37.919206
++\q
+
+# 2016-07-26 14:20:31.684664
++select * from question_meanings;
+
+# 2016-07-28 09:39:58.526826
++\d photos
+
+# 2016-07-28 09:40:39.462129
++\q
+
+# 2016-07-28 15:03:03.478723
++\d discussion_topics
+
+# 2016-07-28 15:03:49.107081
++\q
+
+# 2016-08-04 16:45:48.611873
++select count(*) from discussion_topics where discussion_topics.creator_id = null;
+
+# 2016-08-05 13:45:18.976885
++\q
+
+# 2016-08-09 11:52:07.029510
++\d shifts
+
+# 2016-08-09 11:52:24.077389
++\d answered_surveys
+
+# 2016-08-09 12:39:04.219130
++\q
+
+# 2016-08-09 17:09:39.386400
++\d answered_surveys
+
+# 2016-08-11 12:01:12.327005
++select prompt_md from question offset 5 limit 1;
+
+# 2016-08-11 12:01:15.615675
++select prompt_md from questions offset 5 limit 1;
+
+# 2016-08-11 12:01:19.574929
++select prompt_md from questions offset 6 limit 1;
+
+# 2016-08-11 12:01:23.118903
++select prompt_md from questions offset 7 limit 1;
+
+# 2016-08-11 12:01:27.934866
++select prompt_md from questions offset 7 limit 10;
+
+# 2016-08-11 12:01:36.390335
++select prompt_md from questions offset 5 limit 10;
+
+# 2016-08-11 12:01:39.611988
++select prompt_md from questions offset 10 limit 10;
+
+# 2016-08-11 12:01:43.750060
++select prompt_md from questions offset 15 limit 10;
+
+# 2016-08-11 12:01:47.701845
++select prompt_md from questions offset 45 limit 10;
+
+# 2016-08-11 12:01:57.085609
++select prompt_md from questions offset 55 limit 10;
+
+# 2016-08-11 12:02:03.141387
++select prompt_md from questions offset 456 limit 10;
+
+# 2016-08-11 12:02:08.165597
++select prompt_md from questions offset 500 limit 10;
+
+# 2016-08-11 12:02:11.229097
++select prompt_md from questions offset 550 limit 10;
+
+# 2016-08-11 14:35:31.877726
++SELECT id from question order by id desc;
+
+# 2016-08-11 14:35:35.299822
++SELECT id from questions order by id desc;
+
+# 2016-08-11 14:35:40.317309
++SELECT id from questions order by id asc;
+
+# 2016-08-11 14:35:54.404664
++select count(*) from sandbox
+
+# 2016-08-11 14:35:58.548638
++select count(*) from questions;
+
+# 2016-08-11 14:36:37.275189
++\q
+
+# 2016-08-11 14:38:04.472255
++select count(*) from questions;
+
+# 2016-08-11 14:38:08.279611
++\l
+
+# 2016-08-11 14:38:14.087960
++\c pocket_change_sandbox
+
+# 2016-08-11 14:38:16.751785
++select count(*) from questions;
+
+# 2016-08-11 14:39:52.812622
++\q
+
+# 2016-08-11 14:57:52.478605
++ughb083jm16s3:pfijlv3dl74tob50qhc6a5lftll@ec2-204-236-238-137.compute-1.amazonaws.com:5432/db7io722iorag3
+
+# 2016-08-11 14:57:58.416302
++CREATE TABLE export_table (
+
+# 2016-08-11 14:57:58.418665
++CREATE TABLE export_table (    id integer,
+
+# 2016-08-11 14:57:58.420738
++CREATE TABLE export_table (    id integer,    prompt_md text
+
+# 2016-08-11 14:57:58.422411
++CREATE TABLE export_table (    id integer,    prompt_md text);
+
+# 2016-08-11 15:02:07.292832
++select count(*) from export_table;
+
+# 2016-08-11 15:02:51.690442
++UPDATE questions SET prompt_md = subquery.prompt_md FROM (SELECT prompt_md, id FROM export_table) AS subquery WHERE questions.id=subquery.id;
+
+# 2016-08-11 15:03:21.809658
++select prompt_md from questions where id 429641;
+
+# 2016-08-11 15:03:25.467225
++select prompt_md from questions where id =429641;
+
+# 2016-08-11 15:03:37.602698
++\q
+
+# 2016-08-11 15:04:11.380589
++CREATE TABLE export_table (
+
+# 2016-08-11 15:04:11.383294
++CREATE TABLE export_table (    id integer,
+
+# 2016-08-11 15:04:11.385601
++CREATE TABLE export_table (    id integer,    prompt_md text
+
+# 2016-08-11 15:04:11.387096
++CREATE TABLE export_table (    id integer,    prompt_md text);
+
+# 2016-08-11 15:04:41.896632
++\q
+
+# 2016-08-11 15:06:48.732199
++select prompt_md from questions where id =429641;
+
+# 2016-08-11 15:07:03.740186
++UPDATE questions SET prompt_md = subquery.prompt_md FROM (SELECT prompt_md, id FROM export_table) AS subquery WHERE questions.id=subquery.id;
+
+# 2016-08-11 15:07:30.963630
++select prompt_md from questions where id =429641;
+
+# 2016-08-11 15:14:41.300940
++drop table export_table;
+
+# 2016-08-11 15:14:42.908724
++\q
+
+# 2016-08-12 11:04:31.327221
++select * from question_meanings;
+
+# 2016-08-12 11:05:04.705008
++\d question_meanings_questions
+
+# 2016-08-12 11:08:21.409053
++\d questions
+
+# 2016-08-12 11:08:43.193346
++\d products_questions
+
+# 2016-08-12 11:13:26.007799
++\d question_meanings_questions\q
+
+# 2016-08-12 11:13:27.127701
++\q
+
+# 2016-08-18 14:00:41.835059
++create database pocket_change_lala;
+
+# 2016-08-18 14:00:43.331738
++\q
+
+# 2016-09-20 13:33:36.923292
++\d oauth_access_tokens
+
+# 2016-09-20 13:33:57.104753
++delete from oauth_access_tokens where resource_owner_id = 92011
+
+# 2016-09-21 17:07:50.993645
++\d oauth_access_tokens
+
+# 2016-09-21 17:08:10.052595
++select * from oauth_access_tokens where resource_owner_id = 92011;
+
+# 2016-09-21 17:08:22.730433
++\d oauth_access_tokens
+
+# 2016-09-21 17:08:55.945425
++select * from oauth_access_tokens where resource_owner_id = 92011 where (created_at - expires_in) < NOW();
+
+# 2016-09-21 17:10:28.607656
++select * from oauth_access_tokens where resource_owner_id = 92011 where time created_at - interval "expires_in seconds" < NOW();
+
+# 2016-09-21 17:10:50.917869
++select * from oauth_access_tokens where resource_owner_id = 92011 where time created_at - interval '"expires_in" seconds' < NOW();
+
+# 2016-09-21 17:11:02.308385
++select * from oauth_access_tokens where resource_owner_id = 92011 and (created_at - expires_in) < NOW();
+
+# 2016-09-21 17:11:22.669119
++select * from oauth_access_tokens where resource_owner_id = 92011 and (created_at - interval '"expires_in" seconds') < NOW();
+
+# 2016-09-21 17:11:32.685135
++select * from oauth_access_tokens where resource_owner_id = 92011 and (created_at - interval 'expires_in seconds') < NOW();
+
+# 2016-09-21 17:11:46.269259
++select * from oauth_access_tokens where resource_owner_id = 92011 and (created_at - interval ("expires_in" seconds)) < NOW();
+
+# 2016-09-21 17:13:27.984159
++select * from oauth_access_tokens where resource_owner_id = 92011 and (time created_at - interval ("expires_in" seconds)) < NOW();
+
+# 2016-09-21 17:13:55.152173
++select * from oauth_access_tokens where resource_owner_id = 92011 and (created_at - integer expires_in) < NOW();
+
+# 2016-09-21 17:14:03.480594
++select * from oauth_access_tokens where resource_owner_id = 92011 and (created_at - integer(expires_in)) < NOW();
+
+# 2016-09-21 17:14:10.215542
++select * from oauth_access_tokens where resource_owner_id = 92011 and (created_at - expires_in) < NOW();
+
+# 2016-09-21 17:14:57.350165
++select * from oauth_access_tokens where resource_owner_id = 92011 and (time(created_at) - expires_in) < NOW();
+
+# 2016-09-21 17:15:07.059942
++\q
+
+# 2016-09-27 10:47:16.929531
++select * from oauth_applications;
+
+# 2016-09-27 10:48:15.574240
++select * from oauth_access_tokens;
+
+# 2016-09-27 10:48:30.087102
++select * from oauth_access_tokens limit 1 ORDER BY created_at desc;
+
+# 2016-09-27 10:48:40.963938
++select * from oauth_access_tokens ORDER BY created_at desc limit 1;
+
+# 2016-09-27 10:48:48.601258
++select * from oauth_access_tokens ORDER BY created_at desc limit 10;
+
+# 2016-09-27 10:48:56.327519
++select * from oauth_access_tokens ORDER BY created_at desc limit 100;
+
+# 2016-09-27 10:49:15.798491
++select * from oauth_access_tokens ORDER BY created_at desc limit 100 where resource_owner_id = 92011;
+
+# 2016-09-27 10:49:23.010163
++select * from oauth_access_tokens where resource_owner_id = 92011;
+
+# 2016-09-27 10:50:09.641671
++delete from oauth_access_tokens where resource_owner_id = 92011;
+
+# 2016-09-27 10:50:18.157783
++select * from oauth_access_tokens where resource_owner_id = 92011;
+
+# 2016-09-27 10:51:39.969516
++select * from oauth_applications;
+
+# 2016-09-27 10:53:04.137894
++select * from oauth_access_tokens where resource_owner_id = 92011;
+
+# 2016-09-27 10:54:37.764933
++select * from oauth_access_tokens where resource_owner_id = 92012;
+
+# 2016-09-27 10:54:43.480246
++select * from oauth_access_tokens where resource_owner_id = 85709;
+
+# 2016-09-27 10:55:03.179849
++select * from oauth_access_tokens where email = "alfonso@quri.com";
+
+# 2016-09-27 10:55:16.969498
++select id from people where email = "alfonso@quri.com";
+
+# 2016-09-27 10:55:23.159971
++select id from people where email = 'alfonso@quri.com';
+
+# 2016-09-27 10:55:36.567803
++select id from people where email = 'nick@quri.com';
+
+# 2016-09-27 10:55:51.159951
++select * from oauth_access_tokens where resource_owner_id = 113758;
+
+# 2016-09-27 10:56:52.958402
++select scopes from oauth_access_tokens where id in (2072056, 2102416);
+
+# 2016-09-27 10:57:05.557662
++select distinct(scopes) from oauth_access_tokens where id in (2072056, 2102416);
+
+# 2016-09-27 11:29:12.709132
++select * from oauth_access_tokens where resource_owner_id = 92011;
+
+# 2016-09-27 11:29:46.290671
++delete from oauth_access_tokens where resource_owner_id = 92011;
+
+# 2016-09-27 11:30:00.003008
++select * from oauth_access_tokens where resource_owner_id = 92011;
+
+# 2016-09-27 15:45:25.073454
++select * from oauth_applications;
+
+# 2016-09-29 10:30:47.853352
++\l
+
+# 2016-09-29 10:30:59.622004
++\c d8p6jg37ud4kq1
+
+# 2016-09-29 10:31:10.309833
++\d client_settings
+
+# 2016-09-29 10:31:47.772783
++\d client_setting_build_values
+
+# 2016-09-29 10:33:01.935852
++\d client_settings
+
+# 2016-09-29 10:34:44.575740
++\d client_setting_device_values
+
+# 2016-09-29 10:35:02.863654
++\d client_setting_filters
+
+# 2016-09-29 10:36:04.658551
++\d client_settings
+
+# 2016-09-29 10:37:08.469589
++\d client_setting_build_values
+
+# 2016-09-29 10:37:42.691993
++\d client_setting_device_values
+
+# 2016-09-29 11:02:23.073912
++\q
+
+# 2016-10-05 10:22:31.723165
++\d questions_questions
+
+# 2016-10-05 10:22:46.809297
++\d questions
+
+# 2016-10-05 15:08:08.509962
++\q
+
+# 2016-10-10 14:28:05.257672
++\d jobs
+
+# 2016-10-11 09:24:08.520187
++\q
+
+# 2016-10-13 18:52:01.147669
++CREATE EXTENSION address_standardizer;
+
+# 2016-10-13 18:52:05.570182
++CREATE EXTENSION postgis_tiger_geocoder;
+
+# 2016-10-13 18:52:16.351904
++ALTER EXTENSION postgis UPDATE;
+
+# 2016-10-13 18:52:27.033108
++ALTER EXTENSION postgis_tiger_geocoder UPDATE;
+
+# 2016-10-13 18:52:35.001162
++SELECT na.address, na.streetname,na.streettypeabbrev, na.zip
+
+# 2016-10-13 18:52:59.131865
++SELECT na.address, na.streetname,na.streettypeabbrev, na.zip FROM normalize_address('1 Devonshire Place, Boston, MA 02109') AS na;
+
+# 2016-10-13 18:53:15.451111
++\q
+
+# 2016-10-13 18:53:37.938404
++ELECT na.address, na.streetname,na.streettypeabbrev, na.zip FROM normalize_address('1 Devonshire Place, Boston, MA 02109') AS na;
+
+# 2016-10-13 18:53:45.689366
++SELECT na.address, na.streetname,na.streettypeabbrev, na.zip FROM normalize_address('1 Devonshire Place, Boston, MA 02109') AS na;
+
+# 2016-10-13 18:53:51.489644
++\q
+
+# 2016-10-13 18:54:07.712913
++CREATE EXTENSION address_standardizer;
+
+# 2016-10-13 19:00:58.722928
++CREATE EXTENSION postgis_tiger_geocoder;
+
+# 2016-10-13 19:01:07.810920
++CREATE EXTENSION fuzzystrmatch;
+
+# 2016-10-13 19:01:12.626607
++CREATE EXTENSION postgis_tiger_geocoder;
+
+# 2016-10-13 19:01:27.931831
++ALTER EXTENSION postgis UPDATE;
+
+# 2016-10-13 19:01:39.403469
++SELECT na.address, na.streetname,na.streettypeabbrev, na.zip FROM normalize_address('1 Devonshire Place, Boston, MA 02109') AS na;
+
+# 2016-10-13 19:19:22.842790
++\q
+
+# 2016-10-18 11:24:21.193006
++\d oauth_access_tokens
+
+# 2016-10-18 11:24:33.566745
++select * from oauth_access_tokens where token = "74d04b2bd039c1847613b82915b53e938ed480cb9896c3b9cdb6d82259a7e633
+
+# 2016-10-18 11:24:36.862101
++select * from oauth_access_tokens where token = "74d04b2bd039c1847613b82915b53e938ed480cb9896c3b9cdb6d82259a7e633"
+
+# 2016-10-18 11:24:44.523124
++select * from oauth_access_tokens where token = '74d04b2bd039c1847613b82915b53e938ed480cb9896c3b9cdb6d82259a7e633'
+
+# 2016-10-18 11:25:46.248507
++\q
+
+# 2016-10-18 11:27:06.396781
++select * from oauth_access_token
+
+# 2016-10-18 11:27:11.718036
++\c pocket_change_development
+
+# 2016-10-18 11:27:14.352423
++select * from oauth_access_token
+
+# 2016-10-18 11:27:21.310023
++\d oauth_access_tokens
+
+# 2016-10-18 11:27:23.358968
++select * from oauth_access_tokens
+
+# 2016-10-18 11:41:30.207588
++\q
+
+# 2016-11-19 15:35:39.196716
++\d 
+
+# 2016-11-19 15:35:46.083435
++\l 
+
+# 2016-11-19 15:36:12.664909
++\d approvals_job_priorities
+
+# 2016-11-19 16:00:43.483298
++\q
+
+# 2016-11-25 10:51:10.591246
++SELECT "jobs"."id" as running_physical_job_ids FROM "jobs" WHERE "jobs"."pub_state" = $1 AND (jobs.start < NOW() AND jobs.stop > NOW()) AND (virtual IS NOT true);
+
+# 2016-11-25 10:51:37.061894
++SELECT "jobs"."id" as running_physical_job_ids FROM "jobs" WHERE "jobs"."pub_state" = 'published' AND (jobs.start < NOW() AND jobs.stop > NOW()) AND (virtual IS NOT true);
+
+# 2016-11-25 10:51:54.852683
++SELECT shifts.job_id FROM shifts WHERE shifts.job_id IN (running_physical_job_ids) AND "shifts"."new_state" = 'available'
+
+# 2016-11-25 11:00:54.646151
++\d stores
+
+# 2016-11-28 11:39:38.653763
++select * from rbp_roles;
+
+# 2016-11-28 11:40:26.340035
++select * from rbp_people_roles;
+
+# 2016-11-28 11:40:38.907512
++select * from rbp_permissions_roles;
+
+# 2016-11-28 11:40:49.627365
++select * from rbp_permissions;
+
+# 2016-11-28 11:41:56.577249
++select * from distributors_jobs_products_stores;
+
+# 2016-11-28 11:42:07.688884
++select * from rbp_permissions_roles;
+
+# 2016-11-28 11:42:17.728616
++select * from rbp_roles;
+
+# 2016-11-28 11:46:30.288577
++select * from rbp_permissions;
+
+# 2016-11-28 12:21:25.897511
++\q
+
+# 2017-01-20 13:29:36.040250
++select min(created_at) from stores where country is null;
+
+# 2017-01-20 13:29:43.228087
++select max(created_at) from stores where country is null;
+
+# 2017-01-20 13:30:07.477347
++select count(*) from stores where country is not null;
+
+# 2017-01-20 13:30:11.379504
++select count(*) from stores where country is null;
+
+# 2017-01-20 13:30:36.770918
++select distinct country from stores where country is not null;
+
+# 2017-01-20 13:53:50.735457
++update stores set country = 'USA' where country is null;
+
+# 2017-01-23 10:17:13.068820
++\d people
+
+# 2017-01-23 11:04:23.595838
++\q
+
+# 2017-02-02 11:49:36.951518
++\d question_types
+
+# 2017-02-02 11:49:42.257615
++select * from question_types;
+
+# 2017-02-02 11:55:31.083693
++\d questions
+
+# 2017-02-02 11:55:50.235216
++select count(*) from questions_dump;
+
+# 2017-02-02 11:55:54.931184
++\d questions
+
+# 2017-02-08 16:19:26.461972
++\d products
+
+# 2017-03-14 16:27:44.623266
++\q
+
+# 2017-03-15 11:26:56.495705
++select * from product_images;
+
+# 2017-03-15 11:27:05.671886
++select * from product_images limit 100;
+
+# 2017-03-15 11:31:19.830719
++\q
+
+# 2017-03-15 11:34:54.021717
++\l
+
+# 2017-03-15 11:34:57.911395
++\c pocket_change_test
+
+# 2017-03-15 11:35:07.006812
++select * from kwikee_files
+
+# 2017-03-15 11:45:15.827282
++select * from kwikee_assets
+
+# 2017-03-15 11:46:22.952532
++select * from kwikee_files
+
+# 2017-03-15 11:46:24.528333
++\q
+
+# 2017-03-15 11:46:33.992897
++\c pocket_change_test
+
+# 2017-03-15 11:46:36.199894
++select * from kwikee_files
+
+# 2017-03-15 15:45:26.995978
++\q
+
+# 2017-03-23 10:03:37.537369
++    SELECT q1.id, q2.id
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    WHERE (q1.task_id = 81413 OR q2.task_id = 81413) AND q1.task_id <> q2.task_id
++
+
+# 2017-03-23 10:04:13.495421
++    SELECT q1.id, q1.short_prompt, q2.id, q2.short_prompt
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    WHERE (q1.task_id = 81413 OR q2.task_id = 81413) AND q1.task_id <> q2.task_id
++
+
+# 2017-03-23 10:21:34.292412
++    SELECT q1.id, q1.task_id, q1.short_prompt, q2.id, q2.task_id, q2.short_prompt
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    WHERE (q1.task_id = 81413 OR q2.task_id = 81413) AND q1.task_id <> q2.task_id
++
+
+# 2017-03-23 10:33:26.956498
++\q
+
+# 2017-03-27 12:08:07.579490
++select count(*) from kwikee_products;
+
+# 2017-03-27 12:08:16.043096
++select count(*) from kwikee_profiles;
+
+# 2017-03-27 12:16:07.241326
++select count(*) from kwikee_brands;
+
+# 2017-03-27 12:16:16.968674
++select * from kwikee_brands;
+
+# 2017-03-27 12:16:25.224654
++select * from kwikee_brands limit 20;
+
+# 2017-03-27 12:16:41.048038
++select * from kwikee_brands limit 400;
+
+# 2017-03-27 12:17:32.069791
++select count(*) from kwikee_profiles;
+
+# 2017-03-27 15:14:45.270100
++select * from kwikee_profiles limit 10;
+
+# 2017-03-27 15:15:41.706565
++select count(*) from kwikee_profiles;
+
+# 2017-03-27 15:29:29.379400
++select count(*) from kwikee_products left join on kwikee_products.upc_12 = products.upc
+
+# 2017-03-27 15:29:36.867226
++select count(*) from kwikee_products left join products on kwikee_products.upc_12 = products.upc
+
+# 2017-03-27 15:29:48.322873
++select count(*) from kwikee_products outer left join products on kwikee_products.upc_12 = products.upc
+
+# 2017-03-27 15:29:55.994114
++select count(*) from kwikee_products inner left join products on kwikee_products.upc_12 = products.upc
+
+# 2017-03-27 15:30:01.228111
++select count(*) from kwikee_products inner join products on kwikee_products.upc_12 = products.upc
+
+# 2017-03-27 15:30:22.729019
++select count(*) from kwikee_profiles;
+
+# 2017-03-28 08:57:21.060684
++\q
+
+# 2017-03-28 09:56:39.247858
++select count(*) from kwikee_profiles;
+
+# 2017-03-28 10:31:00.204987
++select * from kwikee_products limit 1;
+
+# 2017-03-28 14:42:24.399262
++\q
+
+# 2017-03-28 17:25:01.040110
++\l
+
+# 2017-03-28 17:25:07.158928
++\c prod
+
+# 2017-03-28 17:25:10.958902
++\l
+
+# 2017-03-28 17:25:15.381936
++\d
+
+# 2017-03-28 17:25:41.404479
++\d product_sales
+
+# 2017-03-28 17:26:03.772776
++\q
+
+# 2017-03-31 14:32:06.864160
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-03-31 14:34:08.754336
++select count(*) from kwikee_assets;
+
+# 2017-03-31 14:34:22.355075
++select count(*) from kwikee_files;
+
+# 2017-03-31 14:34:53.760671
++select count(*) from kwikee_products;
+
+# 2017-03-31 14:35:01.290178
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-03-31 14:37:21.421399
++select product.name, kwikee_products.name from products left join products.upc = kwikee_products.upc_10;
+
+# 2017-03-31 14:37:33.861156
++select product.name, kwikee_products.name from products left join kwikee_products on products.upc = kwikee_products.upc_10;
+
+# 2017-03-31 14:37:40.436831
++select products.name, kwikee_products.name from products left join kwikee_products on products.upc = kwikee_products.upc_10;
+
+# 2017-03-31 14:37:55.547838
++\d kwikee_products
+
+# 2017-03-31 14:38:29.164240
++select products.name, kwikee_profiles.name from products left join kwikee_products on products.upc = kwikee_products.upc_10 left join kwikee_profiles ON kwikee_profiles.kwikee_product_id = kwikee_products.id;
+
+# 2017-03-31 14:38:46.657877
++\d kwikee_profiles
+
+# 2017-03-31 14:39:04.563015
++select products.name, kwikee_profiles.product_name from products left join kwikee_products on products.upc = kwikee_products.upc_10 left join kwikee_profiles ON kwikee_profiles.kwikee_product_id = kwikee_products.id;
+
+# 2017-03-31 14:39:46.671701
++\d kwikee_profiles
+
+# 2017-03-31 14:40:21.936358
++select products.name, kwikee_profiles.custom_product_name from products left join kwikee_products on products.upc = kwikee_products.upc_10 left join kwikee_profiles ON kwikee_profiles.kwikee_product_id = kwikee_products.id;
+
+# 2017-03-31 14:40:42.991747
++select products.name, kwikee_profiles.custom_product_name from products left inner join kwikee_products on products.upc = kwikee_products.upc_10 left inner join kwikee_profiles ON kwikee_profiles.kwikee_product_id = kwikee_products.id;
+
+# 2017-03-31 14:40:51.679390
++select products.name, kwikee_profiles.custom_product_name from products inner join kwikee_products on products.upc = kwikee_products.upc_10 inner join kwikee_profiles ON kwikee_profiles.kwikee_product_id = kwikee_products.id;
+
+# 2017-03-31 14:42:18.412689
++select products.name, kwikee_profiles.custom_product_name from products left join kwikee_products on products.upc = kwikee_products.upc_10 left join kwikee_profiles ON kwikee_profiles.kwikee_product_id = kwikee_products.id;
+
+# 2017-03-31 14:42:41.690368
++select products.name, kwikee_profiles.custom_product_name from products left join kwikee_products on products.upc = kwikee_products.upc_10 left join kwikee_profiles ON kwikee_profiles.kwikee_product_id = kwikee_products.id where kwikee_profiles.custom_product_name is not null;
+
+# 2017-03-31 14:43:40.471400
++\q
+
+# 2017-03-31 14:57:24.113146
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-03-31 14:57:29.160038
++\q
+
+# 2017-03-31 14:57:49.761545
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-03 13:50:36.828929
++\d kwikee_files
+
+# 2017-04-03 13:50:49.258136
++\d kwikee_assets
+
+# 2017-04-03 14:34:41.611463
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-03 14:36:33.182362
++select * from kwikee_assets where kwikee_product_id is null limit 20;;
+
+# 2017-04-03 14:36:35.014449
++select * from kwikee_assets where kwikee_product_id is null limit 20;
+
+# 2017-04-03 14:37:51.691872
++select * from kwikee_files where kwikee_asset_id = 1613145;
+
+# 2017-04-03 14:50:25.385909
++select * from kwikee_assets where kwikee_product_id = 
+
+# 2017-04-03 14:50:40.625630
++select * from kwikee_products where id = 3727802;
+
+# 2017-04-03 14:53:20.748021
++select * from kwikee_products where id = 28801784;
+
+# 2017-04-03 14:53:49.635575
++select * from kwikee_assets where kwikee_product_id = 28801784;
+
+# 2017-04-03 14:55:12.080611
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-03 15:48:12.514835
++select * from kwikee_assets where kwikee_product_id is null limit 20;
+
+# 2017-04-03 15:48:40.257910
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-03 15:48:59.240918
++select * from kwikee_assets where kwikee_product_id is null limit 20;
+
+# 2017-04-03 15:49:23.215858
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-03 16:09:44.384807
++select * from kwikee_assets where kwikee_product_id is null limit 20;
+
+# 2017-04-03 16:10:13.255459
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-03 16:12:59.792675
++\d kwikee_assets
+
+# 2017-04-03 16:13:14.008555
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-03 16:15:17.908525
++select * from kwikee_assets where kwikee_product_id is null limit 20;
+
+# 2017-04-03 16:17:06.128050
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-03 16:17:13.799920
++select * from kwikee_assets where kwikee_product_id is null limit 20 offset 20;
+
+# 2017-04-03 16:17:52.814698
++select * from kwikee_files where kwikee_asset_id = 1314358
+
+# 2017-04-03 16:18:30.893288
++select * from kwikee_files where kwikee_asset_id = 1504494
+
+# 2017-04-03 16:20:50.296393
++select * from kwikee_assets where kwikee_product_id is null limit 20 offset 20;
+
+# 2017-04-03 16:20:59.917497
++select * from kwikee_assets where kwikee_product_id is null limit 200 offset 20;
+
+# 2017-04-03 16:23:00.155667
++select id from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-03 17:17:50.985250
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-03 17:42:24.728210
++select * from kwikee_assets where kwikee_product_id is null limit 200 offset 20;
+
+# 2017-04-03 17:42:37.359008
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-05 10:49:30.922304
++\c products
+
+# 2017-04-05 10:49:34.160905
++\d products
+
+# 2017-04-05 10:50:04.695988
++select count(*) from products where category_id is null;
+
+# 2017-04-05 10:52:30.138539
++select count(*) from kwikee_profiles where kwikee_gpc_brick_id is null;
+
+# 2017-04-05 10:53:22.288615
++select kwikee_gpc_brick_id from kwikee_profiles where kwikee_product_id = 16901446;
+
+# 2017-04-05 10:53:39.135810
++select * from kwikee_gpc_bricks where id = 10000424;
+
+# 2017-04-05 10:54:07.054373
++select * from product_categories where name ilike '%Laundry Detergent%'
+
+# 2017-04-05 11:34:32.434496
++\q
+
+# 2017-04-05 11:34:42.505991
++\q
+
+# 2017-04-05 11:42:13.138438
++select count(*) from products where status is null;
+
+# 2017-04-05 13:23:33.983434
++\q
+
+# 2017-04-10 12:38:02.265081
++select count(*) from products where status is null;
+
+# 2017-04-10 12:38:15.440054
++select count(*) from kwikee_assets where kwikee_product_id is null;
+
+# 2017-04-10 12:50:58.957717
++select count(*) from products where brand_id is null;
+
+# 2017-04-10 12:51:05.124879
++select * from products where brand_id is null;
+
+# 2017-04-10 12:55:43.917389
++select * from kwikee_brands;
+
+# 2017-04-10 15:48:42.127508
++\q
+
+# 2017-04-11 08:21:22.076299
++select count(*) from brands;
+
+# 2017-04-11 08:21:31.490878
++select count(*) from kwikee_brands;
+
+# 2017-04-11 08:21:38.314502
++select * from brands;
+
+# 2017-04-11 08:23:37.118189
++select count(*) from brands inner join kwikee_brands ON kwikee_brands.name = brands.name
+
+# 2017-04-11 08:23:48.733675
++select * from brands inner join kwikee_brands ON kwikee_brands.name = brands.name
+
+# 2017-04-11 08:24:20.132793
++select * from brands join kwikee_brands ON kwikee_brands.name = brands.name
+
+# 2017-04-11 08:24:37.428900
++select * from brands left join kwikee_brands ON kwikee_brands.name = brands.name
+
+# 2017-04-11 08:24:56.851233
++\d kwikee_brands
+
+# 2017-04-11 08:25:04.099022
++\d brands
+
+# 2017-04-11 08:30:43.925395
++select * from brands left join kwikee_brands ON kwikee_brands.name ILIKE brands.name
+
+# 2017-04-11 08:30:53.028233
++select * from brands join kwikee_brands ON kwikee_brands.name = brands.name
+
+# 2017-04-11 08:31:04.262264
++select * from brands left inner join kwikee_brands ON kwikee_brands.name = brands.name
+
+# 2017-04-11 08:31:09.717574
++select * from brands inner join kwikee_brands ON kwikee_brands.name = brands.name
+
+# 2017-04-11 08:32:30.019042
++SELECT COUNT(DISTINCT name) FROM kwikee_brands;
+
+# 2017-04-11 08:32:37.298445
++SELECT COUNT(*) FROM kwikee_brands;
+
+# 2017-04-11 08:42:35.538807
++select * from brands where name is null
+
+# 2017-04-11 08:42:54.578165
++select * from kwikee_brands where name is null
+
+# 2017-04-11 08:46:07.867782
++select count(*) from brands left join kwikee_brands ON kwikee_brands.name ILIKE brands.name
+
+# 2017-04-11 08:46:37.188552
++select count(distinct brands.id) from brands left join kwikee_brands ON kwikee_brands.name ILIKE brands.name
+
+# 2017-04-11 08:46:53.467425
++select count(*) from brands;
+
+# 2017-04-11 08:47:42.095422
++\d brands
+
+# 2017-04-11 08:49:43.787032
++select count(distinct name) from brands;
+
+# 2017-04-11 08:51:40.921254
++select id, name from brands b1 join brands b2 on b1.name = b2.name
+
+# 2017-04-11 08:51:52.016717
++select b1.id, b2.id, name from brands b1 join brands b2 on b1.name = b2.name
+
+# 2017-04-11 08:51:57.928577
++select b1.id, b2.id, b1.name from brands b1 join brands b2 on b1.name = b2.name
+
+# 2017-04-11 08:52:05.248382
++select b1.id, b2.id, b1.name from brands b1 left join brands b2 on b1.name = b2.name
+
+# 2017-04-11 08:52:11.760170
++select b1.id, b2.id, b1.name from brands b1 inner join brands b2 on b1.name = b2.name
+
+# 2017-04-11 08:52:23.847878
++select b1.id, b2.id, b1.name from brands b1 inner join brands b2 on b1.name = b2.name where b1.id != b2.id
+
+# 2017-04-11 08:54:01.436023
++select count(*) from products where products.brand_id = 285;
+
+# 2017-04-11 08:55:22.142667
++select count(*) from products where products.brand_id = 378;
+
+# 2017-04-11 08:56:41.142267
++update brands set duplicate = true where id in (285 378 351 296 673)
+
+# 2017-04-11 08:56:58.589625
++update brands set duplicate = true where id in ('285' '378' '351' '296' '673')
+
+# 2017-04-11 08:57:29.468630
++update brands set duplicate = true where id in (285, 378, 351, 296, 673)
+
+# 2017-04-11 08:57:36.380055
++select count(*) from products where products.brand_id = 351;
+
+# 2017-04-11 08:58:10.491056
++select count(*) from products where products.brand_id = 295;
+
+# 2017-04-11 08:58:12.954826
++select count(*) from products where products.brand_id = 296;
+
+# 2017-04-11 08:58:59.983266
++select b1.id, b2.id, b1.name from brands b1 inner join brands b2 on b1.name = b2.name where b1.id != b2.id
+
+# 2017-04-11 08:59:06.840871
++select count(*) from products where products.brand_id = 673;
+
+# 2017-04-11 08:59:54.079616
++select b1.id, b2.id, b1.name from brands b1 inner join brands b2 on b1.name = b2.name where b1.id != b2.id
+
+# 2017-04-11 09:01:57.202766
++\d store_shelf_conditions
+
+# 2017-04-11 09:03:00.008543
++select products where brand_id in (285, 378, 351, 296, 673)
+
+# 2017-04-11 09:03:05.872416
++select count(*) products where brand_id in (285, 378, 351, 296, 673)
+
+# 2017-04-11 09:03:10.008847
++select count(*) from products where brand_id in (285, 378, 351, 296, 673)
+
+# 2017-04-11 09:06:57.345233
++select id, name, parent_brand_id from brands where id in (285, 378, 351, 296, 673)
+
+# 2017-04-11 09:08:19.462450
++select * from brands where id in (296, 679)
+
+# 2017-04-11 09:08:55.845026
++select id, name, parent_brand_id from brands where id in (285, 378, 351, 296, 673)
+
+# 2017-04-11 09:11:07.024687
++update products set brand_id = 57 where brand_id = 285;
+
+# 2017-04-11 09:11:24.688074
++update products set brand_id = 679 where brand_id = 296;
+
+# 2017-04-11 09:11:56.782761
++update products set brand_id = 71 where brand_id = 351;
+
+# 2017-04-11 09:12:10.750250
++update products set brand_id = 102 where brand_id = 378;
+
+# 2017-04-11 09:12:22.758037
++update products set brand_id = 577 where brand_id = 673;
+
+# 2017-04-11 09:12:33.853970
++update store_shelf_conditions set brand_id = 57 where brand_id = 285;
+
+# 2017-04-11 09:12:54.643518
++update store_shelf_conditions set brand_id = 679 where brand_id = 296;
+
+# 2017-04-11 09:13:08.165344
++update store_shelf_conditions set brand_id = 71 where brand_id = 351;
+
+# 2017-04-11 09:13:33.786722
++update store_shelf_conditions set brand_id = 102 where brand_id = 378;
+
+# 2017-04-11 09:14:09.706487
++update store_shelf_conditions set brand_id = 577 where brand_id = 673;
+
+# 2017-04-11 09:14:20.625633
++\d display_configurations
+
+# 2017-04-11 09:14:52.377257
++update display_configurations set brand_id = 57 where brand_id = 285;
+
+# 2017-04-11 09:15:14.872721
++update display_configurations set brand_id = 679 where brand_id = 296;
+
+# 2017-04-11 09:15:26.871993
++update display_configurations set brand_id = 71 where brand_id = 351;
+
+# 2017-04-11 09:15:43.175709
++update display_configurations set brand_id = 102 where brand_id = 378;
+
+# 2017-04-11 09:15:55.567401
++update display_configurations set brand_id = 577 where brand_id = 673;
+
+# 2017-04-11 09:17:23.283948
++update brands_filter_settings set brand_id = 57 where brand_id = 285;
+
+# 2017-04-11 09:19:07.040459
++select count(*) from brands_filter_settings;
+
+# 2017-04-11 09:19:08.848094
++\c
+
+# 2017-04-11 09:19:11.751891
++exit
+
+# 2017-04-11 14:00:54.919523
++ update brands_filter_settings set brand_id = 57 where brand_id = 285;
++ update brands_filter_settings set brand_id = 679 where brand_id = 296;
++ update brands_filter_settings set brand_id = 71 where brand_id = 351;
++ update brands_filter_settings set brand_id = 102 where brand_id = 378;
++ update brands_filter_settings set brand_id = 577 where brand_id = 673;
++
+
+# 2017-04-11 14:01:26.593370
++select * from brands_filter_settings where brand_id = 577;
+
+# 2017-04-11 14:02:24.804547
++\d brands_filter_settings
+
+# 2017-04-11 14:16:02.415679
++ update brands_filter_settings set brand_id = 57 where brand_id = 285;
++ update brands_filter_settings set brand_id = 679 where brand_id = 296;
++ update brands_filter_settings set brand_id = 71 where brand_id = 351;
++ update brands_filter_settings set brand_id = 102 where brand_id = 378;
++ update brands_filter_settings set brand_id = 577 where brand_id = 673;
++
+
+# 2017-04-11 14:16:49.304178
++ update brands_filter_settings set brand_id = 577 where brand_id = 673;
++
+
+# 2017-04-11 14:16:59.105019
++select * from brands_filter_settings where brand_id = 577;
+
+# 2017-04-11 14:17:08.840773
++select * from brands_filter_settings where brand_id = 673;
+
+# 2017-04-11 14:17:49.798292
++delete from brands_filter_settings where brand_id = 673;
+
+# 2017-04-11 14:24:33.252382
++select b1.name, b2.name from brands left join kwikee_brands ON kwikee_brands.name ILIKE brands.name
+
+# 2017-04-11 14:24:49.090255
++select b1.name, b2.name from brands b1 left join kwikee_brands b2 ON kwikee_brands.name ILIKE brands.name
+
+# 2017-04-11 14:25:05.494911
++select b1.name, b2.name from brands b1 left join kwikee_brands b2 ON b1.name ILIKE b2.name
+
+# 2017-04-11 14:25:56.551614
++select b1.name, b2.name from brands b1 inner join kwikee_brands b2 ON b1.name ILIKE b2.name
+
+# 2017-04-11 14:27:02.911488
++select count(*) from brands b1 inner join kwikee_brands b2 ON b1.name ILIKE b2.name
+
+# 2017-04-11 14:29:00.181287
++select b1.name, b2.name from brands b1 inner join brands b2 ON b1.name ILIKE b2.name
+
+# 2017-04-11 14:29:15.107247
++select b1.name, b2.name from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
+
+# 2017-04-11 14:29:49.075059
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
+
+# 2017-04-11 14:35:26.017079
++select count(*) from products where brand_id = 809;
+
+# 2017-04-11 14:35:29.664943
++select count(*) from products where brand_id = 827;
+
+# 2017-04-11 14:35:32.104764
++select count(*) from products where brand_id = 809;
+
+# 2017-04-11 14:38:15.491486
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
+
+# 2017-04-11 14:39:03.966343
++update products set brand_id = 809 where brand_id = 827;
++update brands_filter_settings set brand_id = 809 where brand_id = 827;
++update display_configurations set brand_id = 809 where brand_id = 827;
++update store_shelf_conditions set brand_id = 809 where brand_id = 827;
++
+
+# 2017-04-11 14:39:24.638185
++update brands set duplicate = true where id = 827;
++
+
+# 2017-04-11 14:39:32.136421
++update brands set name = name || ' DO NOT USE DUPLICATE' where id = 827;
++
+
+# 2017-04-11 14:39:40.621809
++select * from brands where id = 827;
+
+# 2017-04-11 14:40:58.497562
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
+
+# 2017-04-11 14:41:51.733079
++select count(*) from products where brand_id = 48;
+
+# 2017-04-11 14:41:56.177048
++select count(*) from products where brand_id = 825;
+
+# 2017-04-11 14:43:03.637110
++update products set brand_id = 48 where brand_id = 825;
++update brands_filter_settings set brand_id = 48 where brand_id = 825;
++update display_configurations set brand_id = 48 where brand_id = 825;
++update store_shelf_conditions set brand_id = 48 where brand_id = 825;
++update brands set duplicate = true where id = 825;
++update brands set name = name || ' DO NOT USE DUPLICATE' where id = 825;
++
+
+# 2017-04-11 14:43:14.228619
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
++
+
+# 2017-04-11 14:43:43.756223
++select count(*) from products where brand_id = 13;
++select count(*) from products where brand_id = 441;
++
+
+# 2017-04-11 14:44:09.319455
++update products set brand_id = 13 where brand_id = 441;
++update brands_filter_settings set brand_id = 13 where brand_id = 441;
++update display_configurations set brand_id = 13 where brand_id = 441;
++update store_shelf_conditions set brand_id = 13 where brand_id = 441;
++update brands set duplicate = true where id = 441;
++update brands set name = name || ' DO NOT USE DUPLICATE' where id = 441;
++
+
+# 2017-04-11 14:44:23.760946
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
++
+
+# 2017-04-11 14:45:49.780197
++select count(*) from products where brand_id = 816;
++select count(*) from products where brand_id = 712;
++
+
+# 2017-04-11 14:46:37.299232
++update products set brand_id = 816 where brand_id = 712;
++update brands_filter_settings set brand_id = 816 where brand_id = 712;
++update display_configurations set brand_id = 816 where brand_id = 712;
++update store_shelf_conditions set brand_id = 816 where brand_id = 712;
++update brands set duplicate = true where id = 712;
++update brands set name = name || ' DO NOT USE DUPLICATE' where id = 712;
++
+
+# 2017-04-11 14:46:46.201133
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
++
+
+# 2017-04-11 14:47:07.816373
++select count(*) from products where brand_id = 804;
++select count(*) from products where brand_id = 452;
++
+
+# 2017-04-11 14:48:18.904043
++update products set brand_id = 452 where brand_id = 804;
++update brands_filter_settings set brand_id = 452 where brand_id = 804;
++update display_configurations set brand_id = 452 where brand_id = 804;
++update store_shelf_conditions set brand_id = 452 where brand_id = 804;
++update brands set duplicate = true where id = 804;
++update brands set name = name || ' DO NOT USE DUPLICATE' where id = 804;
++
+
+# 2017-04-11 14:54:52.792495
++select count(*) from kwikee_assets
+
+# 2017-04-11 15:27:26.530975
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
++
+
+# 2017-04-11 15:33:23.481298
++select count(*) from products where brand_id = 387;
++select count(*) from products where brand_id = 45;
++
+
+# 2017-04-11 15:33:59.420275
++update products set brand_id = 45 where brand_id = 387;
++update brands_filter_settings set brand_id = 45 where brand_id = 387;
++update display_configurations set brand_id = 45 where brand_id = 387;
++update store_shelf_conditions set brand_id = 45 where brand_id = 387;
++update brands set duplicate = true where id = 387;
++update brands set name = name || ' DO NOT USE DUPLICATE' where id = 387;
++
+
+# 2017-04-11 15:34:16.072191
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
++
+
+# 2017-04-11 15:34:35.495747
++select count(*) from products where brand_id = 781;
++select count(*) from products where brand_id = 71;
++
+
+# 2017-04-11 15:35:07.201005
++update products set brand_id = 71 where brand_id = 781;
++update brands_filter_settings set brand_id = 71 where brand_id = 781;
++update display_configurations set brand_id = 71 where brand_id = 781;
++update store_shelf_conditions set brand_id = 71 where brand_id = 781;
++update brands set duplicate = true where id = 781;
++update brands set name = name || ' DO NOT USE DUPLICATE' where id = 781;
++
+
+# 2017-04-11 15:35:23.855145
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
++
+
+# 2017-04-11 15:35:50.222730
++select count(*) from products where brand_id = 729;
++select count(*) from products where brand_id = 680;
++
+
+# 2017-04-11 15:36:17.745873
++update products set brand_id = 680 where brand_id = 729;
++update brands_filter_settings set brand_id = 680 where brand_id = 729;
++update display_configurations set brand_id = 680 where brand_id = 729;
++update store_shelf_conditions set brand_id = 680 where brand_id = 729;
++update brands set duplicate = true where id = 729;
++update brands set name = name || ' DO NOT USE DUPLICATE' where id = 729;
++
+
+# 2017-04-11 15:50:10.432717
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
++
+
+# 2017-04-11 16:04:20.795780
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name 
+
+# 2017-04-11 16:06:38.684449
++select count(*) from brands b1 inner join kwikee_brands b2 ON b1.name ILIKE b2.name
+
+# 2017-04-11 16:06:54.235443
++select b1.name, b2.name from brands b1 inner join kwikee_brands b2 ON b1.name ILIKE b2.name
+
+# 2017-04-11 16:07:31.348167
++select b1.name, b2.name from brands b1 outer join kwikee_brands b2 ON b1.name ILIKE b2.name
+
+# 2017-04-11 16:07:38.350263
++select b1.name, b2.name from brands b1 join kwikee_brands b2 ON b1.name ILIKE b2.name
+
+# 2017-04-11 16:07:55.053600
++select b1.name, b2.name from brands b1 left join kwikee_brands b2 ON b1.name ILIKE b2.name
+
+# 2017-04-11 16:08:14.141965
++select b1.name, b2.name from brands b1 left join kwikee_brands b2 ON b1.name ILIKE b2.name where b2 is null
+
+# 2017-04-11 16:26:40.103022
++\q
+
+# 2017-04-11 18:13:44.128704
++select * from product_sizes;
+
+# 2017-04-11 18:14:04.471759
++select count(*) from product_sizes;
+
+# 2017-04-11 18:14:06.671440
++select * from product_sizes;
+
+# 2017-04-11 18:14:24.103150
++select * from product_size_units;
+
+# 2017-04-11 18:26:21.508339
++select * from kwikee_brands b1 left join kwikee_brand b2 on b1.name ilike b2.name
+
+# 2017-04-11 18:26:25.620421
++select * from kwikee_brands b1 left join kwikee_brands b2 on b1.name ilike b2.name
+
+# 2017-04-11 18:26:42.027909
++select * from kwikee_brands b1 join kwikee_brands b2 on b1.name ilike b2.name;
+
+# 2017-04-11 18:27:11.859169
++select * from kwikee_brands b1 left join kwikee_brands b2 on b1.name ilike b2.name;
+
+# 2017-04-11 18:27:49.269438
++select * from kwikee_brands b1 left join kwikee_brands b2 on b1.name ilike b2.name where b1.id != b2.id;
+
+# 2017-04-11 18:32:07.129705
++select count(*) from kwikee_profiles where kwikee_brand_id = 29721354
+
+# 2017-04-11 18:32:24.714822
++select count(*) from kwikee_profiles where kwikee_brand_id = 27937168
+
+# 2017-04-11 18:32:35.965059
++select * from kwikee_profiles where kwikee_brand_id = 27937168
+
+# 2017-04-11 18:32:50.610772
++select * from kwikee_profiles where kwikee_brand_id = 29721354
+
+# 2017-04-11 18:53:48.665293
++select count(*) from kwikee_brands;
+
+# 2017-04-11 19:11:44.730909
++\d kwikee_profiles
+
+# 2017-04-11 19:12:39.450271
++select custom_product_name, unit_container, unit_size, unit_uom, product_count, product_size  from kwikee_profiles;
+
+# 2017-04-11 19:13:01.607554
++select custom_product_name, unit_container, unit_size, unit_uom, product_count, product_size  from kwikee_profiles limit 1000;
+
+# 2017-04-11 19:13:40.148873
++select custom_product_name, unit_container, unit_size, unit_uom, uom, product_count, product_size  from kwikee_profiles limit 1000;
+
+# 2017-04-11 19:20:24.252010
++select * from product_sizes;
+
+# 2017-04-11 19:20:32.123888
++select * from product_sizes limit 5;
+
+# 2017-04-11 19:20:39.227826
++select * from product_size_units limit 5;
+
+# 2017-04-11 19:36:45.546023
++select * from product_size_units;
+
+# 2017-04-12 09:53:41.069726
++\q
+
+# 2017-04-12 17:56:25.741481
++select * from product_sizes
+
+# 2017-04-12 17:57:12.063762
++select * from product_size_units
+
+# 2017-04-12 18:59:07.280625
++select * from product_sizes;
+
+# 2017-04-12 18:59:30.546465
++\q
+
+# 2017-04-12 18:59:38.812220
++select * from product_sizes;
+
+# 2017-04-13 11:07:34.834995
++\q
+
+# 2017-04-13 12:48:11.100954
++select * from kwikee_brands b1 left join kwikee_brands b2 on b1.name ilike b2.name where b1.id != b2.id;
+
+# 2017-04-13 12:48:29.571325
++select b1.name, b2.name from brands b1 left join kwikee_brands b2 ON b1.name ILIKE b2.name where b2 is null
+
+# 2017-04-13 12:53:16.091471
++select b1.name, b2.name from brands b1 left join kwikee_brands b2 ON b1.name ILIKE b2.name where b2 is not null
+
+# 2017-04-13 12:53:37.202744
++select b1.name, b2.name from brands b1 left join brands b2 ON b1.name ILIKE b2.name where b2 is not null
+
+# 2017-04-13 12:56:27.381506
++\q
+
+# 2017-04-13 12:59:10.082842
++select b1.name, b2.name from brands b1 left join brands b2 ON b1.name ILIKE b2.name where b2 is not null
+
+# 2017-04-13 12:59:18.657088
++select * from brands;
+
+# 2017-04-13 12:59:35.297049
++select b1.name, b2.name from brands b1 left join brands b2 ON b1.name ILIKE b2.name
+
+# 2017-04-13 12:59:40.943742
++select b1.name, b2.name from brands b1 left join brands b2 ON b1.name ILIKE b2.name where b2 is not null
+
+# 2017-04-13 12:59:47.680360
++select count(*) from brands;
+
+# 2017-04-13 13:09:17.752090
++exit
+
+# 2017-04-13 13:35:04.917499
++select b1.name, b2.name from brands b1 left join brands b2 ON b1.name = b2.name
+
+# 2017-04-13 13:35:12.844829
++select b1.name, b2.name from brands b1 left join brands b2 ON b1.name = b2.name where b2.name is not null
+
+# 2017-04-13 13:35:23.403958
++select b1.name, b2.name from brands b1 join brands b2 ON b1.name = b2.name where b2.name is not null
+
+# 2017-04-13 13:35:40.643299
++select b1.name, b2.name from brands b1 inner join brands b2 ON b1.name = b2.name where b2.name is not null
+
+# 2017-04-13 13:35:44.715964
++select b1.name, b2.name from brands b1 inner join brands b2 ON b1.name = b2.name where b2.name 
+
+# 2017-04-13 13:35:48.851069
++select b1.name, b2.name from brands b1 inner join brands b2 ON b1.name = b2.name 
+
+# 2017-04-13 13:36:01.650035
++select b1.name, b2.name from brands b2 left join brands b2 ON b1.name = b2.name 
+
+# 2017-04-13 13:36:07.754504
++select b1.name, b2.name from brands b1 left join brands b2 ON b1.name = b2.name 
+
+# 2017-04-13 13:36:16.620247
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
++
+
+# 2017-04-13 13:44:13.164750
++update brands set name = name || 'do not use duplicate' where id = 285
+
+# 2017-04-13 13:44:40.444310
++update brands set name = name || 'do not use duplicate' where id in (378, 351, 368)
+
+# 2017-04-13 13:44:42.476782
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
++
+
+# 2017-04-13 13:45:00.683423
++update brands set name = name || 'do not use duplicate' where id in (370, 295, 566, 681)
+
+# 2017-04-13 13:45:02.837510
++select b1.name, b1.id,  b2.name, b2.id from brands b1 inner join brands b2 ON b1.name ILIKE b2.name and b1.id != b2.id
++
+
+# 2017-04-13 13:45:12.603048
++update brands set name = name || 'do not use duplicate' where id in (577)
+
+# 2017-04-13 14:24:46.710525
++\q
+
+# 2017-04-13 15:26:32.554202
++select * from kwikee_products where upc_12 = '043000076026'
+
+# 2017-04-13 15:26:56.657142
++select * from kwikee_profiles where kwikee_product_id = '32610380'
+
+# 2017-04-13 15:27:40.108587
++\q
+
+# 2017-04-13 21:25:06.972703
++select count(*) from kwikee_assets
+
+# 2017-04-13 21:25:32.234920
++select * from kwikee_assets
+
+# 2017-04-13 21:25:41.265099
++select * from kwikee_assets limit 10;
+
+# 2017-04-13 21:25:57.994404
++select count(*) from kwikee_assets where action != 'insert';
+
+# 2017-04-13 21:26:09.106249
++select distinct action from kwikee_assets where action != 'insert';
+
+# 2017-04-13 21:26:28.672046
++select distinct view from kwikee_assets where action != 'insert';
+
+# 2017-04-14 09:03:39.406518
++\d kwikee_products
+
+# 2017-04-14 09:08:08.622642
++\d products
+
+# 2017-04-14 10:21:00.069212
++select distinct view from kwikee_assets;
+
+# 2017-04-14 10:36:47.400800
++\d kwikee_files
+
+# 2017-04-14 11:00:29.808349
++\d product_images
+
+# 2017-04-14 11:01:04.999528
++select * from product_images order id desc limit 5
+
+# 2017-04-14 11:01:11.117949
++select * from product_images order by id desc limit 5;
+
+# 2017-04-14 11:01:57.829521
++\d product_images
+
+# 2017-04-16 13:40:25.030750
++\q
+
+# 2017-04-17 12:59:07.947121
++select distinct action from kwikee_products;
+
+# 2017-04-17 12:59:28.329093
++select count(*) from kwikee_products where action = 'delete';
+
+# 2017-04-17 13:03:45.487937
++\q
+
+# 2017-04-17 15:22:48.636834
++select count(*) from kwikee_files;
+
+# 2017-04-17 15:34:38.103566
++select count(*) from kwikee_assets where view = "CF";
+
+# 2017-04-17 15:34:43.253502
++select count(*) from kwikee_assets where view = 'CF';
+
+# 2017-04-17 15:35:58.164609
++select count(*) from kwikee_files where kwikee_asset_id in (select id from kwikee_assets where view = 'CF') and kwikee_file_type in ('gs1', 'png', 'jpg');
+
+# 2017-04-17 15:42:12.550153
++select count(*) from kwikee_files where kwikee_asset_id in (select id from kwikee_assets where view = 'CF' and action != 'delete') and kwikee_file_type in ('gs1', 'png', 'jpg');
+
+# 2017-04-17 18:16:07.017951
++\q
+
+# 2017-04-26 16:30:33.160040
++select distinct(kwikee_asset_type) from kwikee_files;
+
+# 2017-04-26 16:30:47.173665
++\d kwikee_files
+
+# 2017-04-26 16:30:52.661535
++select distinct(kwikee_asset_type) from kwikee_assets;
+
+# 2017-04-26 16:33:03.231637
++select count(*) from kwikee_assets where kwikee_asset_type = 'alternate';
+
+# 2017-04-26 16:33:27.704441
++select count(*) from kwikee_assets where kwikee_asset_type = 'HorizontalAlternate';
+
+# 2017-04-26 16:33:36.055022
++select count(*) from kwikee_assets where kwikee_asset_type = 'front1';
+
+# 2017-04-26 16:33:57.990932
++select count(*) from kwikee_files;
+
+# 2017-04-26 16:34:18.222126
++select count(*) from kwikee_assets;
+
+# 2017-04-26 16:34:32.126299
++select count(*) from kwikee_assets where kwikee_asset_type = 'front2';
+
+# 2017-04-26 16:44:40.824577
++\q
+
+# 2017-04-27 10:09:23.828104
++\d product_images
+
+# 2017-04-27 10:12:34.855088
++\q
+
+# 2017-04-27 11:56:03.035631
++\d products
+
+# 2017-04-27 11:56:16.739727
++\d product_images
+
+# 2017-04-27 11:56:24.915532
++\d products
+
+# 2017-04-27 12:00:54.282402
++\d logograb_visual_structs
+
+# 2017-04-27 12:01:18.505356
++select * from logograb_visual_structs;
+
+# 2017-04-27 12:02:27.247451
++select distinct(product_id) from logograb_visual_structs
+
+# 2017-04-27 12:02:48.214052
++\q
+
+# 2017-04-27 12:02:50.950040
++\q
+
+# 2017-05-15 07:19:38.942921
++select upc_12 from kwikee_products left join products on products.upc = kwikee_products.upc_12;
+
+# 2017-05-15 07:20:05.096840
++select upc_12 from kwikee_products left join products on products.upc = kwikee_products.upc_12 and products.upc is null;
+
+# 2017-05-15 07:20:17.628622
++select count(upc_12) from kwikee_products left join products on products.upc = kwikee_products.upc_12 and products.upc is null;
+
+# 2017-05-15 07:20:31.209097
++select count(upc_12) from kwikee_products outer join products on products.upc = kwikee_products.upc_12 and products.upc is null;
+
+# 2017-05-15 07:20:37.777430
++select count(upc_12) from kwikee_products join products on products.upc = kwikee_products.upc_12 and products.upc is null;
+
+# 2017-05-15 07:20:49.377730
++select count(upc_12) from kwikee_products inner join products on products.upc = kwikee_products.upc_12 and products.upc is null;
+
+# 2017-05-15 07:21:05.554795
++select count(*) from products;
+
+# 2017-05-15 07:21:16.714588
++select count(*) from kwikee_products;
+
+# 2017-05-15 07:22:03.402424
++select upc_12 from kwikee_products where upc_12 not in (select upc from products);
+
+# 2017-05-15 07:24:17.080757
++\d kwikee_products
+
+# 2017-05-15 07:24:28.202018
++\d products
+
+# 2017-05-15 07:28:08.943805
++select * from products limit 20 order by created_at desc;
+
+# 2017-05-15 07:28:17.889930
++select * from products order by created_at desc limit 20;
+
+# 2017-05-15 07:28:32.649927
++select * from products order by created_at desc limit 200;
+
+# 2017-05-15 07:31:35.177715
++select * from products order by updated_at desc limit 200;
+
+# 2017-05-15 07:33:21.525489
++\d products
+
+# 2017-05-15 17:00:42.047407
++\q
+
+# 2017-05-24 11:41:28.274479
++\d users
+
+# 2017-05-24 11:41:30.946330
++\d people
+
+# 2017-05-24 11:41:45.990399
++\q
+
+# 2017-05-24 13:44:32.571129
++\d product_images
+
+# 2017-05-24 15:46:10.600595
++\d shifts
+
+# 2017-05-24 15:55:30.649100
++\q
+
+# 2017-05-24 16:44:36.503990
++\d display_configurations
+
+# 2017-05-24 16:47:30.418204
++select distinct id from display_configurations where customer_id = 87
+
+# 2017-05-24 16:48:01.624360
++select count(*) from display_configurations;
+
+# 2017-05-24 16:49:54.884743
++select distinct store_id from display_configurations where customer_id = 87
+
+# 2017-05-24 16:51:01.193985
++select distinct store_id from store_shelf_conditions where customer_id = 87
+
+# 2017-05-24 16:51:32.097917
++select distinct store_id from store_shelf_conditions where customer_id in (87)
+
+# 2017-05-24 16:51:46.544574
++select distinct store_id from display_configurations where customer_id in (87)
+
+# 2017-05-24 16:52:13.318462
++explain select distinct store_id from display_configurations where customer_id in (87)
+
+# 2017-05-24 16:52:29.687933
++explain select distinct store_id from store_shelf_conditions where customer_id in (87)
+
+# 2017-05-25 12:43:58.157038
++\q
+
+# 2017-05-25 17:54:03.999885
++\d answer_updates
+
+# 2017-05-25 17:54:13.454476
++select count(*) from answer_updates
+
+# 2017-05-25 17:56:57.600224
++explain select * from answer_updates where reviewer_id is null and outcome = 'open' FOR UPDATE OF answer_updates SKIP LOCKED
+
+# 2017-05-25 17:58:56.913118
++explain select * from answer_updates where reviewer_id is null and outcome = 'open' AND "answer_updates"."strategy_type" IS NULL  ORDER BY "answer_updates"."id" ASC LIMIT 1000 FOR UPDATE OF answer_updates SKIP LOCKED
+
+# 2017-05-25 17:59:27.665999
++explain select * from answer_updates where reviewer_id is null and outcome = 'open' FOR UPDATE OF answer_updates SKIP LOCKED
+
+# 2017-05-25 17:59:41.537481
++explain select * from answer_updates where reviewer_id is null and outcome = 'open' AND "answer_updates"."strategy_type" IS NULL  ORDER BY "answer_updates"."id" ASC LIMIT 1000 FOR UPDATE OF answer_updates SKIP LOCKED
+
+# 2017-05-25 18:07:09.388937
++SELECT "answer_updates".*
++FROM "answer_updates"
++WHERE "answer_updates"."outcome" = $1
++        AND "answer_updates"."reviewer_id" IS NULL
++        AND "answer_updates"."strategy_type" IS NULL
++ORDER BY  "answer_updates"."id" ASC LIMIT 1000 FORUPDATE OF answer_updates SKIP LOCKED
+
+# 2017-05-25 18:07:26.057532
++select * from answer_updates where reviewer_id is null and outcome = 'open' AND "answer_updates"."strategy_type" IS NULL  ORDER BY "answer_updates"."id" ASC LIMIT 1000 FOR UPDATE OF answer_updates SKIP LOCKED
+
+# 2017-05-25 18:38:42.653675
++\q
+
+# 2017-05-26 13:11:42.730529
++explain select * from answer_updates where reviewer_id is null and outcome = 'open' AND "answer_updates"."strategy_type" IS NULL  ORDER BY "answer_updates"."id" ASC LIMIT 1000 FOR UPDATE OF answer_updates SKIP LOCKED
+
+# 2017-05-26 13:11:55.010647
++explain select * from answer_updates where reviewer_id is null and outcome = 'open' AND "answer_updates"."strategy_type" IS NULL  ORDER BY "answer_updates"."id" ASC LIMIT 1000 
+
+# 2017-05-26 13:12:19.539533
++explain analyze select * from answer_updates where reviewer_id is null and outcome = 'open' AND "answer_updates"."strategy_type" IS NULL  ORDER BY "answer_updates"."id" ASC LIMIT 1000 FOR UPDATE OF answer_updates SKIP LOCKED
+
+# 2017-05-26 13:21:00.671290
++CREATE INDEX CONCURRENTLY strategy_selection_index ON answer_updates USING btree (id) WHERE ((outcome = 'open'::answer_update_outcome) AND (strategy_type IS NULL));
+
+# 2017-05-26 13:22:23.293835
++explain analyze select * from answer_updates where reviewer_id is null and outcome = 'open' AND "answer_updates"."strategy_type" IS NULL  ORDER BY "answer_updates"."id" ASC LIMIT 1000 FOR UPDATE OF answer_updates SKIP LOCKED
+
+# 2017-05-26 16:07:56.436134
++exit
+
+# 2017-06-01 07:35:13.134170
++\d tasks
+
+# 2017-06-01 07:35:43.474436
++\d questions
+
+# 2017-06-01 07:35:55.131274
++\d tasks
+
+# 2017-06-01 07:58:26.323314
++\d questions
+
+# 2017-06-01 08:08:39.403358
++SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++    LIMIT 1;
+
+# 2017-06-01 08:08:56.733623
++explain SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++    LIMIT 1;
+
+# 2017-06-01 08:10:08.740884
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++    LIMIT 1;
+
+# 2017-06-01 08:22:10.443883
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    and (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++    LIMIT 1;
+
+# 2017-06-01 08:23:05.576494
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++    LIMIT 1;
+
+# 2017-06-01 08:30:39.270734
++ SELECT jobs.* FROM jobs INNER JOIN surveys ON surveys.job_id = jobs.id INNER JOIN tasks ON tasks.survey_id = surveys.id INNER JOIN questions ON questions.task_id = tasks.id WHERE jobs.pub_state = 'draft'
++
+
+# 2017-06-01 08:30:52.967216
++ SELECT jobs.* FROM jobs INNER JOIN surveys ON surveys.job_id = jobs.id INNER JOIN tasks ON tasks.survey_id = surveys.id INNER JOIN questions ON questions.task_id = tasks.id WHERE jobs.pub_state = 'draft'
+
+# 2017-06-01 08:37:41.119133
++\d tasks
+
+# 2017-06-01 08:38:38.197911
++explain delete from tasks where id = 91407
+
+# 2017-06-01 08:48:10.156745
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++    LIMIT 1;
+
+# 2017-06-01 08:52:31.923674
++select survey_id from tasks where id = 91407;
+
+# 2017-06-01 08:52:40.062358
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++    LIMIT 1;
+
+# 2017-06-01 08:53:54.679261
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id 
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++    LIMIT 1;
+
+# 2017-06-01 08:54:05.392504
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id 
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++    LIMIT 1
+
+# 2017-06-01 08:55:47.220864
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id join tasks on tasks.id = question.task_id join surveys on surveys.id = tasks.id 
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++     LIMIT 1
+
+# 2017-06-01 08:56:02.940580
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id join tasks on tasks.id = questions.task_id join surveys on surveys.id = tasks.id 
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id
++     LIMIT 1
+
+# 2017-06-01 08:56:30.186234
++select survey_id from tasks where id = 91407;
+
+# 2017-06-01 08:57:40.981489
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id 
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id AND q1.task_id in (select id from tasks where survey_id = 11442)
++     LIMIT 1
+
+# 2017-06-01 08:58:26.220074
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id 
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id AND (q1.task_id in (select id from tasks where survey_id = 11442) or q2.task_id in (select id from tasks where survey_id = 11442))
++     LIMIT 1
+
+# 2017-06-01 09:20:37.415675
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id 
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id AND q1.task_id in (select id from tasks where survey_id = 11442)
++     LIMIT 1
+
+# 2017-06-01 09:21:12.579417
++explain analyze SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id 
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id AND (q1.task_id in (select id from tasks where survey_id = 11442) or q2.task_id in (select id from tasks where survey_id = 11442))
++     LIMIT 1
+
+# 2017-06-01 09:29:48.541508
++explain     SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    JOIN tasks AS q1_tasks ON q1_tasks.id = q1.task_id
++    JOIN tasks AS q2_tasks ON q2_tasks.id = q2.task_id
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id AND q1_tasks.survey_id = 11442 AND q2_tasks.survey_id = 11442
++    LIMIT 1;
+
+# 2017-06-01 09:30:28.072673
++explain   analyze  SELECT 1
++    FROM questions AS q1
++    JOIN questions_questions AS qq ON qq.question_id = q1.id
++    JOIN questions AS q2 ON q2.id = qq.primary_question_id
++    JOIN tasks AS q1_tasks ON q1_tasks.id = q1.task_id
++    JOIN tasks AS q2_tasks ON q2_tasks.id = q2.task_id
++    WHERE (q1.task_id = 91407 OR q2.task_id = 91407) AND q1.task_id <> q2.task_id AND q1_tasks.survey_id = 11442 AND q2_tasks.survey_id = 11442
++    LIMIT 1;
+
+# 2017-06-01 09:31:05.243679
++\q
+
+# 2017-06-01 10:40:37.202269
++delete from tasks where id = 89563
++;
+
+# 2017-06-01 10:47:17.438206
++explain (analyze, buffers) delete from tasks where id = 89553;
+
+# 2017-06-01 10:50:26.462580
++explain (analyze, buffers) delete from tasks where id = 89556;
+
+# 2017-06-01 10:53:11.926174
++explain (analyze, buffers, verbose) delete from tasks where id = 89570;
+
+# 2017-06-01 11:48:25.609357
++explain (analyze, buffers) delete from tasks where id = 89585;
+
+# 2017-06-01 12:57:54.197881
++exit
+
+# 2017-06-06 13:36:57.735243
++\d kwikee_products
+
+# 2017-06-06 13:37:20.678329
++select primary_version, primary_type from kwikee_products limit 100;
+
+# 2017-06-06 13:37:36.053890
++select primary_version, primary_type from kwikee_products where primary_type is not null or primary_version is not null limit 100;
+
+# 2017-06-06 13:38:18.915460
++select distinct primary_type from kwikee_products
+
+# 2017-06-06 13:39:34.951202
++select count(*) from kwikee_products where primary_type in ('front1', 'Front', 'FlatFront')
+
+# 2017-06-06 13:40:18.847515
++\d kwikee_assets
+
+# 2017-06-06 13:40:44.798931
++select count(*) from kwikee_products where primary_version is not null;
+
+# 2017-06-06 13:41:52.812886
++select count(*) from kwikee_assets where version is null;
+
+# 2017-06-06 13:42:58.578451
++select count(*) from kwikee_assets where kwikee_asset_type is null;
+
+# 2017-06-06 13:43:05.930519
++select count(*) from kwikee_assets where kwikee_asset_type is null and version is null;
+
+# 2017-06-15 14:50:48.090306
++select count(*) from product_images;
+
+# 2017-06-15 14:51:09.146505
++select count(*) from kwikee_files;
+
+# 2017-06-15 14:51:17.769974
++\q
+
+# 2017-06-15 14:51:33.602449
++\?
+
+# 2017-06-15 14:51:44.369332
++\dn
+
+# 2017-06-15 14:51:55.590683
++\dt
+
+# 2017-06-15 14:52:06.119433
++\q
+
+# 2017-06-15 14:53:44.974059
++select count(*) from kwikee_files;
+
+# 2017-06-15 14:53:52.732079
++\q
+
+# 2017-06-15 14:57:11.846419
++select count(*) from kwikee_files;
+
+# 2017-06-15 14:57:24.341018
++select count(*) from kwikee_products;
+
+# 2017-06-15 14:57:34.748860
++select count(*) from kwikee_assets;
+
+# 2017-06-15 14:57:43.340385
++select count(*) from kwikee_profiles
+
+# 2017-06-15 14:57:46.675485
++select count(*) from kwikee_profiles;
+
+# 2017-06-15 14:57:49.788194
++select count(*) from kwikee_products;
+
+# 2017-06-15 14:58:10.243622
++select count(*) from kwikee_assets;
+
+# 2017-06-15 14:58:21.314802
++select count(*) from products;
+
+# 2017-06-15 15:02:05.121724
++select count(*id from kwikee_profiles;
+
+# 2017-06-15 15:02:09.947176
++select count(id) from kwikee_profiles;
+
+# 2017-06-15 15:02:12.328379
++\q
+
+# 2017-06-21 15:23:17.532612
++select * from answers order by id desc
+
+# 2017-06-21 15:23:26.377791
++select * from answers order by id desc limit 1
+
+# 2017-06-21 15:23:42.281155
++\q
+
+# 2017-06-21 15:28:28.737542
++\l
+
+# 2017-06-21 15:28:30.160755
++\h
+
+# 2017-06-21 15:29:00.071119
++\q
+
+# 2017-06-21 17:21:08.863603
++select * from answers order by id desc limit 1
+
+# 2017-06-21 17:21:29.910770
++\l
+
+# 2017-06-21 17:21:33.558719
++\d
+
+# 2017-06-21 17:22:12.357806
++select * from pg_tabls
+
+# 2017-06-21 17:22:14.083460
++select * from pg_tables
+
+# 2017-06-21 17:22:38.476192
++select * from pg_tables where schema = public
+
+# 2017-06-21 17:22:42.844765
++select * from pg_tables where schema = 'public'
+
+# 2017-06-21 17:22:47.675929
++select * from pg_tables
+
+# 2017-06-21 17:22:52.748765
++select * from pg_tables where schemaname = 'public'
+
+# 2017-06-21 17:23:19.548283
++select * from pg_tables where schemaname = 'public' and tableowner = 'PoCkeTChange54'
+
+# 2017-06-21 17:23:46.299547
++select 'drop table if exists "' || tablename || '" cascade;' from pg_tables where schemaname = 'public' and tableowner = 'PoCkeTChange54'
+
+# 2017-06-21 17:25:02.355751
++drop table if exists "job_revenue_recognition_by_date" cascade;               
++drop table if exists "job_stats_by_date" cascade;                             
++drop table if exists "job_store_pool_states" cascade;                         
++drop table if exists "job_result_alert_settings" cascade;                     
++drop table if exists "answer_review_sprints" cascade;                         
++drop table if exists "approver_groups" cascade;                               
++drop table if exists "answers" cascade;                                       
++drop table if exists "answer_updates" cascade;                                
++drop table if exists "async_task_trackers" cascade;                           
++drop table if exists "audits" cascade;                                        
++drop table if exists "blacklisted_product_images" cascade;                    
++drop table if exists "brands_filter_settings" cascade;                        
++drop table if exists "brands_promotions" cascade;                             
++drop table if exists "campaign_segments" cascade;                             
++drop table if exists "client_setting_filters" cascade;                        
++drop table if exists "channel_codes" cascade;                                 
++drop table if exists "client_platforms" cascade;                              
++drop table if exists "client_setting_device_values" cascade;                  
++drop table if exists "customer_emails" cascade;                               
++drop table if exists "customer_events" cascade;                               
++drop table if exists "customers" cascade;                                     
++drop table if exists "discussion_categories" cascade;                         
++drop table if exists "dedupe_logs" cascade;                                   
++drop table if exists "discussion_follows" cascade;                            
++drop table if exists "customer_questions" cascade;                            
++drop table if exists "customer_logos" cascade;                                
++drop table if exists "discussion_search_indices" cascade;                     
++drop table if exists "displays_filter_settings" cascade;                      
++drop table if exists "display_types" cascade;                                 
++drop table if exists "display_configurations" cascade;                        
++drop table if exists "events" cascade;                                        
++drop table if exists "email_events" cascade;                                  
++drop table if exists "event_types" cascade;                                   
++drop table if exists "distributors" cascade;                                  
++drop table if exists "easyshift_profiles" cascade;                            
++drop table if exists "distribution_bins" cascade;                             
++drop table if exists "displays_promotions" cascade;                           
++drop table if exists "flagged_discussion_reasons" cascade;                    
++drop table if exists "ipn_messages" cascade;                                  
++drop table if exists "job_files" cascade;                                     
++drop table if exists "job_email_alert_subscriptions" cascade;                 
++drop table if exists "job_events" cascade;                                    
++drop table if exists "job_finances" cascade;                                  
++drop table if exists "flagged_discussions" cascade;                           
++drop table if exists "job_result_alert_options" cascade;                      
++drop table if exists "kwikee_manufacturers" cascade;                          
++drop table if exists "kwikee_products" cascade;                               
++drop table if exists "login_events" cascade;                                  
++drop table if exists "layer_values" cascade;                                  
++drop table if exists "kwikee_gpc_families" cascade;                           
++drop table if exists "pokemon_audit_indexes" cascade;                         
++drop table if exists "kwikee_gpc_classes" cascade;                            
++drop table if exists "kwikee_files" cascade;                                  
++drop table if exists "kwikee_gpc_segments" cascade;                           
++drop table if exists "location_categories" cascade;                           
++drop table if exists "kwikee_sections" cascade;                               
++drop table if exists "kwikee_gpc_bricks" cascade;                             
++drop table if exists "logograb_visual_structs" cascade;                       
++drop table if exists "layer_values_jobs" cascade;                             
++drop table if exists "kwikee_brands" cascade;                                 
++drop table if exists "metrics" cascade;                                       
++drop table if exists "oauth_applications" cascade;                            
++drop table if exists "out_of_bounds_responses" cascade;                       
++drop table if exists "out_of_bounds_response_options_questions" cascade;      
++drop table if exists "out_of_bounds_response_options" cascade;                
++drop table if exists "out_of_bounds_events" cascade;                          
++drop table if exists "markets" cascade;                                       
++drop table if exists "manufacturers" cascade;                                 
++drop table if exists "payment_line_items" cascade;                            
++drop table if exists "message_histories" cascade;                             
++drop table if exists "oauth_access_tokens" cascade;                           
++drop table if exists "oauth_access_grants" cascade;                           
++drop table if exists "owners_promotions" cascade;                             
++drop table if exists "product_images" cascade;                                
++drop table if exists "person_geolocations" cascade;                           
++drop table if exists "person_campaign_segments" cascade;                      
++drop table if exists "paypal_payout_batches" cascade;                         
++drop table if exists "payrolls" cascade;                                      
++drop table if exists "person_notes" cascade;                                  
++drop table if exists "phone_verifications" cascade;                           
++drop table if exists "product_sale_imports" cascade;                          
++drop table if exists "product_categories" cascade;                            
++drop table if exists "photos" cascade;                                        
++drop table if exists "products" cascade;                                      
++drop table if exists "push_notifications" cascade;                            
++drop table if exists "question_types" cascade;                                
++drop table if exists "product_size_units" cascade;                            
++drop table if exists "questions_dump" cascade;                                
++drop table if exists "products_questions" cascade;                            
++drop table if exists "promotions_retailers" cascade;                          
++drop table if exists "questions_questions" cascade;                           
++drop table if exists "promotions" cascade;                                    
++drop table if exists "product_sizes" cascade;                                 
++drop table if exists "question_ignore_words" cascade;                         
++drop table if exists "question_match_words" cascade;                          
++drop table if exists "question_meanings" cascade;                             
++drop table if exists "push_notification_recipients" cascade;                  
++drop table if exists "question_meanings_questions" cascade;                   
++drop table if exists "quri_recommendations" cascade;                          
++drop table if exists "rbp_people_roles" cascade;                              
++drop table if exists "rejection_copies" cascade;                              
++drop table if exists "rbp_permissions" cascade;                               
++drop table if exists "pokemon_display_definitions_authorized_stores" cascade; 
++drop table if exists "reviews" cascade;                                       
++drop table if exists "roles" cascade;                                         
++drop table if exists "rbp_roles" cascade;                                     
++drop table if exists "retailer_aliases" cascade;                              
++drop table if exists "schema_migrations" cascade;                             
++drop table if exists "sessions" cascade;                                      
++drop table if exists "shifter_groups" cascade;                                
++drop table if exists "store_import_logs" cascade;                             
++drop table if exists "shift_exceptions" cascade;                              
++drop table if exists "store_sections" cascade;                                
++drop table if exists "sf_accounts" cascade;                                   
++drop table if exists "store_metadata_keys" cascade;                           
++drop table if exists "shifts_exception_photos" cascade;                       
++drop table if exists "store_photos" cascade;                                  
++drop table if exists "rules" cascade;                                         
++drop table if exists "store_metadata" cascade;                                
++drop table if exists "store_statuses" cascade;                                
++drop table if exists "subchannel_codes" cascade;                              
++drop table if exists "subscription_product_mappings" cascade;                 
++drop table if exists "taggings" cascade;                                      
++drop table if exists "subscription_layers" cascade;                           
++drop table if exists "subscription_filter_settings" cascade;                  
++drop table if exists "stores" cascade;                                        
++drop table if exists "subscription_periodic_reports" cascade;                 
++drop table if exists "supporting_photos" cascade;                             
++drop table if exists "subscription_saved_preferences" cascade;                
++drop table if exists "store_shelf_conditions" cascade;                        
++drop table if exists "subscription_periodic_report_recipients" cascade;       
++drop table if exists "suspicious_stores" cascade;                             
++drop table if exists "tdlinx_import_logs" cascade;                            
++drop table if exists "template_surveys" cascade;                              
++drop table if exists "tags" cascade;                                          
++drop table if exists "template_tasks" cascade;                                
++drop table if exists "template_token_types" cascade;                          
++drop table if exists "us_states_filter_settings" cascade;                     
++drop table if exists "unprocessed_surveys" cascade;                           
++drop table if exists "template_questions" cascade;                            
++drop table if exists "tasks" cascade;                                         
++drop table if exists "template_survey_tasks" cascade;                         
++drop table if exists "activity_feed_items" cascade;                           
++drop table if exists "bonus_points_rewards" cascade;                          
++drop table if exists "surveys" cascade;                                       
++drop table if exists "beta_accesses" cascade;                                 
++drop table if exists "client_setting_build_values" cascade;                   
++drop table if exists "campaign_segment_groups" cascade;                       
++drop table if exists "campaign_store_segments" cascade;                       
++drop table if exists "brands" cascade;                                        
++drop table if exists "campaign_viewers" cascade;                              
++drop table if exists "client_settings" cascade;                               
++drop table if exists "campaigns" cascade;                                     
++drop table if exists "answered_surveys" cascade;                              
++drop table if exists "questions" cascade;                                     
++drop table if exists "paypal_payout_errors" cascade;                          
++drop table if exists "rbp_permissions_roles" cascade;                         
++drop table if exists "products_promotions" cascade;                           
++drop table if exists "us_states" cascade;                                     
++drop table if exists "filter_settings_layer_sheet_values" cascade;            
++drop table if exists "discussion_responses" cascade;                          
++drop table if exists "products_filter_settings" cascade;                      
++drop table if exists "discussion_topics" cascade;                             
++drop table if exists "webhook_events" cascade;                                
++drop table if exists "people" cascade;                                        
++drop table if exists "retailers" cascade;                                     
++drop table if exists "subscription_layers_periodic_reports" cascade;          
++drop table if exists "displays_products" cascade;                             
++drop table if exists "payments" cascade;                                      
++drop table if exists "distributors_filter_settings" cascade;                  
++drop table if exists "stores_filter_settings" cascade;                        
++drop table if exists "approvals_job_priorities" cascade;                      
++drop table if exists "layer_values_products" cascade;                         
++drop table if exists "answer_review_pool" cascade;                            
++drop table if exists "job_store_pools" cascade;                               
++drop table if exists "approver_group_memberships" cascade;                    
++drop table if exists "jobs" cascade;                                          
++drop table if exists "ipn_message_for_payments" cascade;                      
++drop table if exists "paypal_payouts" cascade;                                
++drop table if exists "retailers_filter_settings" cascade;                     
++drop table if exists "layer_values_stores" cascade;                           
++drop table if exists "markets_stores" cascade;                                
++drop table if exists "distributors_jobs_products_stores" cascade;             
++drop table if exists "displays" cascade;                                      
++drop table if exists "import_logs" cascade;                                   
++drop table if exists "shifter_memberships" cascade;                           
++drop table if exists "sf_opportunities" cascade;                              
++drop table if exists "shifts" cascade;                                        
++drop table if exists "kwikee_profiles" cascade;                               
++drop table if exists "logograb_detections" cascade;                           
++drop table if exists "kwikee_assets" cascade;                                 
++drop table if exists "addresses" cascade;                                     
++drop table if exists "tdlinx_stores" cascade;                                 
++drop table if exists "tdlinx_accounts" cascade;                               
++drop table if exists "store_importer_lists" cascade;                          
++drop table if exists "pokemon_instance_types_instance_types" cascade;         
++drop table if exists "mondelez_conditions" cascade;                           
++drop table if exists "store_marketing_groups" cascade;                        
++drop table if exists "store_owners" cascade;                                  
++drop table if exists "store_importer_list_rows" cascade;                      
++drop table if exists "pokemon_attributes" cascade;                            
++drop table if exists "pokemon_instance_types" cascade;                        
++drop table if exists "pokemon_sweep_attributes" cascade;                      
++drop table if exists "pokemon_frame_brands" cascade;                          
++drop table if exists "pokemon_frame_categories" cascade;                      
++drop table if exists "pokemon_instances" cascade;                             
++drop table if exists "pokemon_frame_products" cascade;                        
++drop table if exists "pokemon_frame_displays" cascade;                        
++drop table if exists "job_sweeps" cascade;                                    
++drop table if exists "pokemon_audits" cascade;                                
++drop table if exists "pokemon_audit_sweeps" cascade;                          
++drop table if exists "pokemon_display_definitions" cascade;                   
++drop table if exists "pokemon_question_attributes" cascade;                   
++drop table if exists "pokemon_sweeps" cascade;                                
++drop table if exists "pokemon_question_sweeps" cascade;                       
++
+
+# 2017-06-21 17:25:33.415334
++\l
+
+# 2017-06-21 17:25:35.269470
++\d
+
+# 2017-06-21 17:25:57.254851
++drop table payments_agent_payment_id_seq;
+
+# 2017-06-21 17:26:06.974655
++drop sequence payments_agent_payment_id_seq;
+
+# 2017-06-21 17:26:09.318307
++\d
+
+# 2017-06-21 17:26:51.229139
++\l
+
+# 2017-06-21 17:26:53.479298
++\d
+
+# 2017-06-22 09:38:07.436135
++\l
+
+# 2017-06-22 09:38:20.989050
++select * from answers order by id desc limit 1
+
+# 2017-06-22 09:39:16.281143
++\q
+
+# 2017-06-27 09:38:31.164944
++\q
+
+# 2017-06-29 18:16:33.768562
++\d 
+
+# 2017-06-29 18:16:47.053930
++\d subscription_layers
+
+# 2017-06-29 18:22:48.900451
++\q
+
+# 2017-07-10 10:11:29.160258
++\l
+
+# 2017-07-10 10:11:34.457495
++\c prod
+
+# 2017-07-10 10:11:37.979048
++\l
+
+# 2017-07-10 10:11:40.003452
++\d
+
+# 2017-07-10 10:12:03.954051
++\l mondelez_edge_response
+
+# 2017-07-10 10:12:06.742519
++\l mondelez_edge_responses
+
+# 2017-07-10 10:12:09.871480
++\d mondelez_edge_responses
+
+# 2017-07-10 10:12:28.074217
++select * from mondelez_edge_responses limit 1;
+
+# 2017-07-10 10:13:42.086327
++\q
+
+# 2017-07-10 10:15:20.695485
++\d
+
+# 2017-07-10 10:16:42.571669
++select * from pg_get_current_groups();
+
+# 2017-07-10 10:17:03.091990
++select * from pg_group;
+
+# 2017-07-10 10:17:08.066333
++select * from pg_user;
+
+# 2017-07-10 10:18:58.395727
++show GRANT for cs_ben;
+
+# 2017-07-10 10:19:12.649669
++show GRANTS for 'cs_ben';
+
+# 2017-07-10 10:19:42.946189
++select * from information_schema.role_column_grants;
+
+# 2017-07-10 10:19:52.902462
++select * from information_schema.role_table_grants;
+
+# 2017-07-10 10:20:08.370438
++\dn+
+
+# 2017-07-10 10:20:12.601489
++\dn
+
+# 2017-07-10 10:20:14.817493
++\d
+
+# 2017-07-10 10:20:23.716822
++\dn
+
+# 2017-07-10 10:21:13.510993
++grant usage on table mondelez_edge_responses to user cs_ben;
+
+# 2017-07-10 10:21:29.180547
++grant usage on table mondelez_edge_responses to cs_ben;
+
+# 2017-07-10 10:21:39.913609
++grant all on table mondelez_edge_responses to cs_ben;
+
+# 2017-07-10 10:21:58.713355
++select * from mondelez_edge_responses limit 1;
+
+# 2017-07-10 10:22:04.246935
++\q
+
+# 2017-07-10 10:22:17.634692
++\q
+
+# 2017-07-10 10:24:24.288014
++\d mondelez_edge_responses
+
+# 2017-07-10 10:25:09.547817
++select distinct fixed from mondelez_edge_responses;
+
+# 2017-07-10 13:43:42.620652
++\q
+
+# 2017-07-13 16:10:19.287191
++\d pokemon_instances
+
+# 2017-07-13 16:13:11.335490
++\d pokemon_sweeps
+
+# 2017-07-13 16:13:41.751703
++\d pokemon_swept_display_definitions
+
+# 2017-07-13 16:30:05.855925
++CREATE INDEX index_pokemon_instances_on_sweep_id_and_parent_instance_id ON pokemon_instances USING btree (sweep_id, parent_instance_id);
++
+
+# 2017-07-13 16:32:07.928562
++\d pokemon_audit_indexes
+
+# 2017-07-13 16:34:06.548352
++\d pokemon_swept_display_definitions
+
+# 2017-07-13 16:34:51.554592
++\d pokemon_frame_brands
+
+# 2017-07-13 16:35:13.997366
++CREATE INDEX index_pokemon_audit_indexes_on_root_sweep_id ON pokemon_audit_indexes USING btree (root_sweep_id);
++
+
+# 2017-07-13 16:35:28.785164
++\d pokemon_audit_indexes
+
+# 2017-07-13 16:36:32.647983
++delete INDex index_pokemon_instances_on_sweep_id_and_parent_instance_id;
+
+# 2017-07-13 16:36:39.071645
++delete INDEX index_pokemon_instances_on_sweep_id_and_parent_instance_id;
+
+# 2017-07-13 16:36:56.394029
++delete index_pokemon_instances_on_sweep_id_and_parent_instance_id;
+
+# 2017-07-13 16:37:39.756993
++drop INDEX index_pokemon_instances_on_sweep_id_and_parent_instance_id;
+
+# 2017-07-13 16:44:34.207440
++select distinct store_id from pokemon_audit_indexes where customer_id = 84;
+
+# 2017-07-13 16:44:46.516810
++explain analyze select distinct store_id from pokemon_audit_indexes where customer_id = 84;
+
+# 2017-07-13 18:03:53.913633
++select * from pokemon_frame_brands
+
+# 2017-07-13 18:04:24.680783
++select * from pokemon_frame_brands;
+
+# 2017-07-17 12:31:09.100517
++\d mondelez_conditions
+
+# 2017-07-17 12:31:21.454588
++select min(visit_date) from mondelez_conditions;
+
+# 2017-07-17 12:39:15.777561
++select * from mondelez_conditions;
+
+# 2017-07-17 12:39:27.972274
++select * from mondelez_conditions limit 1;
+
+# 2017-07-17 12:46:47.187053
++select * from pokemon_attributes;
+
+# 2017-07-17 17:42:40.066892
++\q
+
+# 2017-07-18 10:05:29.982202
++\d pokemon_audits
+
+# 2017-07-18 12:48:54.290640
++\q
+
+# 2017-07-18 13:27:07.506381
++explain (analyze, buffers) delete from pokemon_audits where source_id = 7287045;
+
+# 2017-07-18 13:31:34.355633
++\d pokemon_display_indexes
+
+# 2017-07-18 13:34:54.281314
++\d pokemon_instances
+
+# 2017-07-18 13:36:51.170164
++\d pokemon_display_indexes
+
+# 2017-07-18 13:37:47.746653
++\d pokemon_audit_indexes
+
+# 2017-07-18 14:00:24.529714
++explain (analyze, buffers) delete from pokemon_audits where source_id = 7287067;
+
+# 2017-07-18 17:41:50.033137
++\l
+
+# 2017-07-18 17:41:54.069967
++\c
+
+# 2017-07-18 17:42:01.496444
++\?
+
+# 2017-07-18 17:42:06.705493
++\q
+
+# 2017-07-19 13:18:32.816877
++\q
+
+# 2017-07-20 13:22:24.662005
++explain (analyze, buffers) delete from pokemon_audits where id = 97;
+
+# 2017-07-20 13:22:38.768947
++\q
+
+# 2017-07-20 13:22:51.888126
++explain (analyze, buffers) delete from pokemon_audits where id = 97;
+
+# 2017-07-20 16:38:51.546538
++\q
+
+# 2017-08-03 12:49:14.851454
++select count(*) from pokemon_display_indexes where pokemon_display_indexes.tsvector is not null
+
+# 2017-08-03 12:50:00.469723
++select count(*) from pokemon_display_indexes where pokemon_display_indexes.search_tsvectore is not null
+
+# 2017-08-03 12:50:07.534793
++select count(*) from pokemon_display_indexes where pokemon_display_indexes.search_tsvector is not null
+
+# 2017-08-03 12:50:21.001349
++select count(*) from pokemon_display_indexes where pokemon_display_indexes.search_tsvector is null
+
+# 2017-08-03 12:50:22.958195
++\q
+
+# 2017-08-15 13:27:36.645084
++select count(*) from stores where name = nul
+
+# 2017-08-15 13:27:37.699915
++select count(*) from stores where name = null
+
+# 2017-08-15 13:57:36.933730
++\q
+
+# 2017-08-18 17:46:43.935423
++select max(end_at) from pokemon_display_definitions_authorized_stores
+
+# 2017-08-22 16:13:38.166312
++explain (analyze, buffers) delete from audits where id = 68824;
+
+# 2017-08-22 16:13:48.338245
++explain (analyze, buffers) delete from pokemon_audits where id = 68824;
+
+# 2017-09-06 09:57:51.780194
++\d stores
+
+# 2017-09-06 09:58:32.290598
++select * from stores limit 1
+
+# 2017-09-06 09:59:17.359081
++select * from stores where acv_code is not null limit 1 
+
+# 2017-09-06 10:42:48.239839
++\q
+
+# 2017-09-28 09:03:00.704488
++ SELECT DISTINCT subscription_layers.name AS layer_name
++FROM subscription_layers
++JOIN layer_values ON subscription_layers.id = layer_values.layer_id
++JOIN layer_values_stores ON layer_values.id = layer_values_stores.layer_value_id
++WHERE subscription_layers.customer_id = 84
++AND subscription_layers.type = 'stores_layer'
++AND subscription_layers.name LIKE 'n_%'
+
+# 2017-09-28 09:03:12.590144
++ SELECT DISTINCT subscription_layers.name AS layer_name
++FROM subscription_layers
++JOIN layer_values ON subscription_layers.id = layer_values.layer_id
++JOIN layer_values_stores ON layer_values.id = layer_values_stores.layer_value_id
++WHERE subscription_layers.customer_id = 84
++AND subscription_layers.type = 'stores_layer'
++AND subscription_layers.name 
+
+# 2017-09-28 09:03:18.943858
++ SELECT DISTINCT subscription_layers.name AS layer_name
++FROM subscription_layers
++JOIN layer_values ON subscription_layers.id = layer_values.layer_id
++JOIN layer_values_stores ON layer_values.id = layer_values_stores.layer_value_id
++WHERE subscription_layers.customer_id = 84
++AND subscription_layers.type = 'stores_layer'
++
+
+# 2017-09-28 09:03:52.763199
++select * from subscription_layers where id = 371
+
+# 2017-09-28 09:04:35.385664
++select * from layer_values_stores where layer_value_id - 371
+
+# 2017-09-28 09:04:39.608917
++select * from layer_values_stores where layer_value_id = 371
+
+# 2017-09-28 09:05:07.176081
++select * from layer_values where layer_value_id = 371
+
+# 2017-09-28 09:05:45.882813
++ SELECT DISTINCT subscription_layers.name AS layer_name
++FROM subscription_layers
++JOIN layer_values ON subscription_layers.id = layer_values.layer_id
++inner JOIN layer_values_stores ON layer_values.id = layer_values_stores.layer_value_id
++WHERE subscription_layers.customer_id = 84
++AND subscription_layers.type = 'stores_layer'
++AND subscription_layers.name LIKE 'n_%'
+
+# 2017-09-28 09:05:59.089432
++ SELECT DISTINCT subscription_layers.name AS layer_name
++FROM subscription_layers
++JOIN layer_values ON subscription_layers.id = layer_values.layer_id
++outer JOIN layer_values_stores ON layer_values.id = layer_values_stores.layer_value_id
++WHERE subscription_layers.customer_id = 84
++AND subscription_layers.type = 'stores_layer'
++AND subscription_layers.name LIKE 'n_%'
+
+# 2017-09-28 09:06:07.634018
++ SELECT DISTINCT subscription_layers.name AS layer_name
++FROM subscription_layers
++JOIN layer_values ON subscription_layers.id = layer_values.layer_id
++left JOIN layer_values_stores ON layer_values.id = layer_values_stores.layer_value_id
++WHERE subscription_layers.customer_id = 84
++AND subscription_layers.type = 'stores_layer'
++AND subscription_layers.name LIKE 'n_%'
+
+# 2017-09-28 09:30:23.682986
++\d layer_values
+
+# 2017-09-28 09:30:33.692505
++\d layer_values_stores
+
+# 2017-09-28 09:31:02.515653
++\d layer_values
+
+# 2017-09-28 09:31:22.730980
++select * from layer_values where layer_id = 371
+
+# 2017-09-28 09:32:19.200824
++select * from layer_values_stores 
+
+# 2017-09-28 09:32:56.056049
++select * from layer_values_stores join layer_values on layer_values.id = layer_values_stores.layer_value_id where layer_id = 371
+
+# 2017-09-28 09:34:06.980973
++select * from layer_values where layer_id = 371
+
+# 2017-09-28 09:34:35.148104
++select * from layer_values_stores join layer_values on layer_values.id = layer_values_stores.layer_value_id where layer_id = 371
+
+# 2017-09-28 09:35:28.966830
++ SELECT DISTINCT subscription_layers.name AS layer_name
++FROM subscription_layers
++JOIN layer_values ON subscription_layers.id = layer_values.layer_id
++left JOIN layer_values_stores ON layer_values.id = layer_values_stores.layer_value_id
++WHERE subscription_layers.customer_id = 84
++AND subscription_layers.type = 'stores_layer'
++AND subscription_layers.name LIKE 'n_%'
+
+# 2017-09-28 09:35:48.133393
++ SELECT DISTINCT subscription_layers.name, subscription_layers.id  AS layer_name
++FROM subscription_layers
++JOIN layer_values ON subscription_layers.id = layer_values.layer_id
++left JOIN layer_values_stores ON layer_values.id = layer_values_stores.layer_value_id
++WHERE subscription_layers.customer_id = 84
++AND subscription_layers.type = 'stores_layer'
++AND subscription_layers.name LIKE 'n_%'
+
+# 2017-09-28 09:35:58.529305
++select * from layer_values_stores join layer_values on layer_values.id = layer_values_stores.layer_value_id where layer_id = 376
+
+# 2017-09-28 09:37:31.114022
++ SELECT DISTINCT subscription_layers.name, subscription_layers.id  AS layer_name
++FROM subscription_layers
++JOIN layer_values ON subscription_layers.id = layer_values.layer_id
++left JOIN layer_values_stores ON layer_values.id = layer_values_stores.layer_value_id
++WHERE subscription_layers.customer_id = 84
++AND subscription_layers.type = 'stores_layer'
++AND subscription_layers.name LIKE 'n_%'
+
+# 2017-09-28 09:37:43.013462
++select * from layer_values_stores join layer_values on layer_values.id = layer_values_stores.layer_value_id where layer_id = 367
+
+# 2017-09-28 09:38:41.026875
++\q
+
+# 2017-10-04 15:10:31.226162
++\d tdlinx_stores
+
+# 2017-10-05 08:20:24.306263
++\q
+
+# 2017-10-05 09:58:38.779221
++\d pokemon_display_definitions
+
+# 2017-10-05 10:00:27.769267
++select * from pokemon_display_definitions where display_id is not null
+
+# 2017-10-05 10:05:41.885475
++\q
+
+# 2017-10-06 14:54:37.907095
++SELECT
++    pg_database.datname,
++    pg_size_pretty(pg_database_size(pg_database.datname)) AS size
++    FROM pg_database;
+
+# 2017-10-06 14:55:01.986401
++SELECT
++   relname as "Table",
++   pg_size_pretty(pg_total_relation_size(relid)) As "Size",
++   pg_size_pretty(pg_total_relation_size(relid) - pg_relation_size(relid)) as "External Size"
++   FROM pg_catalog.pg_statio_user_tables ORDER BY pg_total_relation_size(relid) DESC;
+
+# 2017-10-06 15:08:40.659486
++\q
+
+# 2017-10-07 10:09:29.302478
++select * from jobs where customer_id = null limit 5
+
+# 2017-10-07 10:09:36.764970
++select * from jobs where customer_id is null limit 5
+
+# 2017-10-07 10:09:40.293033
++select * from jobs where customer_id is null limit 1
+
+# 2017-10-07 10:10:03.137971
++select name from jobs where customer_id is null
+
+# 2017-10-07 10:25:14.876100
++\q
+
+# 2017-10-10 10:34:00.281148
++CREATE TABLE "pghero_query_stats" (
++  "id" serial primary key,
++  "database" text,
++  "user" text,
++  "query" text,
++  "query_hash" bigint,
++  "total_time" float,
++  "calls" bigint,
++  "captured_at" timestamp
++)
++CREATE INDEX ON "pghero_query_stats" ("database", "captured_at")
+
+# 2017-10-10 10:34:10.406941
++CREATE TABLE "pghero_query_stats" (
++  "id" serial primary key,
++  "database" text,
++  "user" text,
++  "query" text,
++  "query_hash" bigint,
++  "total_time" float,
++  "calls" bigint,
++  "captured_at" timestamp
++)
+
+# 2017-10-10 10:34:17.620789
++CREATE INDEX ON "pghero_query_stats" ("database", "captured_at")
+
+# 2017-10-10 10:35:24.017081
++\q
+
+# 2017-10-10 10:38:54.669006
++SELECT pg_is_in_recovery()
+
+# 2017-10-10 10:38:57.315621
++\q
+
+# 2017-10-10 10:39:06.596628
++SELECT pg_is_in_recovery()
+
+# 2017-10-10 10:42:05.925698
++\q
+
+# 2017-10-17 09:13:05.544282
++\d trax_scenes
+
+# 2017-10-17 09:13:43.647238
++select * from trax_scenes where uid like "%8a78ed5%"
+
+# 2017-10-17 09:13:49.127226
++select * from trax_scenes where uid like '%8a78ed5%'
+
+# 2017-10-17 09:13:55.479232
++\d trax_scenes
+
+# 2017-10-17 09:15:12.380573
++\q
+
+# 2017-10-17 15:50:08.716466
++\d pokemon_display_definitions_authorized_stores
+
+# 2017-10-17 16:18:20.266646
++select count(*) from trax_sessions
+
+# 2017-10-17 16:30:31.193247
++select * from trax_sessions
+
+# 2017-10-17 16:30:39.461581
++delete from trax_sessions
+
+# 2017-10-17 16:30:43.758771
++\q
+
+# 2017-10-17 16:30:55.571270
++delete from trax_sessions
+
+# 2017-10-17 16:31:04.279653
++select count(*) from trax_images
+
+# 2017-10-17 16:31:08.001880
++select count(*) from trax_scenes
+
+# 2017-10-17 17:28:48.519034
++delete from trax_sessions
+
+# 2017-10-17 17:29:41.400579
++select * from trax_sessions
+
+# 2017-10-17 17:29:43.192550
++\c
+
+# 2017-10-17 17:29:44.518381
++\d
+
+# 2017-10-17 17:29:45.984011
++\q
+
+# 2017-10-17 17:29:54.953391
++select * from trax_sessions
+
+# 2017-10-17 17:30:07.912214
++delete from trax_sessions
+
+# 2017-10-17 17:30:17.839529
++SELECT * from trax_images
+
+# 2017-10-17 20:02:15.485422
++select count(*) from trax_sessions
+
+# 2017-10-18 10:29:34.723332
++\q
+
+# 2017-11-05 09:32:46.859689
++select count(*) from shifts where job_id = 10253
+
+# 2017-11-05 09:33:03.242173
++select count(*) from shifts where job_id = 10253 group by shifts.new_state
+
+# 2017-11-05 09:33:13.929924
++select shifts.new_state, count(*) from shifts where job_id = 10253 group by shifts.new_state
+
+# 2017-11-05 09:37:04.033235
++select shifts.new_state, count(*) from shifts where job_id = 10253 and new_state = 'confirmed'
+
+# 2017-11-05 09:37:14.126152
++select id from shifts where job_id = 10253 and new_state = 'confirmed'
+
+# 2017-11-05 09:56:49.550874
++\q
+
+# 2017-11-06 09:38:24.314184
++\d trax_images
+
+# 2017-11-06 09:38:38.609730
++select count(*) from trax_im
+
+# 2017-11-06 09:38:41.841621
++select count(*) from trax_images;
+
+# 2017-11-06 09:38:49.249600
++select count(*) from trax_images where imported_at is nil;
+
+# 2017-11-06 09:38:58.809352
++select count(*) from trax_images where imported_at is null;
+
+# 2017-11-06 10:35:20.504426
++\c
+
+# 2017-11-06 10:35:22.037566
++\q
+
+# 2017-11-06 10:35:29.223886
++select count(*) from trax_images where imported_at is null;
+
+# 2017-11-06 10:39:48.818453
++select count(*) from trax_sessions where imported_at is null;
+
+# 2017-11-06 10:40:40.445027
++select count(*) from trax_images where imported_at is null;
+
+# 2017-11-06 10:40:53.787534
++select count(*) from trax_scenes where imported_at is null;
+
+# 2017-11-06 12:05:04.680398
++\q
+
+# 2017-11-06 13:39:40.131813
++select count(*) from trax_images where imported_at is null;
+
+# 2017-11-06 15:04:09.666255
++\q
+
+# 2017-11-08 11:43:24.075375
++select count(*) from trax_images where imported_at is null;
+
+# 2017-11-08 12:53:47.466090
++\q
+
+# 2017-11-28 13:40:04.619493
++\d answers
+
+# 2017-11-28 13:45:53.550383
++\d answered_surveys
+
+# 2017-11-28 13:47:24.300639
++select count(*) from answered_surveys where EXTRACT(YEAR FROM answered_at) < 2000
+
+# 2017-11-28 13:50:48.586849
++\d answered_surveys
+
+# 2017-11-28 13:55:04.606366
++select answered_surveys.id, shift_id, people.id, device_type, answered_surveys.created_at, answered_at from answered_surveys
++left join shifts on shifts.id = answered_surveys.shift_id
++left join people on shifts.person_id = people.id
++ where EXTRACT(YEAR FROM answered_at) < 2000
+
+# 2017-11-28 13:57:32.838547
++\?
+
+# 2017-11-28 13:58:16.804625
++\o result
+
+# 2017-11-28 13:58:37.815534
++select answered_surveys.id, shift_id, people.id, device_type, answered_surveys.created_at, answered_at from answered_surveys
++left join shifts on shifts.id = answered_surveys.shift_id
++left join people on shifts.person_id = people.id
++ where EXTRACT(YEAR FROM answered_at) < 2000
+
+# 2017-11-28 13:59:29.021115
++select answered_surveys.id, shift_id, people.id, device_type, answered_surveys.created_at, answered_at from answered_surveys
++left join shifts on shifts.id = answered_surveys.shift_id
++left join people on shifts.person_id = people.id
++ where EXTRACT(YEAR FROM answered_at) < 2000
++ order by answered_surveys.created_at desc;
+
+# 2017-12-19 11:14:29.289155
++select count(*) from pokemon_display_definitions_authorized_stores
+
+# 2017-12-19 14:15:02.780119
++\q
+
+# 2017-12-19 14:52:29.300756
++select count(*) from pokemon_display_definitions_authorized_stores
+
+# 2017-12-19 15:15:47.078385
++\c
+
+# 2017-12-19 15:15:48.875749
++\q
+
+# 2017-12-20 12:24:36.357668
++\d subscription_layers_type
+
+# 2017-12-20 12:24:45.878991
++select * from subscription_layer_type
+
+# 2017-12-20 12:24:51.187652
++\q
+
+# 2018-02-06 13:51:13.879017
++select slug from pokemon_attributes where is_standard is true
+
+# 2018-02-06 13:53:04.392457
++select slug from pokemon_attributes where is_standard is true and slug ilike '%pos%'
+
+# 2018-02-06 13:55:17.490241
++select slug from pokemon_attributes 
+
+# 2018-02-06 13:56:14.955176
++select slug from pokemon_attributes where is_standard is true and slug ilike '%assortm%'
+
+# 2018-02-06 13:56:22.250957
++select slug from pokemon_attributes where is_standard is true and slug ilike '%assortment%'
+
+# 2018-02-06 14:00:48.836446
++select * from pokemon_instance_types
+
+# 2018-02-06 16:54:14.723195
++\d pokemon_frame_display_definitions
+
+# 2018-02-06 17:25:33.986131
++select * from pokemon_frame_display_definitions where sweep_id = 31439
+
+# 2018-02-06 17:28:14.386549
++select * from pokemon_frame_display_definitions where sweep_id = 31443
+
+# 2018-02-07 10:47:56.558494
++\q
+
+# 2018-02-07 10:51:45.014314
++drop index index_pokemon_frame_display_definitions_on_sweep_id;
+
+# 2018-02-07 10:52:00.908323
++\q
+
+# 2018-02-07 10:52:16.605218
++drop index index_pokemon_frame_display_definitions_on_sweep_id;
+
+# 2018-02-07 13:19:30.291506
++select * from pokemon_sweeps where job_id = 10694
+
+# 2018-02-07 15:09:38.528975
++\q
+
+# 2018-02-07 16:05:43.835830
++\d questions
+
+# 2018-02-07 17:59:50.755101
++\q
+
+# 2018-02-12 12:22:40.985863
++SELECT 
++  dds.id AS dd_id, 
++  dds.type AS dd_type, 
++  dds.name AS dd_name,
++  layers.id AS layer_id,
++  layers.name AS layer_name,
++  layer_values.value AS layer_value,
++  ARRAY_AGG(legacy_displays.display_id) AS legacy_display_ids
++FROM pokemon_display_definitions AS dds
++LEFT OUTER JOIN layer_values_pokemon_display_definitions AS dd_layer_values ON dd_layer_values.display_definition_id = dds.id
++LEFT OUTER JOIN layer_values AS layer_values ON layer_values.id = dd_layer_values.layer_value_id
++LEFT OUTER JOIN subscription_layers AS layers ON layers.id = layer_values.layer_id
++LEFT OUTER JOIN pokemon_display_definitions_legacy_displays AS legacy_displays ON dds.id = legacy_displays.display_definition_id
++WHERE dds.id IN (314, 315, 316, 317, 318, 319, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 335, 336, 337, 338, 341, 342, 362, 363, 364, 365, 366, 367, 370, 371, 372, 373, 374, 375, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 397, 398, 399, 400, 401, 402, 403, 408, 409, 410, 411, 422, 423, 424, 425, 428, 430, 432, 434, 437, 439, 440, 441, 442, 443, 444, 500, 501, 502, 503, 504, 507, 508, 511, 512, 513, 514, 526, 527, 528, 529, 530, 533, 534, 535, 536, 537, 539, 552, 556, 558, 584, 598, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639)
++GROUP BY dds.id, layers.id, layer_values.id
++ORDER BY dds.id;
+
+# 2018-02-12 12:24:09.555293
++SELECT 
++  dds.id AS dd_id, 
++  dds.type AS dd_type, 
++  dds.name AS dd_name,
++  layers.id AS layer_id,
++  layers.name AS layer_name,
++  layer_values.value AS layer_value,
++  ARRAY_AGG(legacy_displays.display_id) AS legacy_display_ids
++FROM pokemon_display_definitions AS dds
++LEFT OUTER JOIN layer_values_pokemon_display_definitions AS dd_layer_values ON dd_layer_values.display_definition_id = dds.id
++LEFT OUTER JOIN layer_values AS layer_values ON layer_values.id = dd_layer_values.layer_value_id
++LEFT OUTER JOIN subscription_layers AS layers ON layers.id = layer_values.layer_id
++LEFT OUTER JOIN pokemon_display_definitions_legacy_displays AS legacy_displays ON dds.id = legacy_displays.display_definition_id
++WHERE dds.id IN (648, 649, 314, 315, 316, 317, 318, 319, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 335, 336, 337, 338, 341, 342, 362, 363, 364, 365, 366, 367, 370, 371, 372, 373, 374, 375, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 397, 398, 399, 400, 401, 402, 403, 408, 409, 410, 411, 422, 423, 424, 425, 428, 430, 432, 434, 437, 439, 440, 441, 442, 443, 444, 500, 501, 502, 503, 504, 507, 508, 511, 512, 513, 514, 526, 527, 528, 529, 530, 533, 534, 535, 536, 537, 539, 552, 556, 558, 584, 598, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639)
++GROUP BY dds.id, layers.id, layer_values.id
++ORDER BY dds.id;
+
+# 2018-02-12 12:58:08.683101
++\q
+
+# 2018-02-13 14:50:57.724090
++select * from pokemon_attributes where slug = "displayVehicle"
+
+# 2018-02-13 14:51:08.449589
++select * from pokemon_attributes where slug = 'displayVehicle'
+
+# 2018-02-13 18:40:27.540889
++exit
+
+# 2018-02-16 11:25:40.872958
++SELECT *, created_at::Date AS created_date, begin_at -1 AS updated_begin_at, end_at -1 AS updated_end_at
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21'
++ORDER BY 1 DESC
+
+# 2018-02-16 11:26:48.284942
++SELECT distinct(display_definition_id), created_at::Date AS created_date, begin_at -1 AS updated_begin_at, end_at -1 AS updated_end_at
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21'
++ORDER BY 1 DESC
+
+# 2018-02-16 11:27:01.605110
++SELECT count(distinct(display_definition_id)), created_at::Date AS created_date, begin_at -1 AS updated_begin_at, end_at -1 AS updated_end_at
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21'
++ORDER BY 1 DESC
+
+# 2018-02-16 11:27:10.365478
++SELECT distinct(display_definition_id), created_at::Date AS created_date, begin_at -1 AS updated_begin_at, end_at -1 AS updated_end_at
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21'
++ORDER BY 1 DESC
+
+# 2018-02-16 11:27:34.533369
++SELECT distinct(display_definition_id), created_at::Date AS created_date
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21'
++ORDER BY 1 DESC
+
+# 2018-02-16 11:27:55.597131
++SELECT distinct(display_definition_id)pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21'
++ORDER BY 1 DESC
+
+# 2018-02-16 11:28:05.185446
++SELECT distinct(display_definition_id)
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21'
++ORDER BY 1 DESC
+
+# 2018-02-16 14:45:26.450021
++\q
+
+# 2018-02-16 15:21:17.470175
++SELECT count(*), created_at::Date AS created_date, begin_at -1 AS updated_begin_at, end_at -1 AS updated_end_at
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21'
++ORDER BY 1 DESC
+
+# 2018-02-16 15:21:34.020813
++SELECT count(*)
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21'
++ORDER BY 1 DESC
+
+# 2018-02-16 15:22:15.068377
++SELECT count(*)
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21' and display_definition_id is in (select * from display_definitions where customer_id = 84)
++ORDER BY 1 DESC
+
+# 2018-02-16 15:22:25.468296
++SELECT count(*)
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21' and display_definition_id  in (select id from display_definitions where customer_id = 84)
++ORDER BY 1 DESC
+
+# 2018-02-16 15:22:49.194431
++SELECT count(*)
++FROM pokemon_display_definitions_authorized_stores
++WHERE created_at::DATE > '2018-01-21' and display_definition_id  in (select id from pokemon_display_definitions where customer_id = 84)
++ORDER BY 1 DESC
+
+# 2018-02-16 15:35:57.154369
++\q
+
+# 2018-02-16 15:36:15.644680
++delete from pokemon_display_definitions_authorized_stores where created_at::DATE > '2018-01-21' and display_definition_id in (select id from pokemon_display_definitions where customer_id = 84)
+
+# 2018-02-18 01:56:57.665663
++\q
+
+# 2018-02-26 09:59:42.795274
++SELECT job_id,
++store_id,
++shift_id,
++visit_date,
++facets->> 'display_uuid' AS display_id,
++facets->>'brand'AS Brand,
++facets->>'size' AS size,
++facets->> 'location' AS Location,
++facets->> 'thematic' AS Them_POS,
++facets->> 'brand_group' AS brand_group,
++facets->> 'display_type' AS display_type,
++facets->> 'thematic' AS thematic_pos
++
++FROM mondelez_conditions AS mc
++WHERE facets->> 'display_uuid' = '64bb77e3-4330-48d7-bed3-a31f5d535284';
+
+# 2018-02-26 10:49:44.429261
++\q
+
+# 2018-02-26 10:52:18.072353
++SELECT job_id,
++store_id,
++shift_id,
++visit_date,
++facets->> 'display_uuid' AS display_id,
++facets->>'brand'AS Brand,
++facets->>'size' AS size,
++facets->> 'location' AS Location,
++facets->> 'thematic' AS Them_POS,
++facets->> 'brand_group' AS brand_group,
++facets->> 'display_type' AS display_type,
++facets->> 'thematic' AS thematic_pos
++
++FROM mondelez_conditions AS mc
++WHERE facets->> 'display_uuid' = '64bb77e3-4330-48d7-bed3-a31f5d535284';
+
+# 2018-02-26 12:55:53.620963
++\q
+
+# 2018-02-28 16:44:30.281340
++explain (analyze, buffers) delete from pokemon_sweeps where id = 32081
+
+# 2018-03-01 04:17:21.120134
++\q
+
+# 2018-03-01 15:52:57.267452
++SELECT *
++FROM pokemon_display_indexes
++WHERE store_id = 224047
++AND swept_display_definition_id = 637
++AND wave_job_id = 10713
+
+# 2018-03-01 16:58:03.719200
++\q
+
+# 2018-03-02 08:54:59.896267
++SELECT *
++FROM pokemon_display_indexes
++WHERE store_id = 394494
++AND swept_display_definition_id = 620
++AND wave_job_id = 10733
+
+# 2018-03-02 09:34:35.533675
++\q
+
+# 2018-03-05 09:15:23.564650
++SELECT *
++FROM pokemon_display_indexes
++WHERE store_id = 394494
++AND swept_display_definition_id = 620
++AND wave_job_id = 10733
+
+# 2018-03-05 09:19:08.437686
++\q
+
+# 2018-03-21 11:17:59.628265
++select * from pokemon_instances limit 1
+
+# 2018-03-22 13:59:56.584584
++  SELECT '12.34'::float8::numeric::money;
+
+# 2018-03-22 14:00:04.625506
++  SELECT '52093.89'::money::numeric::float8;
+
+# 2018-03-22 14:00:13.721494
++  SELECT '12.34'::float8::numeric::money;
+
+# 2018-03-23 11:16:37.434450
++\q
+
+# 2018-04-09 11:20:17.476646
++\d questions
+
+# 2018-04-09 11:20:55.262860
++select * from questions where questions.type = 'numeric' limit 1;
+
+# 2018-04-09 11:21:08.140641
++\d question_types
+
+# 2018-04-09 11:21:14.685977
++select * from question_types
+
+# 2018-04-09 11:21:22.411515
++select * from questions where questions.type = 6 limit 1;
+
+# 2018-04-09 11:22:09.105144
++select * from questions where questions.type = 6 and questions.config->'numeric_units' = 'Quantity' limit 1;
+
+# 2018-04-09 11:22:40.111494
++select * from questions where questions.type = 6 and questions.config->>'numeric_units' = 'Quantity' limit 1;
+
+# 2018-04-09 11:22:51.714258
++select * from questions where questions.type = 6 and questions.config->>'numeric_units' = 'PostalCode' limit 1;
+
+# 2018-04-09 11:23:17.792737
++q
+
+# 2018-04-09 11:23:21.903379
++\q
+
+# 2018-04-09 11:24:18.296983
++select id, created_at from questions where questions.type = 6 and questions.config->>'numeric_units' = 'PostalCode' order by created_at DESC;
+
+# 2018-04-09 11:24:59.296974
++select task_id from questions where questions.type = 6 and questions.config->>'numeric_units' = 'PostalCode' order by created_at DESC;
+
+# 2018-04-09 11:25:22.857388
++select survey_id from tasks where id in (select task_id from questions where questions.type = 6 and questions.config->>'numeric_units' = 'PostalCode' order by created_at DESC)
+
+# 2018-04-09 11:25:42.910186
++select job_id from surveys where id in (select survey_id from tasks where id in (select task_id from questions where questions.type = 6 and questions.config->>'numeric_units' = 'PostalCode' order by created_at DESC))
+
+# 2018-04-09 13:11:02.255994
++\q
+
+# 2018-04-11 14:01:07.830222
++\d addresses
+
+# 2018-04-11 14:03:24.526271
++\stores
+
+# 2018-04-11 14:03:27.416052
++\d stores
+
+# 2018-04-11 14:07:22.083265
++\d addresses
+
+# 2018-04-11 15:08:56.760608
++\q
+
+# 2018-04-11 15:26:36.135901
++\d addresses
+
+# 2018-06-01 11:33:50.049804
++select * from trax_sessions limit 1
+
+# 2018-06-01 11:33:54.880473
++select * from sessions limit 1
+
+# 2018-06-01 11:34:06.230840
++select count(*) from sessions
+
+# 2018-06-01 11:34:34.471532
++select * from sessions limit 1 order by id desc
+
+# 2018-06-01 11:34:51.501578
++select * from sessions order by id desc limit 1
+
+# 2018-06-01 11:35:20.040812
++select * from scenes where session_id = 3404
+
+# 2018-06-01 11:35:41.840340
++select * from sessions order by id desc limit 1
+
+# 2018-06-01 11:46:25.772003
++update from sessions set email = "loicc@traxretail.com" where id = 3404
+
+# 2018-06-01 11:46:31.891942
++update sessions set email = "loicc@traxretail.com" where id = 3404
+
+# 2018-06-01 11:46:38.042361
++update sessions set email = 'loicc@traxretail.com' where id = 3404
+
+# 2018-06-01 11:46:41.314237
++select * from sessions order by id desc limit 1
+
+# 2018-06-01 12:02:27.989640
++\q
+
+# 2018-06-01 14:06:25.867144
++select * from sessions order by id desc limit 1
+
+# 2018-06-01 14:07:14.154769
++select * from scenes where session_id = 3407
+
+# 2018-06-01 14:07:42.623721
++select * from images where scene_id = 18515
+
+# 2018-06-01 14:07:54.718753
++select * from images where scene_id = 18516
+
+# 2018-06-01 14:07:57.835917
++select * from scenes where session_id = 3407
+
+# 2018-06-01 14:08:02.515782
++select * from images where scene_id = 18512
+
+# 2018-06-01 14:08:06.761715
++select * from images where scene_id = 18513
+
+# 2018-06-01 14:08:10.259258
++select * from images where scene_id = 18514
+
+# 2018-06-01 14:18:56.059321
++select * from sessions order by id desc limit 1
+
+# 2018-06-01 14:19:09.596484
++select * from sessions where project_id = 10
+
+# 2018-06-01 14:22:46.623548
++select * from sessions where project_id = 10 order by created_at desc
+
+# 2018-06-01 14:22:49.232830
++select * from sessions where project_id = 10
+
+# 2018-06-01 14:23:00.360338
++select * from sessions where project_id = 10 order by inserted_at desc
+
+# 2018-06-01 15:21:16.412535
++select count(*) from sessions where project_id = 10 order by inserted_at desc
+
+# 2018-06-01 15:21:19.931161
++select count(*) from sessions where project_id = 10 
+
+# 2018-06-01 15:21:22.441974
++select count(*) from sessions where project_id = 10 order by inserted_at desc
+
+# 2018-06-01 15:21:32.107712
++select * from sessions where project_id = 10 order by inserted_at desc
+
+# 2018-06-01 15:25:33.506193
++select count(*) from sessions where project_id = 10 order by inserted_at desc
+
+# 2018-06-01 15:25:37.569741
++select count(*) from sessions where project_id = 10 
+
+# 2018-06-01 19:21:53.916802
++select * from sessions where project_id = 10 order by inserted_at desc
+
+# 2018-06-05 09:04:41.358254
++y
+
+# 2018-06-05 09:04:53.192541
++select count(*) from sessions where project_id = 10 order by inserted_at desc
+
+# 2018-06-05 09:04:58.683110
++select count(*) from sessions where project_id = 10
+
+# 2018-06-05 09:05:22.147079
++select * from sessions where project_id = 10 order by inserted_at desc
+
+# 2018-06-05 14:14:27.870194
++select * from sessions where project_id = 11 order by inserted_at desc
+
+# 2018-06-05 14:16:10.844823
++select * from projects where project_id = 11
+
+# 2018-06-05 14:16:14.628743
++select * from projects where id = 11
+
+# 2018-06-05 14:17:05.561384
++select * from sessions where project_id = 11 order by inserted_at desc
+
+# 2018-06-05 14:26:31.369923
++select count(*) from sessions where project_id = 10
+
+# 2018-06-05 14:26:34.169724
++select count(*) from sessions where project_id = 11
+
+# 2018-06-05 15:34:06.795158
++select * from sessions where project_id = 11 order by inserted_at desc
+
+# 2018-06-05 15:34:15.338670
++select count(*) from sessions where project_id = 11
+
+# 2018-06-05 15:34:19.426673
++select * from sessions where project_id = 11 order by inserted_at desc
+
+# 2018-06-05 15:48:20.579977
++select count(*) from sessions where project_id = 11
+
+# 2018-06-07 17:50:37.074311
++select * from sessions where project_id = 11
+
+# 2018-06-07 17:51:00.143603
++select count(*) from sessions where project_id = 11
+
+# 2018-06-11 16:59:48.352801
++select * from sessions where project_id = 11
+
+# 2018-06-11 16:59:53.095819
++select * from sessions where project_id = 11 limit 1
+
+# 2018-06-11 17:00:11.535933
++select * from sessions where project_id = 11 left join scenes on scenes.session_id = session.id limit 1
+
+# 2018-06-11 17:00:17.360250
++select * from sessions where project_id = 11  join scenes on scenes.session_id = session.id limit 1
+
+# 2018-06-11 17:02:35.289598
++select * from sessions where project_id = 11 join scenes on sessions.id = scenes.session_id
+
+# 2018-06-11 17:02:46.665024
++\d scenes
+
+# 2018-06-11 17:03:13.458059
++select scenes.id as scene_id  from sessions where project_id = 11 join scenes on sessions.id = scenes.session_id
+
+# 2018-06-11 17:03:32.169957
++select scenes.id as scene_id  from sessions  join scenes on sessions.id = scenes.session_id where projects.id = 11 
+
+# 2018-06-11 17:03:42.457875
++select scenes.id as scene_id  from sessions  join scenes on sessions.id = scenes.session_id where project_id = 11 
+
+# 2018-06-11 17:03:48.657833
++select scenes.id as scene_id  from sessions  join scenes on sessions.id = scenes.session_id where project_id = 11 limit 1
+
+# 2018-06-11 17:04:06.634735
++\d photos
+
+# 2018-06-11 17:04:10.929303
++\d images
+
+# 2018-06-11 17:04:30.221432
++\d photos
+
+# 2018-06-11 17:04:32.516911
++\d images
+
+# 2018-06-11 17:05:06.777724
++select scenes.id as scene_id, images.state from sessions  join scenes on sessions.id = scenes.session_id join scenes.id = images.scene_id where project_id = 11 limit 1
+
+# 2018-06-11 17:05:15.905782
++select scenes.id as scene_id, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
+
+# 2018-06-11 17:05:40.525781
++select photos.id, scenes.id as scene_id, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
+
+# 2018-06-11 17:05:51.228619
++select images.id, scenes.id as scene_id, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
+
+# 2018-06-11 17:07:11.287954
++update images set state = 'pending' where id = 188389
+
+# 2018-06-11 17:07:19.663779
++select * from images where id = 188389
+
+# 2018-06-11 17:17:04.124621
++update images set state = 'pending' where id = 188389
+
+# 2018-06-11 17:17:06.675767
++select * from images where id = 188389
+
+# 2018-06-11 17:32:33.914253
++select images.id, scenes.id as scene_id, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 100
+
+# 2018-06-11 17:32:50.379628
++select images.id as scene_id, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 100
+
+# 2018-06-11 17:33:08.626955
++select images.id from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 100
+
+# 2018-06-11 17:38:22.074086
++update images set state = 'pending' where id in (select images.id from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 100)
+
+# 2018-06-12 07:00:14.566244
++select images.id, image.url from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
+
+# 2018-06-12 07:00:23.028623
++select images.id, images.url from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
+
+# 2018-06-12 07:00:30.843019
++\q
+
+# 2018-06-12 07:07:48.338760
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
+
+# 2018-06-12 07:07:57.194121
++update images set state = 'pending' where id = 188389
+
+# 2018-06-12 07:08:01.218009
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
+
+# 2018-06-12 07:21:51.078835
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 100
+
+# 2018-06-12 07:30:45.088861
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
+
+# 2018-06-12 11:48:20.600767
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
++;
+
+# 2018-06-12 11:48:36.065153
++update images set state = 'pending' where id = 188389
+
+# 2018-06-12 11:48:40.706206
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
++;
+
+# 2018-06-12 12:13:42.103353
++update images set state = 'pending' where id = 188389
+
+# 2018-06-12 12:14:08.351573
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
++;
+
+# 2018-06-12 12:20:09.125117
++update images set state = 'pending' where id = 188389
+
+# 2018-06-12 12:21:24.678742
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
++;
+
+# 2018-06-12 16:54:06.461554
++select * from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 10
+
+# 2018-06-12 16:56:20.458874
++select distinct(images.state) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 10
+
+# 2018-06-12 16:56:36.130787
++select distinct(images.state), count(id) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 10
+
+# 2018-06-12 16:56:44.482140
++select distinct(images.state), count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 10
+
+# 2018-06-12 16:56:59.042073
++select distinct(images.state), count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id group by image.state where project_id = 10
+
+# 2018-06-12 16:57:07.345672
++select distinct(images.state), count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 10 group by image.state
+
+# 2018-06-12 16:57:12.158827
++select distinct(images.state), count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 10 group by images.state
+
+# 2018-06-12 16:57:40.132972
++select distinct(scenes.state), count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 10 group by scenes.state
+
+# 2018-06-12 16:57:58.308702
++select distinct(sessions.state), count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 10 group by sessions.state
+
+# 2018-06-12 16:58:17.108439
++select distinct(scenes.state), count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 10 group by scenes.state
+
+# 2018-06-12 16:58:30.019277
++select distinct(scenes.state), count(*) from sessions  join scenes on sessions.id = scenes.session_id where project_id = 10 group by scenes.state
+
+# 2018-06-12 16:59:27.337478
++select id, state from sessions  join scenes on sessions.id = scenes.session_id where project_id = 10 limit 1
+
+# 2018-06-12 16:59:41.177376
++select sessions.id, state from sessions  join scenes on sessions.id = scenes.session_id where project_id = 10 limit 1
+
+# 2018-06-12 16:59:47.248482
++select sessions.id, sessions.state from sessions  join scenes on sessions.id = scenes.session_id where project_id = 10 limit 1
+
+# 2018-06-12 18:35:39.851822
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
++;
+
+# 2018-06-12 19:01:31.987266
++update images set state = 'pending' where id = 188389
+
+# 2018-06-12 19:01:51.321694
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 limit 1
++;
+
+# 2018-06-12 19:02:46.593050
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 and images.state = 'failed' limit 10
+
+# 2018-06-12 19:03:55.244139
++update images set state = 'pending' where id in (select images.id from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 and images.state = 'failed' limit 10)
+
+# 2018-06-12 19:04:00.482686
++update images set state = 'pending' where id in (select images.id from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 and images.state = 'failed')
+
+# 2018-06-12 19:04:31.912324
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 and images.state = 'running';;
+
+# 2018-06-12 19:04:40.471408
++select images.id, images.url, images.state from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 and images.state = 'running'
+
+# 2018-06-12 19:04:51.119435
++select count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 and images.state = 'running'
+
+# 2018-06-13 17:33:25.110840
++\d display_definitions
+
+# 2018-06-13 17:33:33.277619
++\d pokemon_display_definitions 
+
+# 2018-06-13 17:55:25.033267
++\d pokemon_display_indexes
+
+# 2018-06-13 23:13:33.436815
++select count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 
+
+# 2018-06-14 13:07:09.552089
++\c
+
+# 2018-06-14 13:07:12.301540
++\q
+
+# 2018-06-15 01:47:51.461952
++select distinct(scenes.state), count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 group by scenes.state
+
+# 2018-06-15 01:48:29.263771
++select count(*), state from sessions  where sessions.project_id = 11
+
+# 2018-06-15 01:48:36.103433
++select count(*), state from sessions  where sessions.project_id = 11 group by state
+
+# 2018-06-15 01:48:50.535755
++select count(*) from sessions  join scenes on sessions.id = scenes.session_id right join images on scenes.id = images.scene_id where project_id = 11 and images.state = 'running'
+
+# 2018-06-15 01:48:56.591235
++select count(*) from sessions  join scenes on sessions.id = scenes.session_id right join images on scenes.id = images.scene_id where project_id = 11
+
+# 2018-06-15 01:49:12.252112
++select count(*), scenes.state from sessions  join scenes on sessions.id = scenes.session_id right join images on scenes.id = images.scene_id where project_id = 11
+
+# 2018-06-15 01:49:21.299932
++select count(*), scenes.state from sessions  join scenes on sessions.id = scenes.session_id right join images on scenes.id = images.scene_id where project_id = 11 group by scenes.state
+
+# 2018-06-15 01:49:35.447978
++update images set state = 'pending' where id in (select images.id from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 and images.state = 'failed')
+
+# 2018-06-15 01:50:31.543882
++update scenes set state = 'pending' where id in (select scenes.id from sessions  join scenes on sessions.id = scenes.session_id where project_id = 11)
+
+# 2018-06-15 01:53:14.740919
++select count(*) from sessions  join scenes on sessions.id = scenes.session_id right join images on scenes.id = images.scene_id where project_id = 11 and images.state = 'running'
+
+# 2018-06-15 01:53:22.408947
++select distinct(scenes.state), count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 group by scenes.state
+
+# 2018-06-15 01:53:54.280589
++select count(*) from sessions  join scenes on sessions.id = scenes.session_id join images on scenes.id = images.scene_id where project_id = 11 
+
+# 2018-06-15 01:54:05.047666
++select id, state from sessions  join scenes on sessions.id = scenes.session_id where project_id = 11 limit 1
+
+# 2018-06-15 01:54:15.509518
++select session.id, state from sessions  join scenes on sessions.id = scenes.session_id where project_id = 11 
+
+# 2018-06-15 01:54:24.254598
++select * from sessions  join scenes on sessions.id = scenes.session_id where project_id = 11 
+
+# 2018-06-15 02:02:04.726498
++select session.id, state from sessions  join scenes on sessions.id = scenes.session_id where project_id = 11 
+
+# 2018-06-15 02:02:35.955556
++select count(*), sessions.state from sessions group by sessions
+
+# 2018-06-15 02:02:39.531556
++select count(*), sessions.state from sessions group by sessions.state
+
+# 2018-06-15 02:02:57.946636
++select count(*), scenes.state from scenes group by scenes.state
+
+# 2018-06-15 02:03:28.194867
++select count(*), images.state from images group by images.state
+
+# 2018-06-21 05:58:25.440016
++\q
+
+# 2018-07-10 14:08:01.074165
++"SELECT DISTINCT "pokemon_display_definitions".* FROM "pokemon_display_definitions" INNER JOIN "pokemon_sweep_display_definitions" ON "pokemon_sweep_display_definitions"."display_definition_id" = "pokemon_display_definitions"."id" INNER JOIN "pokemon_sweeps" ON "pokemon_sweeps"."id" = "pokemon_sweep_display_definitions"."sweep_id" LEFT OUTER JOIN pokemon_display_definitions_authorized_stores AS authorized_storesn  ON pokemon_display_definitions.id = authorized_stores.display_definition_id WHERE "pokemon_display_definitions"."state" IN ('indexing', 'ready') AND "pokemon_display_definitions"."customer_id" = 84 AND (authorized_stores.id IS NULL OR (n  authorized_stores.store_id = 45929 ANDn  '2018-06-27 21:12:00.516153'::date BETWEEN authorized_stores.begin_at AND authorized_stores.end_atn)n) AND "pokemon_sweeps"."frame_type" IN ('display_from_categories_brands', 'display_from_display_id', 'display_from_products', 'display_from_display_definitions') AND "pokemon_sweeps"."parent_sweep_id" = 42353"
++
+
+# 2018-07-10 14:08:19.940384
++SELECT DISTINCT "pokemon_display_definitions".* FROM "pokemon_display_definitions" INNER JOIN "pokemon_sweep_display_definitions" ON "pokemon_sweep_display_definitions"."display_definition_id" = "pokemon_display_definitions"."id" INNER JOIN "pokemon_sweeps" ON "pokemon_sweeps"."id" = "pokemon_sweep_display_definitions"."sweep_id" LEFT OUTER JOIN pokemon_display_definitions_authorized_stores AS authorized_storesn  ON pokemon_display_definitions.id = authorized_stores.display_definition_id WHERE "pokemon_display_definitions"."state" IN ('indexing', 'ready') AND "pokemon_display_definitions"."customer_id" = 84 AND (authorized_stores.id IS NULL OR (n  authorized_stores.store_id = 45929 ANDn  '2018-06-27 21:12:00.516153'::date BETWEEN authorized_stores.begin_at AND authorized_stores.end_atn)n) AND "pokemon_sweeps"."frame_type" IN ('display_from_categories_brands', 'display_from_display_id', 'display_from_products', 'display_from_display_definitions') AND "pokemon_sweeps"."parent_sweep_id" = 42353
++
+
+# 2018-07-10 14:09:29.576775
++SELECT DISTINCT "pokemon_display_definitions".* FROM "pokemon_display_definitions" INNER JOIN "pokemon_sweep_display_definitions" ON "pokemon_sweep_display_definitions"."display_definition_id" = "pokemon_display_definitions"."id" INNER JOIN "pokemon_sweeps" ON "pokemon_sweeps"."id" = "pokemon_sweep_display_definitions"."sweep_id" LEFT OUTER JOIN pokemon_display_definitions_authorized_stores AS authorized_stores   ON pokemon_display_definitions.id = authorized_stores.display_definition_id WHERE "pokemon_display_definitions"."state" IN ('indexing', 'ready') AND "pokemon_display_definitions"."customer_id" = 84 AND (authorized_stores.id IS NULL OR (   authorized_stores.store_id = 45929 AND   '2018-06-27 21:12:00.516153'::date BETWEEN authorized_stores.begin_at AND authorized_stores.end_at ) ) AND "pokemon_sweeps"."frame_type" IN ('display_from_categories_brands', 'display_from_display_id', 'display_from_products', 'display_from_display_definitions') AND "pokemon_sweeps"."parent_sweep_id" = 42353
++
+
+# 2018-07-11 05:48:22.639796
++\q
+
+# 2018-07-12 13:24:12.031103
++\d jobs
+
+# 2018-07-12 17:41:42.286626
++\q
+
+# 2018-08-06 15:00:58.124102
++select count(*) from pokemon_instances where instance_type_id = 1
+
+# 2018-08-06 15:01:16.442816
++select count(*) from pokemon_attributes where instance_type_id = 1
+
+# 2018-08-06 15:02:44.822641
++select count(*) from pokemon_instances where instance_type_id = 1
+
+# 2018-08-06 16:03:02.452323
++\q
+
+# 2018-08-09 11:02:27.693575
++select * from country_codes
+
+# 2018-08-09 11:02:37.164014
++\d countries
+
+# 2018-08-09 11:02:45.835588
++select * from countries
+
+# 2018-08-13 16:56:06.257672
++select * from pokemon_attributes 
+
+# 2018-08-13 16:56:09.936915
++\h
+
+# 2018-08-13 16:56:12.392970
++\?
+
+# 2018-08-13 16:56:33.199266
++\dT
+
+# 2018-08-13 16:56:36.441225
++\?
+
+# 2018-08-13 16:57:12.145140
++select * from pokemon_attributes where is_standard = 1
+
+# 2018-08-13 16:57:15.904849
++select * from pokemon_attributes where is_standard = true
+
+# 2018-08-13 16:57:28.015753
++select * from pokemon_attributes where is_standard = true
++;
+
+# 2018-08-13 16:58:11.894047
++select * from pokemon_attributes where is_standard = true;
+
+# 2018-08-13 16:58:31.669096
++\o attributes
+
+# 2018-08-13 16:58:35.411802
++select * from pokemon_attributes where is_standard = true;
+
+# 2018-08-13 16:58:39.780178
++\o
+
+# 2018-08-13 16:58:41.892367
++\q
+
+# 2018-08-13 17:01:59.925585
++\o attributes
+
+# 2018-08-13 17:02:09.052529
++\d pokemon_attributes
+
+# 2018-08-13 17:02:17.292098
++\o
+
+# 2018-08-13 17:02:19.556472
++\d pokemon_attributes
+
+# 2018-08-13 17:03:00.538930
++select id, name, type from pokemon_attributes
+
+# 2018-08-13 17:03:07.193092
++\d pokemon_attributes
+
+# 2018-08-13 17:03:22.090232
++select id, name, slug, short_prompt type from pokemon_attributes
+
+# 2018-08-13 17:03:26.890372
++select id, name, slug, short_prompt, type from pokemon_attributes
+
+# 2018-08-13 17:03:39.841550
++select id, name, slug, type from pokemon_attributes
+
+# 2018-08-13 17:03:43.193381
++\d pokemon_attributes
+
+# 2018-08-13 17:03:54.105387
++select id, name, slug, type, is_multivalued from pokemon_attributes
+
+# 2018-08-13 17:03:55.736867
++\d pokemon_attributes
+
+# 2018-08-13 17:04:10.872652
++select id, name, slug, type, is_multivalued from pokemon_attributes
+
+# 2018-08-13 17:04:21.616229
++\o attributes
+
+# 2018-08-13 17:04:24.680369
++select id, name, slug, type, is_multivalued from pokemon_attributes
+
+# 2018-08-13 17:04:26.279741
++\o
+
+# 2018-08-13 17:04:29.375429
++\q
+
+# 2018-08-13 17:04:53.967880
++\o attributes
+
+# 2018-08-13 17:04:56.879288
++select id, name, slug, type, is_multivalued from pokemon_attributes
+
+# 2018-08-13 17:04:58.918768
++\o
+
+# 2018-08-13 17:05:00.902546
++\q
+
+# 2018-08-13 17:05:27.893866
++\o attributes
+
+# 2018-08-13 17:05:37.943742
++select id, name, slug, type, is_multivalued from pokemon_attributes where is_standard = 1;
+
+# 2018-08-13 17:05:48.301754
++select id, name, slug, type, is_multivalued from pokemon_attributes where is_standard = true;
+
+# 2018-08-14 14:28:18.035903
++\d pokemon_display_definitions 
+
+# 2018-08-30 15:29:56.256645
++\a
+
+# 2018-09-18 14:25:33.221026
++update projects set limit = 40;
+
+# 2018-09-18 14:26:08.511616
++update projects set 'limit' = 40;
+
+# 2018-09-18 14:26:26.342589
++update projects set projects.limit = 40;
+
+# 2018-09-18 14:26:35.432990
++update projects set trax.projects.limit = 40;
+
+# 2018-09-18 14:26:42.351938
++update projects set limit = 40;
+
+# 2018-09-18 14:27:12.829550
++update projects set "limit" = 40;
+
+# 2018-09-19 11:31:56.067729
++\q
+
+# 2018-09-19 16:27:31.495768
++update projects set "limit" = 80;
+
+# 2018-09-21 11:18:25.117185
++\q
+
+# 2018-10-12 17:43:51.713656
++\d layer_values
+
+# 2018-10-12 17:49:26.683389
++\d mondelez_layers
+
+# 2018-10-17 09:11:08.992976
++\d
+
+# 2018-10-17 09:13:32.237158
++\dt
+
+# 2018-10-17 09:13:49.723900
++select * from project_stores where project_id = 8;
+
+# 2018-10-17 09:14:55.103658
++select * from project_stores where project_id = 8 and store_id = 194710;
+
+# 2018-10-17 09:15:01.183485
++select * from project_stores where project_id = 8;
+
+# 2018-10-17 09:15:06.136954
++select * from project_stores where project_id = 8 and store_id = 194710;
+
+# 2018-10-17 09:15:14.536378
++select * from project_stores where project_id = 8 and store_id = "194710";
+
+# 2018-10-17 09:15:21.293458
++\d project_stores
+
+# 2018-10-17 09:15:37.280269
++select * from project_stores where project_id = 8 and store_id = 194710::int;
+
+# 2018-10-17 09:15:44.103576
++select * from project_stores where store_id = 194710;
+
+# 2018-10-17 09:15:53.279302
++select * from project_stores where project_id = 8 and store_id = 194710;
+
+# 2018-10-17 09:16:00.630401
++\d project_stores
+
+# 2018-10-17 09:16:06.406782
++select * from project_stores where project_id = 8 and store_id = '194710';
+
+# 2018-10-17 09:16:44.469893
++select * from project_stores where project_id = 8 and store_id = '195263';
+
+# 2018-10-17 09:17:02.908613
++select * from projects where id = 8
+
+# 2018-11-06 16:40:00.870652
++\q
+
+# 2018-11-06 16:40:20.392675
++select * from person_geolocations limit 1
+
+# 2018-11-06 16:41:03.802610
++select st_aslatlontext(coordinates) from person_geolocations limit 1
+
+# 2018-11-06 16:42:42.961953
++select st_astext(coordinates) from person_geolocations limit 1
+
+# 2018-11-06 16:42:50.234776
++select * from person_geolocations limit 1
+
+# 2018-11-06 16:43:06.403788
++select * from person_geolocations limit 1 order by created_at desc
+
+# 2018-11-06 16:43:16.355394
++select * from person_geolocations order by created_at desc limit 1
+
+# 2018-11-08 16:31:26.831534
++\q
+
+# 2018-11-21 10:14:51.951094
++select * from sessions where uuid IN ("bfd25d87-5b41-4e0b-ad40-f35608a395e5", "6c12315e-b73c-4f85-ab3a-2655c6a7e9eb", "55464d29-7e78-4d06-9897-4478fa628400", "6ae62ede-c547-44e4-8e92-a2fa71505c4e", "4bf63f88-3d2e-4f10-85dd-675685eed4b2", "161e7990-4c0f-4f49-8489-53382fbb40a1", "f04febf1-f05c-4b7d-a57f-a1e079341ce0", "f3542f1f-8c2d-4b4b-a187-525f48248c32", "f7c2e21a-39c8-4a2e-a773-1a3daa176089", "a535b6d7-9727-4e12-95b9-9d4914fa2f4a", "e0a01c06-b176-4b23-b953-cf245de77923", "18fa464a-9a5f-4c74-860a-a1a5c4c7a024", "2d3f4ffc-5ff5-4f25-abb4-229de66a9252", "26ecb26e-a7aa-42a1-ab07-85e0a6a522fa", "338c706e-9df3-457c-bb6a-5ff87b1f4449", "206c97c9-1618-4af1-b986-5a1dd76f6619", "5a8b5517-4a65-404f-8cf5-a5fce726b9d4", "6dc8971a-3600-4a3a-910e-662bf229eae8", "7f91da77-651f-45c8-bda1-f40f8e500421", "9786efe6-df28-41a2-a945-8cc2375d46f9", "2919e8ab-360a-471f-8dd4-cfef6b5c2d05", "b1bf82f4-fb58-46aa-a641-60cff5c41a75", "f67fd6fe-2f64-474e-8a7c-f99bc2d496fb", "da637be1-bee3-45b3-8f63-b223c34b50b5", "fb340819-497e-495a-8821-8ce30f1a0e3c", "418bf4a9-b89a-4658-a19f-e437b84e7c0f", "682acc78-45ee-4611-a1ce-bd9a3feecb06", "8b6d5576-6040-4531-bde6-9b3b59d10c3d", "0b22b77e-04b6-4c71-ba56-c6b89f560eaa", "85eb312e-106e-4dd7-96fe-52a7db78eb88", "e6351732-2929-4966-b09a-ac4f126b43b0", "e3af643c-61dc-476b-81ea-8d61c20f0327", "84d7470f-d741-4bb4-b4fb-66f742e5122d", "85624246-ef82-46d1-8f3c-3e4d10bd8334", "dc23f6b8-acda-42da-b7c4-2f3e4eb1b7af", "f4821a18-eb58-454a-b54b-f1a7a3cf3e58", "441d2ec6-cc5d-450e-9419-77267e71364b", "cd74e5b4-2a5a-4696-98d3-afb51ffe68f2", "06eb38ea-4ed7-4bdd-b6a2-c5b875c23657", "a5818fdf-c568-4a74-88ac-8762c214a4bf", "7037dd24-28fc-4f97-9c31-23aeead41425", "26ac5b56-5a21-44d9-a640-73348fc76eed", "3ec0c481-e883-4800-99fb-4982f5ff75a5", "bb7ac104-75a0-4d92-a31c-6c34d0554f83", "ad832232-2c11-45dc-9aa9-906dfc1875ee", "1b75b4b1-e1c8-4606-af40-4ba224283604", "a95fd880-6303-4751-b73a-3665c623731e", "91829e59-978f-41e1-9cc2-2f6f4ad28e6e", "ec126cf7-5409-4e49-8f6f-556b7379bc30", "0819ade7-dcdc-42da-a7f8-2c9d468d9ff1", "cd668c1a-0ea5-4889-bb37-bce421b5bfac", "ef2ece98-4f16-43f8-969a-bdbc0453eb99", "77e5efd9-8fcd-47f3-9cdb-c7b04b8cc35b", "febbeba3-6648-42e7-8034-0b2f171e631c", "7414935b-b7be-495a-8272-2036b5359b8c", "45c14a80-1dd7-44aa-9bfc-ad2c32dc178a", "d8639978-b447-4afd-8716-27edb4d1d8d9", "8e6b87d0-8bc2-441c-a8b7-05147b59008d", "29bd9649-d5a6-446f-b690-74cebf56cd88", "8041f37f-456b-4f54-a6e6-7473c119929e", "47167f0e-5b34-4f0e-a909-4c0e3e74cee8", "e6dd437b-9356-4d7f-bb44-bde8e2edf86b", "c393d5b3-98d9-4885-aa53-579b7b815ef4", "1d3da5e0-d62f-4c95-8752-dedfaea709ee", "1c8ad61e-770a-428e-a8e7-0946fa729d84", "94f26763-213e-4920-b12c-6e8a68698dd6", "ee934425-9cff-4bbb-8a00-b220e6f9e1b4", "67618a26-e3bd-4424-9267-8bd51fee75b3", "c272e7c2-224e-4106-98ca-e0ef0e199c25", "42cdabe7-169b-4e5c-a345-155b7ef1f01f", "1dd33387-f537-44c0-8a9c-a56b22cc3fba")
+
+# 2018-11-21 10:15:13.706809
++select * from sessions where uuid = "1dd33387-f537-44c0-8a9c-a56b22cc3fba"
+
+# 2018-11-21 10:15:19.563000
++select * from sessions where uuid = '1dd33387-f537-44c0-8a9c-a56b22cc3fba'
+
+# 2018-11-25 09:54:02.166345
++select * from sessions where uuid = '6e1fa9b4-59b1-48d1-acd0-5d55bd2a988e'
+
+# 2018-11-27 08:46:25.761548
++\q
+
+# 2018-12-05 11:24:15.438088
++\d sessions
+
+# 2018-12-05 15:03:19.718303
++\q
+
+# 2018-12-06 10:31:28.109673
++select * from projects where name = 'kcus'
+
+# 2018-12-06 10:32:17.108558
++select * from projects where name = 'pernodus'
+
+# 2018-12-06 10:32:49.776398
++select * from projects where name = 'mondelezus'
+
+# 2018-12-06 12:23:58.924232
++select api_key from projects where name = 'mdlz2'
+
+# 2018-12-06 12:38:02.206502
++\d images
+
+# 2018-12-06 16:31:15.055793
++\q
+
+# 2018-12-19 14:45:48.892394
++select * from sessions where uuid = '928bbc6f-5568-42cb-b189-4066a9ee791c'
+
+# 2018-12-19 17:14:33.142645
++\q
+
+# 2019-02-05 17:05:59.703362
++select * from sessions where uuid = '8f7d5be8-fa31-4444-a1af-0f40bc04ef1f'
+
+# 2019-02-06 10:20:23.001932
++\q
+
+# 2019-02-11 09:43:11.508217
++ SELECT * FROM PEOPLE
++ WHERE people.email  ILIKE 'OPSTEST%';
+
+# 2019-02-11 09:43:36.097419
++\q
+
+# 2019-02-11 09:44:32.541788
++ SELECT * FROM PEOPLE
++ WHERE people.email  ILIKE 'OPSTEST%';
+
+# 2019-02-11 09:44:48.856059
++ SELECT * FROM people
++ WHERE people.email  ILIKE 'OPSTEST%';
+
+# 2019-02-11 09:45:11.149219
++ SELECT * FROM people
++ WHERE people.email ilike 'loic%';
+
+# 2019-02-11 09:45:38.237841
++ SELECT * FROM people
++ WHERE people.email  ILIKE 'opstest%';
+
+# 2019-02-11 12:01:59.881757
++q
+
+# 2019-02-11 12:02:02.790891
++\q
+
+# 2019-02-15 18:02:26.896784
++select sessions.uuid, sessions.state, MAX(images.transitioned_at) as img_transition, MAX(scenes.transitioned_at) as scn_transition, sessions.transitioned_at as ssn_transition
++                                    from sessions
++                                    join scenes on scenes.session_id = sessions.id
++                                    join images on scenes.id = images.scene_id
++                                    where remaining_scenes_count = 0 and not for_deletion
++                                    group by sessions.uuid, sessions.state, 5
++                                    order by 3 desc, 4 desc, 5 desc
++                                    limit 20
+
+# 2019-02-15 18:06:03.778693
++select max(transitioned_at) from images
+
+# 2019-02-15 18:18:37.421793
++select sessions.uuid, sessions.state, MAX(images.transitioned_at) as img_transition, MAX(scenes.transitioned_at) as scn_transition, sessions.transitioned_at as ssn_transition
++                                    from sessions
++                                    join scenes on scenes.session_id = sessions.id
++                                    join images on scenes.id = images.scene_id
++                                    where remaining_scenes_count = 0 and not for_deletion
++                                    group by sessions.uuid, sessions.state, 5
++                                    order by 3 desc, 4 desc, 5 desc
++                                    limit 20
+
+# 2019-02-15 18:23:11.183727
++\q
+
+# 2019-02-15 18:28:24.954532
++select count(*) from projects;
+
+# 2019-02-15 18:34:07.773379
++\d
+
+# 2019-02-15 18:34:22.966856
++select count(*) from scenes where running = true;
+
+# 2019-02-15 18:34:26.454803
++\d
+
+# 2019-02-15 18:34:35.758573
++select count(*) from scenes where state = 'running';
+
+# 2019-02-15 18:34:46.606093
++\d scenes
+
+# 2019-02-15 18:37:58.841772
++\d images
+
+# 2019-02-15 18:38:52.086764
++SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = $3) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT $4 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:39:04.436415
++SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 42) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:39:28.562839
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 42) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:42:29.531343
++select * from projects
+
+# 2019-02-15 18:42:42.573859
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 49) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:42:53.708247
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 49) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 
+
+# 2019-02-15 18:43:06.766859
++\d images
+
+# 2019-02-15 18:43:51.379858
++SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 49) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 
+
+# 2019-02-15 18:44:09.194481
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 49) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 
+
+# 2019-02-15 18:47:00.389543
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 49) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:47:07.107134
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 49) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 
+
+# 2019-02-15 18:48:03.704794
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 49) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:48:10.617619
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 42) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:48:38.664851
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 49) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:49:00.832149
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 42) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:49:45.845545
++SELECT
++  pid,
++  now() - pg_stat_activity.query_start AS duration,
++  query,
++  state
++FROM pg_stat_activity
++WHERE (now() - pg_stat_activity.query_start) > interval '5 seconds';
+
+# 2019-02-15 18:51:52.400227
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 49) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:52:02.684552
++select * from projects
+
+# 2019-02-15 18:52:19.439026
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 35) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 18:52:33.420045
++explain analyze SELECT i0."id" AS "id" FROM "images" AS i0 INNER JOIN "scenes" AS s1 ON s1."id" = i0."scene_id" INNER JOIN "sessions" AS s2 ON s2."id" = s1."session_id" WHERE (s2."project_id" = 42) AND (i0."state" = 'pending') ORDER BY i0."id" LIMIT 10 FOR UPDATE SKIP LOCKED
+
+# 2019-02-15 19:14:24.960140
++select max(transitioned_at) from images
+
+# 2019-02-16 08:41:37.263906
++select count(*) from shifts left join events on 
+
+# 2019-02-16 08:41:41.262850
++select count(*) from shifts left join events on s
+
+# 2019-02-16 08:42:12.499697
++\d events
+
+# 2019-02-16 08:42:20.134750
++select count(*) from shifts left join events on shi
+
+# 2019-02-16 08:46:31.890391
++select count(*) from shifts left join events on shifts.id = events.shift_id where events.action = 'approved' and events.created_at >= '2018-01-01' and event.created_at <= '2019-01-01'
+
+# 2019-02-16 08:46:37.433537
++select count(*) from shifts left join events on shifts.id = events.shift_id where events.action = 'approved' and events.created_at >= '2018-01-01' and events.created_at <= '2019-01-01'
+
+# 2019-02-16 08:53:35.924861
++select count(*) from shifts left join events on shifts.id = events.shift_id left join jobs on shifts.job_id = jobs.id where jobs.customer_id != 84 and  events.action = 'approved' and events.created_at >= '2018-01-01' and events.created_at <= '2019-01-01'

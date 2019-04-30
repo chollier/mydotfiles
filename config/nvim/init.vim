@@ -6,10 +6,11 @@ endif
 
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'neomake/neomake'
+Plug 'neomake/neomake', { 'commit': '11fb33fc6300bef3d45a8992424f00e60257d08a' }
+Plug 'elixir-editors/vim-elixir'
 Plug 'elmcast/elm-vim', { 'for': ['elm'] }
 Plug 'tpope/vim-fugitive'
-Plug 'flowtype/vim-flow', { 'for': ['javascript'] }
+Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 " enable repeating supported plugin maps with '.'
@@ -54,7 +55,7 @@ Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 " Plug 'rorymckinley/vim-rubyhash', { 'for': 'ruby' }
 Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
 Plug 'vim-scripts/closetag.vim'
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
@@ -64,18 +65,18 @@ Plug 'edkolev/tmuxline.vim'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'sbdchd/neoformat'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'wokalski/autocomplete-flow', { 'for': ['javascript'] }
+Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'] }
 " You will also need the following for function argument completion:
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 " Plug 'ekalinin/Dockerfile.vim'
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
+Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'isRuslan/vim-es6', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'Shougo/unite.vim'
 Plug 'jparise/vim-graphql'
 " tagbar
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 " better marks
 Plug 'kshenoy/vim-signature'
 
@@ -325,6 +326,7 @@ endfunction
 nnoremap <leader>pt :call Prettier()<CR>
 autocmd FileType javascript set formatprg=prettier\ --stdin\ --parser\ flow\ --trailing-comma\ all
 autocmd FileType javascript.jsx set formatprg=prettier\ --stdin\ --parser\ flow\ --trailing-comma\ all
+autocmd FileType graphql set formatprg=prettier\ --stdin\ --parser\ graphql\ --trailing-comma\ all
 
 
 function! RubocopFix()
@@ -346,7 +348,9 @@ nmap <Leader>p :lprev<CR>      " previous error/warning
 
 " Use node_modules' eslint
 let g:neomake_javascript_enabled_makers = []
-if findfile('.eslintrc.json', '.;') !=# ''
+let g:neomake_graphql_enabled_makers = ['eslint']
+if findfile('.eslintrc.js', '.;') !=# '' ||findfile('.eslintrc.json', '.;') !=# '' || findfile('.eslintrc', '.;') !=# ''
+
   let s:eslint_path = system('PATH=$(yarn bin):$PATH && which eslint')
   let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
   let g:neomake_javascript_enabled_makers = ['eslint']
@@ -373,22 +377,37 @@ function! StrTrim(txt)
   return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 endfunction
 
+" function! FlowArgs()
+"   let g:file_path = expand('%:p')
+"   return ['-c', g:flow_path.' check-contents '.g:file_path.' < '.g:file_path.' --json | flow-vim-quickfix']
+" endfunction
+
+
+" let g:flow_maker = {
+" \ 'exe': 'sh',
+" \ 'args': function('FlowArgs'),
+" \ 'errorformat': '%E%f:%l:%c\,%n: %m',
+" \ 'cwd': '%:p:h'
+" \ }
+
 
 if findfile('.flowconfig', '.;') !=# ''
   let g:flow_path = StrTrim(system('PATH=$(yarn bin):$PATH && which flow'))
   if g:flow_path != 'flow not found'
-    let g:neomake_javascript_flow_maker = {
-          \ 'exe': 'sh',
-          \ 'args': ['-c', g:flow_path.' --json 2> /dev/null | flow-vim-quickfix'],
-          \ 'errorformat': '%E%f:%l:%c\,%n: %m',
-          \ 'cwd': '%:p:h'
-          \ }
+    let g:neomake_javascript_flow_exe = g:flow_path
+    let g:neomake_jsx_flow_exe = g:flow_path
+    " let g:neomake_javascript_flow_maker = g:flow_maker
+
     let g:neomake_javascript_enabled_makers = g:neomake_javascript_enabled_makers + [ 'flow']
     let g:neomake_jsx_enabled_makers = g:neomake_jsx_enabled_makers + [ 'flow']
     let g:flow#enable = 0
     let g:flow#flowpath = g:flow_path
   endif
 endif
+
+let g:neomake_elixir_enabled_makers = ['credo']
+
+let g:javascript_plugin_flow = 1
 
 " deoplete conf
 let g:deoplete#enable_at_startup = 1
@@ -398,6 +417,7 @@ let g:neosnippet#enable_completed_snippet = 1
 " let g:deoplete#sources._ = ['file', 'neosnippet']
 " let g:deoplete#sources._ = ['file']
 " let g:deoplete#omni#input_patterns = {}
+let g:deoplete#file#enable_buffer_path = 1
 " let g:deoplete#omni#functions.elm = ['elm#Complete']
 " let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
 " let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
@@ -406,7 +426,11 @@ let g:neosnippet#enable_completed_snippet = 1
 let g:elm_format_autosave = 1
 
 if !empty(g:neomake_javascript_enabled_makers)
-  autocmd! BufWritePost * Neomake
+  autocmd! BufWritePost *.js Neomake
 end
 
-autocmd! BufWritePost *.rb Neomake mri
+autocmd! BufWritePost *.rb,*.exs,*.ex Neomake
+autocmd BufWritePre *.ex,*.exs,*.rb,*.scss,*.css,*.md,*.json,*.exs,*.js,*.graphql Neoformat
+" autocmd BufWritePre *.rb,*.scss,*.css,*.md,*.json,*.exs,*.js,*.graphql Neoformat
+" Use formatprg when available
+let g:neoformat_try_formatprg = 1
