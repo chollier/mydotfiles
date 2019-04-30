@@ -57,7 +57,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vi-mode github docker tmux git rails rake ruby brew atom bundler coffee colored-man colorize gem  heroku node npm osx nvm zsh-autosuggestions fasd jira yarn)
+plugins=(vi-mode github docker tmux git rails rake ruby brew bundler coffee colored-man colorize gem  heroku node npm osx nvm zsh-autosuggestions fasd jira yarn)
 
 source $ZSH/oh-my-zsh.sh
 
