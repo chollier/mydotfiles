@@ -104,7 +104,6 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 export MYNVIMRC=~/.config/nvim/init.vim
 alias v="nvim"
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
