@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(lsrc)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nSimplify and modernize dotfiles config\n\n- Remove unused vim plugins \\(elixir, elm, flow, rails, graphql\\)\n- Update fzf to use proper plugin installation\n- Add tmux bell monitoring for notifications\n- Simplify zshrc to use powerlevel10k with instant prompt\n- Remove extensive oh-my-zsh configuration and custom functions\n- Comment out tmux-urlview plugin \\(requires brew install\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "linear"
+  ]
+}

@@ -6,11 +6,11 @@ endif
 
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'neomake/neomake', { 'commit': '11fb33fc6300bef3d45a8992424f00e60257d08a' }
-Plug 'elixir-editors/vim-elixir'
-Plug 'elmcast/elm-vim', { 'for': ['elm'] }
+Plug 'neomake/neomake'
+" Plug 'elixir-editors/vim-elixir'
+" Plug 'elmcast/elm-vim', { 'for': ['elm'] }
 Plug 'tpope/vim-fugitive'
-Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 " enable repeating supported plugin maps with '.'
@@ -19,7 +19,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
 " Plug 'kien/ctrlp.vim'
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'iCyMind/NeoSolarized'
@@ -31,14 +33,14 @@ Plug 'tmhedberg/matchit'
 " Plug 'elixir-lang/vim-elixir'
 Plug 'flazz/vim-colorschemes'
 " Plug 'kchmck/vim-coffee-script', { 'for': 'ruby' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
+" Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'terryma/vim-expand-region'
 " Plug 'rking/ag.vim'
 " Cursor color
 " Graph your Vim undo tree in style.
 " Plug 'sjl/gundo.vim'
 " Use fork for neovim instead
-Plug 'simnalamburt/vim-mundo'
+" Plug 'simnalamburt/vim-mundo'
 
 " Html/Xml editing
 Plug 'tpope/vim-ragtag', { 'for': ['html', 'javascript'] }
@@ -51,11 +53,11 @@ Plug 'tmux-plugins/vim-tmux'
 
 
 Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
+" Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 " Plug 'rorymckinley/vim-rubyhash', { 'for': 'ruby' }
 Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
 Plug 'vim-scripts/closetag.vim'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
@@ -65,16 +67,16 @@ Plug 'edkolev/tmuxline.vim'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'sbdchd/neoformat'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'javascript.jsx'] }
 " You will also need the following for function argument completion:
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
 " Plug 'ekalinin/Dockerfile.vim'
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'isRuslan/vim-es6', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+" Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'isRuslan/vim-es6', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'Shougo/unite.vim'
-Plug 'jparise/vim-graphql'
+" Plug 'jparise/vim-graphql'
 " tagbar
 " Plug 'majutsushi/tagbar'
 " better marks
@@ -108,7 +110,6 @@ set background=light
 let g:neosolarized_visibility = "high"
 colorscheme NeoSolarized
 
-set spelllang=en_US        " Set region to British English
 set mouse=a
 if !has('nvim')
   set encoding=utf-8
@@ -274,31 +275,11 @@ nnoremap gV `[v`]
 " " selelct what you've just pasted
 nnoremap gp `[v`]
 "
-set pastetoggle=<F2>
+" set pastetoggle=<F2>
 " " reselect visual block after indent/outdent
 vnoremap < <gv
 vnoremap > >gv
 
-
-" let g:SuperTabDefaultCompletionType    = '<C-n>'
-" let g:SuperTabCrMapping                = 0
-" let g:UltiSnipsExpandTrigger           = '<tab>'
-" let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-" let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
-" let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
-
-" let g:syntastic_always_populate_loc_list = 1
-" " let g:syntastic_auto_loc_list = 1
-" " let g:syntastic_check_on_open = 1
-" " let g:syntastic_check_on_wq = 0
-" let g:syntastic_warning_symbol = "▲"
-" let g:syntastic_error_symbol = '✘'
-" let g:syntastic_vim_checkers           = ['vint']
-" let g:syntastic_javascript_checkers = ['eslint', 'flow']
-" let g:syntastic_javascript_flow_exe = 'flow'
-" " Use local node_modules binary
-" let g:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js"
 
@@ -317,17 +298,6 @@ function! ESLintFix()
   Neomake
 endfunction
 nnoremap <leader>el :call ESLintFix()<CR>
-
-function! Prettier()
-  silent execute "!prettier --stdin --trailing-comma --parser=flow %"
-  edit! %
-  Neomake
-endfunction
-nnoremap <leader>pt :call Prettier()<CR>
-autocmd FileType javascript set formatprg=prettier\ --stdin\ --parser\ flow\ --trailing-comma\ all
-autocmd FileType javascript.jsx set formatprg=prettier\ --stdin\ --parser\ flow\ --trailing-comma\ all
-autocmd FileType graphql set formatprg=prettier\ --stdin\ --parser\ graphql\ --trailing-comma\ all
-
 
 function! RubocopFix()
   silent execute "!rubocop -a %"
@@ -356,9 +326,6 @@ if findfile('.eslintrc.js', '.;') !=# '' ||findfile('.eslintrc.json', '.;') !=# 
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_jsx_enabled_makers = ['eslint']
 endif
-" In case we need to debug Neomake, uncomment this
-" let g:neomake_verbose=3
-" let g:neomake_logfile='/tmp/error.log'
 
 " Make GitGutter Neomake signs nicer
 let g:neomake_warning_sign = {
@@ -370,61 +337,9 @@ let g:neomake_error_sign = {
   \ 'texthl': 'ErrorMsg',
   \ }
 
-
-
-" Custom flowtype Neomake maker
-function! StrTrim(txt)
-  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
-endfunction
-
-" function! FlowArgs()
-"   let g:file_path = expand('%:p')
-"   return ['-c', g:flow_path.' check-contents '.g:file_path.' < '.g:file_path.' --json | flow-vim-quickfix']
-" endfunction
-
-
-" let g:flow_maker = {
-" \ 'exe': 'sh',
-" \ 'args': function('FlowArgs'),
-" \ 'errorformat': '%E%f:%l:%c\,%n: %m',
-" \ 'cwd': '%:p:h'
-" \ }
-
-
-if findfile('.flowconfig', '.;') !=# ''
-  let g:flow_path = StrTrim(system('PATH=$(yarn bin):$PATH && which flow'))
-  if g:flow_path != 'flow not found'
-    let g:neomake_javascript_flow_exe = g:flow_path
-    let g:neomake_jsx_flow_exe = g:flow_path
-    " let g:neomake_javascript_flow_maker = g:flow_maker
-
-    let g:neomake_javascript_enabled_makers = g:neomake_javascript_enabled_makers + [ 'flow']
-    let g:neomake_jsx_enabled_makers = g:neomake_jsx_enabled_makers + [ 'flow']
-    let g:flow#enable = 0
-    let g:flow#flowpath = g:flow_path
-  endif
-endif
-
-let g:neomake_elixir_enabled_makers = ['credo']
-
-let g:javascript_plugin_flow = 1
-
 " deoplete conf
 let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_completed_snippet = 1
-" let g:deoplete#omni#functions = {}
-" let g:deoplete#sources = {}
-" let g:deoplete#sources._ = ['file', 'neosnippet']
-" let g:deoplete#sources._ = ['file']
-" let g:deoplete#omni#input_patterns = {}
-let g:deoplete#file#enable_buffer_path = 1
-" let g:deoplete#omni#functions.elm = ['elm#Complete']
-" let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
-" let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
-
-" elm-vim
-let g:elm_format_autosave = 1
-
 if !empty(g:neomake_javascript_enabled_makers)
   autocmd! BufWritePost *.js Neomake
 end
